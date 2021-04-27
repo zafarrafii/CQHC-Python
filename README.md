@@ -1,2 +1,2 @@
-# PILSE-Python
-Pitch-invariant log-spectral envelope
+# CQT-SEC-Python
+Constant-Q transform spectral envelope coefficients (CQT-SEC)
