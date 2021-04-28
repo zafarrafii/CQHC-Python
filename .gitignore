@@ -1,5 +1,6 @@
 .ipynb_checkpoints
 __pycache__
-nsynth
+nsynth_features
+nsynth_similarities
 nsynth11
 zaf.py
