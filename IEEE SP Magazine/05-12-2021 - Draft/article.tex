@@ -1,0 +1,95 @@
+\documentclass[journal]{IEEEtran}
+
+\usepackage{amsmath,cite,graphicx}
+
+\begin{document}
+
+\title{The Constant-Q Transform \\ Spectral Envelope Coefficients}
+
+\maketitle
+
+
+\section{Scope}
+
+\IEEEPARstart{T}{he} sliding discrete Fourier transform (SDFT) ...
+
+%One paragraph describing the article content
+
+
+\cite{brown1991}, \cite{brown1992}
+
+\cite{engel2017}: NSynth
+
+
+- Aware that some methods are attempting to learn more adapted feature like that 
+- The envelope component can additionally be refined, along with the pitch component
+- Incidentally, the pitch component can be used to identify the pitch/key
+
+\section{Relevance}
+
+%one or two paragraphs
+
+
+\section{Prerequisites}
+
+Basic knowledge of audio signal processing and music information retrieval is required to understand this article, in particular, concepts such as the Fourier transform, convolution, spectral envelope, pitch, CQT, and MFCC.
+
+
+\section{Problem Statement}
+
+\subsection{Observations}
+
+Assumption: A log-spectrum, such as the CQT-spectrum, can be represented as the convolution of a pitch-invariant log-specrtal envelope component (= timbre) and a envelope-normalized pitch component.
+
+\begin{itemize}
+\item A pitch change in the audio translates to a linear shift in the log-spectrum.
+\item The Fourier transform (FT) of a convolution of two functions is equal to the point-wise product of their FTs (convolution theorem).
+\item The magnitude FT is shift-invariant.
+\end{itemize}
+
+
+%Equation \ref{eq:sdft} shows ...
+%
+%\begin{equation}
+%\label{eq:sdft}
+%\begin{split}
+%\underset{0 \leq k < N}{X_k^{(i)}} 
+%& = \sum_{n=0}^{N-1} x_{i+n} e^{\frac{-j 2\pi n k}{N}}\\
+%& = \sum_{n=0}^{N-1} x_{i+n} e^{\frac{-j 2\pi (n+1) k}{N}} e^{\frac{j 2\pi k}{N}} 
+%\end{split}
+%\end{equation}
+
+
+\section{Solution}
+
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=\columnwidth]{dft_kernels.png}
+%	\caption{Kernels derived from the Hanning (top-left), Blackman (top-right), triangular (center-left), Parzen (center-right), Gaussian (with $\alpha = 2.5$) (bottom-left), and Kaiser (with $\beta = 0.5$) (bottom-right) windows. The kernels were derived for an $N$-point DFT where $N = 2048$ samples. Only the first 100 coefficients at the bottom-left corner of the $N$-by-$N$ kernels are shown. The values are displayed in log of amplitude.}
+%	\label{fig:dft_kernels}
+%\end{figure}
+
+%Figure \ref{fig:dft_kernels} shows ...
+
+
+\section{Numerical Example}
+
+% or "V - Computational Example"
+
+
+
+\section{What We Have Learned}
+
+We have shown that ...
+
+% One paragraph
+
+
+\section{Author}
+
+\textit{\textbf{Zafar Rafii}} (zafarrafii@gmail.com) received a PhD in Electrical Engineering and Computer Science from Northwestern University in 2014, and an MS in Electrical Engineering from both Ecole Nationale Superieure de l’Electronique et de ses Applications in France and Illinois Institute of Technology in the US in 2006. He is currently a senior research engineer at Gracenote in the US. He also worked as a research engineer at Audionamix in France. His research interests are centered on audio analysis, somewhere between signal processing, machine learning, and cognitive science, with a predilection for source separation and audio identification.
+
+\bibliographystyle{IEEEtran}
+\bibliography{bibliography.bib}
+
+\end{document}

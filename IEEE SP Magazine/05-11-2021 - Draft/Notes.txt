@@ -1,3 +1,0 @@
-- Aware that some methods are attempting to learn more adapted feature like that 
-- The envelope component can additionally be refined, along with the pitch component
-- Incidentally, the pitch component can be used to identify the pitch/key
