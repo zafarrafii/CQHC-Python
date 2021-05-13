@@ -19,45 +19,45 @@ Warning--string name "november" is undefined
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 3 entries,
+You've used 4 entries,
             4087 wiz_defined-function locations,
-            840 strings with 7840 characters,
-and the built_in function-call counts, 2532 in all, are:
-= -- 194
-> -- 58
+            845 strings with 7941 characters,
+and the built_in function-call counts, 2865 in all, are:
+= -- 216
+> -- 62
 < -- 22
-+ -- 34
-- -- 10
-* -- 136
-:= -- 383
-add.period$ -- 6
-call.type$ -- 3
++ -- 36
+- -- 11
+* -- 145
+:= -- 441
+add.period$ -- 8
+call.type$ -- 4
 change.case$ -- 3
 chr.to.int$ -- 48
-cite$ -- 3
-duplicate$ -- 178
-empty$ -- 196
-format.name$ -- 12
-if$ -- 577
+cite$ -- 4
+duplicate$ -- 205
+empty$ -- 242
+format.name$ -- 13
+if$ -- 657
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 31
-newline$ -- 32
-num.names$ -- 3
-pop$ -- 65
+int.to.str$ -- 4
+missing$ -- 36
+newline$ -- 35
+num.names$ -- 4
+pop$ -- 81
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 188
+skip$ -- 218
 stack$ -- 0
 substring$ -- 115
-swap$ -- 150
+swap$ -- 163
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 3
+type$ -- 4
 warning$ -- 0
-while$ -- 9
-width$ -- 4
-write$ -- 52
+while$ -- 10
+width$ -- 5
+write$ -- 59
 (There were 2 warnings)

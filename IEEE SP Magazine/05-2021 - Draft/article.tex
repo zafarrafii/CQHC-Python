@@ -4,30 +4,33 @@
 
 \begin{document}
 
-\title{The Constant-Q Transform \\ Spectral Envelope Coefficients}
+\title{The Constant-Q Transform Spectral Envelope Coefficients: a musically-adapted timbre feature}
 
 \maketitle
 
 
 \section{Scope}
-
-\IEEEPARstart{T}{he} sliding discrete Fourier transform (SDFT) ...
-
 %One paragraph describing the article content
 
+%- Aware that some methods are attempting to learn more adapted feature like that 
+%- The envelope component can additionally be refined, along with the pitch component
+%- Incidentally, the pitch component can be used to identify the pitch/key
+
+% We are presenting a timbre feature better suited to musical data
+% We will show how to derive it from the CQT, by decomposing it into a pitch-invariant spectral envelop and a normalized pitch component
+% We will show how it compares to the MFCC, commonly-used as the timbre feature, on the NSynth dataset
+
+\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. This article will show how to derive a simple but ... timbre feature ...
 
 \cite{brown1991}, \cite{brown1992}
-
 \cite{engel2017}: NSynth
 
 
-- Aware that some methods are attempting to learn more adapted feature like that 
-- The envelope component can additionally be refined, along with the pitch component
-- Incidentally, the pitch component can be used to identify the pitch/key
-
 \section{Relevance}
+%One or two paragraphs
 
-%one or two paragraphs
+% A good pitch-invariant timbre feature can help for identifying musical instruments 
+% Additionally, we will show how to decompose the CQT spectrum into a pitch-invariant envelope and a normalized pitch component, which can be reused
 
 
 \section{Prerequisites}
@@ -36,6 +39,16 @@ Basic knowledge of audio signal processing and music information retrieval is re
 
 
 \section{Problem Statement}
+
+% There is no proper timbre feature, especially for music data.
+% People use MFCC, originally designed for speech data, other tried to learn such features
+% 
+
+
+
+
+
+\section{Solution}
 
 \subsection{Observations}
 
@@ -48,6 +61,11 @@ Assumption: A log-spectrum, such as the CQT-spectrum, can be represented as the 
 \end{itemize}
 
 
+
+
+\section{Numerical Example}
+% or "V - Computational Example"
+
 %Equation \ref{eq:sdft} shows ...
 %
 %\begin{equation}
@@ -59,8 +77,7 @@ Assumption: A log-spectrum, such as the CQT-spectrum, can be represented as the 
 %\end{split}
 %\end{equation}
 
-
-\section{Solution}
+%Figure \ref{fig:dft_kernels} shows ...
 
 %\begin{figure}[htbp]
 %	\centering
@@ -69,20 +86,12 @@ Assumption: A log-spectrum, such as the CQT-spectrum, can be represented as the 
 %	\label{fig:dft_kernels}
 %\end{figure}
 
-%Figure \ref{fig:dft_kernels} shows ...
-
-
-\section{Numerical Example}
-
-% or "V - Computational Example"
-
-
 
 \section{What We Have Learned}
+% One paragraph
 
 We have shown that ...
 
-% One paragraph
 
 
 \section{Author}
