@@ -20,10 +20,11 @@
 % We will show how to derive it from the CQT, by decomposing it into a pitch-invariant spectral envelop and a normalized pitch component
 % We will show how it compares to the MFCC, commonly-used as the timbre feature, on the NSynth dataset
 
-\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. This article will show how to derive a simple but ... timbre feature ...
+\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. While a complex concept to encompass, this article will show how to compute a simple but representative timbre feature ... well-adapted to musical data. 
 
-\cite{brown1991}, \cite{brown1992}
-\cite{engel2017}: NSynth
+The feature will be derived from the constant-Q transform (CQT), a log-scaled frequency transform better adapted to musical data \cite{brown1991}, \cite{brown1992}.
+
+The CQT-SEC will compare with the mel-frequency cepstral coefficients (MFCC), on the NSynth dataset, a publicly-available dataset of musical notes \cite{engel2017}.
 
 
 \section{Relevance}
