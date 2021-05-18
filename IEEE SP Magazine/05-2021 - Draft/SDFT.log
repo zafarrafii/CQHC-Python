@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  17 MAY 2021 23:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  17 MAY 2021 22:41
 entering extended mode
-**./article.tex
-(article.tex
+**./SDFT.tex
+(SDFT.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-05-07>
 (C:\Users\zarafii2001\AppData\Local\Programs\MiKTeX\tex/latex/ieeetran\IEEEtran
@@ -215,8 +215,8 @@ nd-pdftex.def
 File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count272
 \l__pdf_internal_box=\box51
-) (article.aux)
-\openout1 = `article.aux'.
+) (SDFT.aux)
+\openout1 = `SDFT.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -269,29 +269,140 @@ LaTeX Warning: No \author given.
 
 LaTeX Warning: No \author given.
 
-(article.bbl) [1{C:/Users/zarafii2001/AppData/Local/MiKTeX/pdftex/config/pdftex
-.map}
+
+LaTeX Warning: Citation `jacobsen2003' on page 1 undefined on input line 13.
 
 
-] (article.aux) ) 
+LaTeX Warning: Citation `kim2018' on page 1 undefined on input line 18.
+
+
+LaTeX Warning: Citation `jacobsen2003' on page 1 undefined on input line 23.
+
+
+LaTeX Warning: Citation `kim2018' on page 1 undefined on input line 23.
+
+
+LaTeX Warning: Citation `jacobsen2003' on page 1 undefined on input line 47.
+
+
+LaTeX Warning: Citation `brown1991' on page 1 undefined on input line 54.
+
+
+LaTeX Warning: Citation `brown1992' on page 1 undefined on input line 54.
+
+
+LaTeX Warning: Citation `oppenheim1975' on page 1 undefined on input line 54.
+
+[1{C:/Users/zarafii2001/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
+
+
+]
+
+LaTeX Warning: File `dft_kernels.png' not found on input line 84.
+
+
+! Package pdftex.def Error: File `dft_kernels.png' not found: using draft setti
+ng.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.84 ...phics[width=\columnwidth]{dft_kernels.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 8
+4.
+(C:\Users\zarafii2001\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+
+LaTeX Warning: Citation `brown1992' on page 2 undefined on input line 89.
+
+
+LaTeX Warning: Citation `brown1992' on page 2 undefined on input line 91.
+
+[2]
+
+LaTeX Warning: Citation `herre2000' on page 3 undefined on input line 98.
+
+
+LaTeX Warning: Citation `moehrs2002' on page 3 undefined on input line 98.
+
+
+LaTeX Warning: Citation `yang2008' on page 3 undefined on input line 98.
+
+
+LaTeX Warning: Citation `gartner2014' on page 3 undefined on input line 98.
+
+
+LaTeX Warning: Citation `kim2018' on page 3 undefined on input line 98.
+
+
+LaTeX Warning: Citation `bosi2003' on page 3 undefined on input line 100.
+
+
+LaTeX Warning: File `mdct_kernels.png' not found on input line 130.
+
+
+! Package pdftex.def Error: File `mdct_kernels.png' not found: using draft sett
+ing.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.130 ...ics[width=\columnwidth]{mdct_kernels.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: Citation `brown1992' on page 3 undefined on input line 135.
+
+[3]
+No file SDFT.bbl.
+[4
+
+] (SDFT.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2756 strings out of 479173
- 45136 string characters out of 2851305
- 349455 words of memory out of 3000000
- 20378 multiletter control sequences out of 15000+600000
- 435425 words of font info for 80 fonts, out of 8000000 for 9000
+ 2885 strings out of 479173
+ 47353 string characters out of 2851305
+ 365644 words of memory out of 3000000
+ 20482 multiletter control sequences out of 15000+600000
+ 438184 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,5n,62p,1132b,164s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/enc/
-dvips/base/8r.enc}<C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmsy7.pfb><C:/Users/zarafii2001/AppData/Local/Programs/Mi
-KTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/zarafii2001/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/zarafii2001/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/zarafii2001/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on article.pdf (1 page, 55952 bytes).
+ 55i,24n,62p,1285b,307s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.e
+nc}<C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmex10.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmmi10.pfb><C:/Users/zarafii2001/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/zarafii2001/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/zarafii2
+001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/
+Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmr10.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr5.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/zarafii2001/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/zarafii2001/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/zaraf
+ii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><
+C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmsy7.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/ur
+w/courier/ucrr8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/
+type1/urw/times/utmb8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/
+fonts/type1/urw/times/utmbi8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/
+MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/zarafii2001/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on SDFT.pdf (4 pages, 187599 bytes).
 PDF statistics:
- 27 PDF objects out of 1000 (max. 8388607)
+ 84 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

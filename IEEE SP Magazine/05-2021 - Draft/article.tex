@@ -11,22 +11,8 @@
 
 \section{Scope}
 
-\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. Typical attempts to characterize the timbre of musical data is to use to the mel-frequency cepstral coefficients (MFCC) \cite{davis1980}, a feature original designed for speech recognition, while more recently, data-driven approach ...
+\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. In this article, we will show how to derive a simple but well-founded timbre feature from the constant-Q transform (CQT), a log-scaled frequency transform that is well-adapted to musical data \cite{brown1991}, \cite{brown1992}. We will show how to decompose the CQT into an energy-normalized pitch component and a pitch-invariant spectral envelope, from which we will extract a number of meaningful coefficients. We will then compare these CQT spectral envelope coefficients (CQT-SEC) with the mel-frequency cepstral coefficients (MFCC) \cite{davis1980}, a feature originally designed for speech recognition but liberally used to characterize timbre in music, on the NSynth dataset, a large-scale and publicly-available dataset of musical notes \cite{engel2017}.
 
-
-In this article, we will show how to compute a timbre feature that is well-adapted to musical data. The feature will be derived from the constant-Q transform (CQT), a log-scaled frequency transform which matches the notes of the Western music scale \cite{brown1991}, \cite{brown1992}.
-
-Decompose the CQT into a pitch-invariant spectral envelope and an energy-normalized pitch component. 
-
-CQT spectral envelope coefficients (CQT-SEC)
-
-
-The CQT-SEC will compare with the , on the NSynth dataset, a publicly-available dataset of musical notes \cite{engel2017}.
-
-
-
-
-%interpretable feature
 
 \section{Relevance}
 %One or two paragraphs
@@ -37,6 +23,8 @@ The CQT-SEC will compare with the , on the NSynth dataset, a publicly-available 
 
 % A good pitch-invariant timbre feature can help for identifying musical instruments 
 % Additionally, we will show how to decompose the CQT spectrum into a pitch-invariant envelope and a normalized pitch component, which can be reused
+
+
 
 
 \section{Prerequisites}
