@@ -4,31 +4,36 @@
 
 \begin{document}
 
-\title{The Constant-Q Transform Spectral Envelope Coefficients: a musically-adapted timbre feature}
+\title{The Constant-Q Transform Spectral Envelope Coefficients: A Timbre Feature Designed for Music}
 
 \maketitle
 
 
 \section{Scope}
-%One paragraph describing the article content
 
-%- Aware that some methods are attempting to learn more adapted feature like that 
-%- The envelope component can additionally be refined, along with the pitch component
-%- Incidentally, the pitch component can be used to identify the pitch/key
+\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. Typical attempts to characterize the timbre of musical data is to use to the mel-frequency cepstral coefficients (MFCC) \cite{davis1980}, a feature original designed for speech recognition, while more recently, data-driven approach ...
 
-% We are presenting a timbre feature better suited to musical data
-% We will show how to derive it from the CQT, by decomposing it into a pitch-invariant spectral envelop and a normalized pitch component
-% We will show how it compares to the MFCC, commonly-used as the timbre feature, on the NSynth dataset
 
-\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. While a complex concept to encompass, this article will show how to compute a simple but representative timbre feature ... well-adapted to musical data. 
+In this article, we will show how to compute a timbre feature that is well-adapted to musical data. The feature will be derived from the constant-Q transform (CQT), a log-scaled frequency transform which matches the notes of the Western music scale \cite{brown1991}, \cite{brown1992}.
 
-The feature will be derived from the constant-Q transform (CQT), a log-scaled frequency transform better adapted to musical data \cite{brown1991}, \cite{brown1992}.
+Decompose the CQT into a pitch-invariant spectral envelope and an energy-normalized pitch component. 
 
-The CQT-SEC will compare with the mel-frequency cepstral coefficients (MFCC), on the NSynth dataset, a publicly-available dataset of musical notes \cite{engel2017}.
+CQT spectral envelope coefficients (CQT-SEC)
 
+
+The CQT-SEC will compare with the , on the NSynth dataset, a publicly-available dataset of musical notes \cite{engel2017}.
+
+
+
+
+%interpretable feature
 
 \section{Relevance}
 %One or two paragraphs
+
+% A good timbre feature can be used 
+% - can be used for similarity, classification, as inputs to supervised classifiers, as a preprocessing step, ...
+
 
 % A good pitch-invariant timbre feature can help for identifying musical instruments 
 % Additionally, we will show how to decompose the CQT spectrum into a pitch-invariant envelope and a normalized pitch component, which can be reused
@@ -46,10 +51,12 @@ Basic knowledge of audio signal processing and music information retrieval is re
 % 
 
 
-
-
-
 \section{Solution}
+
+%- The envelope component can additionally be refined, along with the pitch component
+%- Incidentally, the pitch component can be used to identify the pitch/key
+
+convolution theorem: \cite{proakis1995}.
 
 \subsection{Observations}
 
@@ -61,7 +68,7 @@ Assumption: A log-spectrum, such as the CQT-spectrum, can be represented as the 
 \item The magnitude FT is shift-invariant.
 \end{itemize}
 
-
+% Can think about the extraction of the envelop as a white normalization of the pitch by using a weighting function that normalizes the signal spectral density by the spectrum magnitude, just like in the GCC-PHAT
 
 
 \section{Numerical Example}

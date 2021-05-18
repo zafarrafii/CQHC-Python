@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  16 MAY 2021 22:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  17 MAY 2021 18:07
 entering extended mode
 **./article.tex
 (article.tex
@@ -275,10 +275,10 @@ LaTeX Warning: No \author given.
 
 ] (article.aux) ) 
 Here is how much of TeX's memory you used:
- 2754 strings out of 479173
- 45112 string characters out of 2851305
- 347449 words of memory out of 3000000
- 20376 multiletter control sequences out of 15000+600000
+ 2756 strings out of 479173
+ 45136 string characters out of 2851305
+ 349455 words of memory out of 3000000
+ 20378 multiletter control sequences out of 15000+600000
  435425 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,5n,62p,709b,164s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -289,7 +289,7 @@ KTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/zarafii2001/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/zarafii2001/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/zarafii2001/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on article.pdf (1 page, 54580 bytes).
+Output written on article.pdf (1 page, 55935 bytes).
 PDF statistics:
  27 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
