@@ -8,35 +8,28 @@
 
 \maketitle
 
-
 \section{Scope}
 
-\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. In this article, we will show how to derive a simple but well-founded timbre feature from the constant-Q transform (CQT), a log-scaled frequency transform that is well-adapted to musical data \cite{brown1991}, \cite{brown1992}. We will show how to decompose the CQT into an energy-normalized pitch component and a pitch-invariant spectral envelope, from which we will extract a number of meaningful coefficients. We will then compare these CQT spectral envelope coefficients (CQT-SEC) with the mel-frequency cepstral coefficients (MFCC) \cite{davis1980}, a feature originally designed for speech recognition but liberally used to characterize timbre in music, on the NSynth dataset, a large-scale and publicly-available dataset of musical notes \cite{engel2017}.
+\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. In this article, we will show how to design a simple but efficient pitch-independent timbre feature which is well-adapted to musical data, by deriving it from the constant-Q transform (CQT) \cite{brown1991}, \cite{brown1992}, a log-scaled frequency transform which matches the notes of the Western music scale. We will show how to decompose the CQT into an energy-normalized pitch component and a pitch-invariant spectral envelope, the latter from which we will extract a number of meaningful coefficients. We will then evaluate the discriminative power of these CQT spectral envelope coefficients (CQT-SEC) on the NSynth dataset \cite{engel2017}, a large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs) \cite{davis1980}, features originally designed for speech recognition but commonly used to characterize timbre in music. 
 
 
 \section{Relevance}
-%One or two paragraphs
 
-% A good timbre feature can be used 
-% - can be used for similarity, classification, as inputs to supervised classifiers, as a preprocessing step, ...
-
-
-% A good pitch-invariant timbre feature can help for identifying musical instruments 
-% Additionally, we will show how to decompose the CQT spectrum into a pitch-invariant envelope and a normalized pitch component, which can be reused
-
-
+A timbre feature which is well-adapted to musical data, pitch-independent, and with high discriminative power can be helpful for a number of applications, such as computing similarity, allowing identification, and performing classification of musical data, in particular, musical instruments. Additionally, the ability to decompose the spectrum of a sound (here, the magnitude CQT) into a pitch-independent spectral envelope and an energy-normalized pitch component, can be useful for music analysis, transformation, and resynthesis. The energy-normalized pitch component can also potentially be used for pitch identification and melody extraction. 
 
 
 \section{Prerequisites}
 
-Basic knowledge of audio signal processing and music information retrieval is required to understand this article, in particular, concepts such as the Fourier transform, convolution, spectral envelope, pitch, CQT, and MFCC.
+Basic knowledge of audio signal processing and music information retrieval (MIR) is required to understand this article, in particular, concepts such as the Fourier transform, convolution, spectral envelope, pitch, CQT, and MFCCs.
 
 
 \section{Problem Statement}
 
-% There is no proper timbre feature, especially for music data.
-% People use MFCC, originally designed for speech data, other tried to learn such features
-% 
+The complex nature of timbre makes it an attribute that is not easy to quantify in terms of one single characteristic feature. While it is assumed to be independent from pitch and loudness, it is not really possible to fully disentangle timbre from those qualities, as timbre is inherently dependent on the spectral content of the sound, which is also defined by its pitch and loudness \cite{moore2004}. Researchers in MIR proposed a number of descriptors to characterize one or more aspects of timbre, but ... mostly adopted the MFCCs
+
+%Given a lack of proper timbre feature for characterizing musical data, the MIR community adopted the MFCCs, 
+
+% MIR tried some feature linked to timbre but nothing that emcompasses the whole attribute. Adopted MFCCs from speech recognition, commonly-used. While more recent data-driven approaches are attempting to learn a timbre feature
 
 
 \section{Solution}
@@ -87,6 +80,9 @@ Assumption: A log-spectrum, such as the CQT-spectrum, can be represented as the 
 % One paragraph
 
 We have shown that ...
+
+%Limitations:
+%- just like MFCCs, not very robust to noise, to mixture of musical instruments playing at different pitches
 
 
 
