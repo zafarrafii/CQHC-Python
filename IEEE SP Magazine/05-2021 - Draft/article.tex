@@ -10,22 +10,24 @@
 
 \section{Scope}
 
-\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. In this article, we will show how to design a simple but practical pitch-independent timbre feature which is well-adapted to musical data, by deriving it from the constant-Q transform (CQT) \cite{brown1991, brown1992}, a log-scaled frequency transform which matches the notes of the Western music scale. We will show how to decompose the power CQT spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope, the latter from which we will extract a number of timbral coefficients. We will then evaluate the discriminative power of these CQT spectral envelope coefficients (CQT-SEC) on the NSynth dataset \cite{engel2017}, a large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs) \cite{davis1980}, features originally designed for speech recognition but commonly used to characterize timbre in music. 
+\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. In this article, we will show how to design a simple but practical pitch-independent timbre feature which is well-adapted to musical data, by deriving it from the constant-Q transform (CQT) \cite{brown1991, brown1992}, a log-scaled frequency transform which matches the notes of the Western music scale. We will show how to decompose the CQT spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope, the latter from which we will extract a number of timbral coefficients. We will then evaluate the discriminative power of these CQT spectral envelope coefficients (CQT-SEC) on the NSynth dataset \cite{engel2017}, a large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs) \cite{davis1980}, features originally designed for speech recognition but commonly used to characterize timbre in music. 
 
 
 \section{Relevance}
 
-A timbre feature which is well-adapted to musical data, pitch-independent, and with high discriminative power can find uses in a number of applications, such as similarity detection, sound recognition, and audio classification, in particular, of musical instruments. Additionally, the ability to decompose the spectrum of a sound (here, the power CQT) into a pitch-independent spectral envelope and an energy-normalized pitch component can be useful for audio analysis, transformation, and resynthesis. The energy-normalized pitch component can also potentially be used for pitch identification and melody extraction. 
+A timbre feature which is well-adapted to musical data, pitch-independent, and with high discriminative power can find uses in a number of applications, such as similarity detection, sound recognition, and audio classification, in particular, of musical instruments. Additionally, the ability to decompose the spectrum of a sound (here, the CQT spectrum) into a pitch-independent spectral envelope and an energy-normalized pitch component can be useful for audio analysis, transformation, and resynthesis. The energy-normalized pitch component can also potentially be used for pitch identification and melody extraction. 
 
 
 \section{Prerequisites}
 
-Basic knowledge of audio signal processing and some knowledge of music information retrieval (MIR) are required to understand this article, in particular, concepts such as the Fourier transform, convolution, spectral envelope, pitch, CQT, and MFCCs.
+Basic knowledge of audio signal processing and some knowledge of music information retrieval (MIR) are required to understand this article, in particular, concepts such as the Fourier transform (FT), convolution, spectral envelope, pitch, CQT, and MFCCs.
 
 
 \section{Problem Statement}
 
-The multidimensional nature of timbre makes it an attribute that is tricky to quantify in terms of one single characteristic feature \cite{grey1977}. While it is assumed to be independent from pitch and loudness, it is not really feasible to fully disentangle timbre from those qualities, as timbre is inherently dependent on the spectral content of the sound, which is also defined by its pitch and loudness \cite{moore2004}. Researchers in MIR proposed a number of descriptors to characterize one or more aspects of timbre \cite{peeters2003}, but mostly adopted the MFCCs from the speech recognition community. While the MFCCs have shown 
+The multidimensional nature of timbre makes it an attribute that is tricky to quantify in terms of one single characteristic feature \cite{grey1977}. While it is assumed to be independent from pitch and loudness, it is not really feasible to fully disentangle timbre from those qualities, as timbre is inherently dependent on the spectral content of the sound, which is also defined by its pitch and loudness \cite{moore2004}. While researchers in MIR proposed a number of descriptors to characterize one or more aspects of timbre \cite{peeters2003}, they mostly adopted the MFCCs as the go-to single timbre feature.
+
+% from the speech recognition community. While the MFCCs have shown 
 
 %More recently, a number of data-driven approaches are attempting to learn some timbre representation, but can be some embeddings used for music resynthesis and that are not necessarily easily interpretable, we will show that we can use simple signal processing techniques to achieve ... typically, by using autoencoders and generative models
 %
@@ -39,34 +41,72 @@ The multidimensional nature of timbre makes it an attribute that is tricky to qu
 %- The envelope component can additionally be refined, along with the pitch component
 %- Incidentally, the pitch component can be used to identify the pitch/key
 
-convolution theorem: \cite{proakis1995}.
 
-\subsection{Observations}
+We start with the assumption that a log-spectrum $X$, in particular, the CQT spectrum, can be represented as the convolution of an energy-normalized pitch component $P$ (which mostly contains the pitch information) and a pitch-independent spectral envelope component $E$ (which mostly contains the timbre information), as shown in Equation \ref{eq:assumption}.
+\begin{equation}
+\label{eq:assumption}
+X = E * P
+\end{equation}
 
-Assumption: A log-spectrum, such as the CQT-spectrum, can be represented as the convolution of a pitch-invariant log-specrtal envelope component (= timbre) and a envelope-normalized pitch component.
+\emph{Property 1: A pitch change in the audio translates to a linear shift in the log-spectrum \cite{brown1991, brown1992}.}
 
-\begin{itemize}
-\item A pitch change in the audio translates to a linear shift in the log-spectrum.
-\item The Fourier transform (FT) of a convolution of two functions is equal to the point-wise product of their FTs (convolution theorem).
-\item The magnitude FT is shift-invariant.
-\end{itemize}
+Assuming that pitch and timbre are independent, this implies that the same musical object at different pitches would have a similar envelope component but a shifted pitch component (while two different musical objects at the same pitch would have different envelope components but a similar pitch component). Assuming $X'$, $E'$ and $P'$ as the log-spectrum, envelope, and pitch component of the 
+
+%We then point out to a first property that 
+
+%  Theorem, Lemma, Proposition, Corollary, Postulate, Statement, Fact, Observation, Expression, Fact, Property, Conjecture and Principle
+
+Equation \ref{eq:property1}.
+\begin{equation}
+\label{eq:property1}
+\begin{split}
+&X = E * P \\
+&X' = E' * P' \\
+&\Rightarrow E \approx E'
+\end{split}
+\end{equation}
+
+
+We show in a second property that the FT of a convolution of two functions is equal to the point-wise product of their FTs, also known as the convolution theorem \cite{proakis1995}.
+
+Equation \ref{eq:property2}.
+\begin{equation}
+\label{eq:property2}
+\begin{split}
+&\mathcal{F}(X) = \mathcal{F}(E) \cdot \mathcal{F}(P) \\
+&\mathcal{F}(X') = \mathcal{F}(E') \cdot \mathcal{F}(P') \\
+&\Rightarrow \mathcal{F}(E) \approx \mathcal{F}(E')
+\end{split}
+\end{equation}
+
+in a third property that the magnitude FT is shift-invariant \cite{proakis1995}.
+
+Equation \ref{eq:property3}.
+\begin{equation}
+\label{eq:property3}
+\begin{split}
+&\mathcal{F}(X) = |\mathcal{F}(X)| \cdot e^{j Arg(\mathcal{F}(X))} \\
+&\mathcal{F}(X) = |\mathcal{F}(X')| \cdot e^{j Arg(\mathcal{F}(X'))} \\
+&\Rightarrow |\mathcal{F}(X)| \approx |\mathcal{F}(X')|
+\end{split}
+\end{equation}
+
+Given the ..., 
+
+Equation \ref{eq:conclusion}.
+\begin{equation}
+\label{eq:conclusion}
+\begin{split}
+&\mathcal{F}(E) \approx |\mathcal{F}(X)| \\
+&\Rightarrow E \approx \mathcal{F}^{-1}(|\mathcal{F}(X)|) \\
+&\Rightarrow P \approx \mathcal{F}^{-1}(e^{j Arg(\mathcal{F}(X))})
+\end{split}
+\end{equation}
 
 % Can think about the extraction of the envelop as a white normalization of the pitch by using a weighting function that normalizes the signal spectral density by the spectrum magnitude, just like in the GCC-PHAT
 
 
-\section{Numerical Example}
-% or "V - Computational Example"
-
-%Equation \ref{eq:sdft} shows ...
-%
-%\begin{equation}
-%\label{eq:sdft}
-%\begin{split}
-%\underset{0 \leq k < N}{X_k^{(i)}} 
-%& = \sum_{n=0}^{N-1} x_{i+n} e^{\frac{-j 2\pi n k}{N}}\\
-%& = \sum_{n=0}^{N-1} x_{i+n} e^{\frac{-j 2\pi (n+1) k}{N}} e^{\frac{j 2\pi k}{N}} 
-%\end{split}
-%\end{equation}
+\section{Numerical Example} % or "V - Computational Example"
 
 %Figure \ref{fig:dft_kernels} shows ...
 
@@ -79,7 +119,6 @@ Assumption: A log-spectrum, such as the CQT-spectrum, can be represented as the 
 
 
 \section{What We Have Learned}
-% One paragraph
 
 We have shown that ...
 
