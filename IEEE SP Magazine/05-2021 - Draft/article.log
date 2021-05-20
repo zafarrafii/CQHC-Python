@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  19 MAY 2021 09:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  19 MAY 2021 23:04
 entering extended mode
 **./article.tex
 (article.tex
@@ -269,19 +269,21 @@ LaTeX Warning: No \author given.
 
 LaTeX Warning: No \author given.
 
-(article.bbl) [1{C:/Users/zarafii2001/AppData/Local/MiKTeX/pdftex/config/pdftex
-.map}
+(article.bbl [1{C:/Users/zarafii2001/AppData/Local/MiKTeX/pdftex/config/pdftex.
+map}
 
+
+]) [2
 
 ] (article.aux) ) 
 Here is how much of TeX's memory you used:
- 2756 strings out of 479173
- 45136 string characters out of 2851305
- 352455 words of memory out of 3000000
- 20378 multiletter control sequences out of 15000+600000
+ 2758 strings out of 479173
+ 45159 string characters out of 2851305
+ 352461 words of memory out of 3000000
+ 20380 multiletter control sequences out of 15000+600000
  435425 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,5n,62p,1271b,164s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,5n,62p,1281b,276s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/enc/
 dvips/base/8r.enc}<C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/typ
 e1/public/amsfonts/cm/cmsy7.pfb><C:/Users/zarafii2001/AppData/Local/Programs/Mi
@@ -289,9 +291,9 @@ KTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/zarafii2001/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/zarafii2001/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/zarafii2001/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on article.pdf (1 page, 56855 bytes).
+Output written on article.pdf (2 pages, 57669 bytes).
 PDF statistics:
- 27 PDF objects out of 1000 (max. 8388607)
+ 30 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

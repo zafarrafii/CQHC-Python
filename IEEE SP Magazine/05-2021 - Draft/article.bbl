@@ -25,12 +25,6 @@
 B.~C.~J. Moore, \emph{An Introduction to the Psychology of Hearing}.\hskip 1em
   plus 0.5em minus 0.4em\relax Academic Press, 2004.
 
-\bibitem{davis1980}
-S.~B. Davis and P.~Mermelstein, ``Comparison of parametric representations for
-  monosyllabic word recognition in continuously spoken sentences,'' \emph{IEEE
-  Transactions on Acoustics, Speech, and Signal Processing}, vol.~28, no.~4,
-  pp. 357--366, 1980.
-
 \bibitem{brown1991}
 J.~C. Brown, ``Calculation of a constant {Q} spectral transform,''
   \emph{Journal of the Acoustical Society of America}, vol.~89, no.~1, pp.
@@ -46,6 +40,21 @@ J.~Engel, C.~Resnick, A.~Roberts, S.~Dieleman, D.~Eck, K.~Simonyan, and
   M.~Norouzi, ``Neural audio synthesis of musical notes with {W}ave{N}et
   autoencoders,'' in \emph{34th International Conference on Machine Learning},
   Sydney, NSW, Australia, August 6-11 2017.
+
+\bibitem{davis1980}
+S.~B. Davis and P.~Mermelstein, ``Comparison of parametric representations for
+  monosyllabic word recognition in continuously spoken sentences,'' \emph{IEEE
+  Transactions on Acoustics, Speech, and Signal Processing}, vol.~28, no.~4,
+  pp. 357--366, 1980.
+
+\bibitem{grey1977}
+J.~M. Grey, ``Multidimensional perceptual scaling of musical timbres,''
+  \emph{Journal of the Acoustical Society of America}, vol.~61, no.~5, p.
+  1270–1277, May 1977.
+
+\bibitem{peeters2003}
+G.~Peeters, ``Digital signal processing: Principles, algorithms and
+  applications,'' IRCAM, Tech. Rep., 2003.
 
 \bibitem{proakis1995}
 J.~G. Proakis and D.~G. Manolakis, \emph{Digital Signal Processing: Principles,

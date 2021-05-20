@@ -21,45 +21,45 @@ Warning--string name "august" is undefined
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 6 entries,
+You've used 8 entries,
             4087 wiz_defined-function locations,
-            857 strings with 8289 characters,
-and the built_in function-call counts, 4117 in all, are:
-= -- 318
-> -- 87
-< -- 32
-+ -- 50
-- -- 15
-* -- 200
-:= -- 633
-add.period$ -- 12
-call.type$ -- 6
-change.case$ -- 4
+            867 strings with 8416 characters,
+and the built_in function-call counts, 5216 in all, are:
+= -- 433
+> -- 95
+< -- 35
++ -- 54
+- -- 17
+* -- 237
+:= -- 819
+add.period$ -- 16
+call.type$ -- 8
+change.case$ -- 6
 chr.to.int$ -- 69
-cite$ -- 6
-duplicate$ -- 297
-empty$ -- 352
-format.name$ -- 19
-if$ -- 954
+cite$ -- 8
+duplicate$ -- 397
+empty$ -- 434
+format.name$ -- 21
+if$ -- 1213
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 51
-newline$ -- 41
-num.names$ -- 6
-pop$ -- 115
+int.to.str$ -- 8
+missing$ -- 68
+newline$ -- 47
+num.names$ -- 8
+pop$ -- 145
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 321
+skip$ -- 423
 stack$ -- 0
-substring$ -- 165
-swap$ -- 236
-text.length$ -- 9
+substring$ -- 189
+swap$ -- 314
+text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 6
+type$ -- 8
 warning$ -- 0
-while$ -- 15
-width$ -- 7
-write$ -- 77
+while$ -- 18
+width$ -- 9
+write$ -- 97
 (There were 3 warnings)
