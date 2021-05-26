@@ -41,11 +41,10 @@ J.~Engel, C.~Resnick, A.~Roberts, S.~Dieleman, D.~Eck, K.~Simonyan, and
   autoencoders,'' in \emph{34th International Conference on Machine Learning},
   Sydney, NSW, Australia, August 6-11 2017.
 
-\bibitem{davis1980}
-S.~B. Davis and P.~Mermelstein, ``Comparison of parametric representations for
-  monosyllabic word recognition in continuously spoken sentences,'' \emph{IEEE
-  Transactions on Acoustics, Speech, and Signal Processing}, vol.~28, no.~4,
-  pp. 357--366, 1980.
+\bibitem{mermelstein1976}
+P.~Mermelstein, ``Distance measures for speech recognition, psychological and
+  instrumental,'' \emph{Pattern Recognition and Artificial Intelligence}, pp.
+  374--388, 1976.
 
 \bibitem{mueller2007}
 M.~M\"{u}ller, \emph{Information Retrieval for Music and Motion}.\hskip 1em
@@ -56,14 +55,21 @@ J.~M. Grey, ``Multidimensional perceptual scaling of musical timbres,''
   \emph{Journal of the Acoustical Society of America}, vol.~61, no.~5, p.
   1270–1277, May 1977.
 
-\bibitem{peeters2003}
-G.~Peeters, ``Digital signal processing: Principles, algorithms and
-  applications,'' IRCAM, Tech. Rep., 2003.
+\bibitem{peeters2011}
+G.~Peeters, ``The timbre toolbox: Extracting audio descriptors from musical
+  signals,'' \emph{Journal of the Acoustical Society of America}, vol. 130,
+  no.~5, pp. 2902--2916, May 2011.
 
 \bibitem{stevens1937}
 S.~S. Stevens, J.~Volkmann, and E.~B. Newman, ``A scale for the measurement of
   the psychological magnitude pitch,'' \emph{Journal of the Acoustical Society
   of America}, vol.~8, no.~3, pp. 185--190, 1937.
+
+\bibitem{pons2017}
+J.~Pons, O.~Slizovskaia, R.~Gong, E.~Gómez, and X.~Serra, ``Timbre analysis of
+  music audio signals with convolutional neural networks,'' in \emph{25th
+  European Signal Processing Conference}, Kos, Greece, August 28- September 2
+  2017.
 
 \bibitem{proakis1995}
 J.~G. Proakis and D.~G. Manolakis, \emph{Digital Signal Processing: Principles,
