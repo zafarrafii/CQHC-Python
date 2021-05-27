@@ -10,7 +10,7 @@
 
 \section{Scope}
 
-\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. In this article, we will show how to design a simple but functional timbre feature which is well-adapted to musical data, by deriving it from the constant-Q transform (CQT) \cite{brown1991, brown1992}, a log-scaled frequency transform which matches the notes of the Western music scale. We will show how to decompose the CQT spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope, the latter from which we will extract a number of timbral coefficients. We will then evaluate the discriminative power of these CQT spectral envelope coefficients (CQT-SEC) on the NSynth dataset \cite{engel2017}, a large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs) \cite{mermelstein1976}, features originally designed for speech recognition but commonly used to characterize timbre in music. 
+\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. In this article, we will show how to design a simple but functional timbre feature which is well-adapted to musical data, by deriving it from the constant-Q transform (CQT) \cite{brown1991, brown1992}, a log-scaled frequency transform which matches the Western music scale. We will show how to decompose the CQT spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope, the latter from which we will extract a number of timbral coefficients. We will then evaluate the discriminative power of these CQT spectral envelope coefficients (CQT-SEC) on the NSynth dataset \cite{engel2017}, a large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs) \cite{mermelstein1976}, features originally designed for speech recognition but commonly used to characterize timbre in music. 
 
 
 \section{Relevance}
@@ -20,46 +20,27 @@ A timbre feature which is well-adapted to musical data, pitch-independent, and w
 
 \section{Prerequisites}
 
-Basic knowledge of audio signal processing and some knowledge of music information retrieval (MIR) \cite{mueller2007} are required to understand this article, in particular, concepts such as the Fourier transform (FT), convolution, spectral envelope, pitch, CQT, and MFCCs.
+Basic knowledge of audio signal processing and some knowledge of music information retrieval (MIR) \cite{mueller2007} are required to understand this article, in particular, concepts such as the Fourier transform (FT), convolution, spectral envelope, pitch, CQT, and MFCCs. In particular, more information about the CQT can be found in\cite{brown1991, brown1992}.
 
 
 \section{Problem Statement}
 
-The multidimensional nature of timbre makes it an attribute that is tricky to quantify in terms of one single characteristic feature \cite{grey1977}. While it is assumed to be independent from pitch and loudness, it is not really feasible to fully disentangle timbre from those qualities, as timbre is inherently dependent on the spectral content of the sound which is also defined by its pitch and loudness \cite{moore2004}. Researchers in MIR proposed a number of descriptors to characterize one or more aspects of timbre \cite{peeters2011}, but they mostly resort to using the MFCCs when it comes to having one single timbre feature \cite{mueller2007}. While the MFCCs were shown to be helpful in a number of MIR tasks, they were initially designed for speech processing applications \cite{mermelstein1976} and are not necessarily adapted to musical data. In particular, they are computed through an old process which makes use of the mel scale, a perceptual scale experimentally developed 80 years ago to approximate the human auditory system's response \cite{stevens1937}. More recently, a number of data-driven approaches attempted to learn some timbral representations from musical data, but generally in terms of implicit embeddings which are tied to a specific trained model \cite{engel2017}, \cite{pons2017}, and not necessarily as in explicit and interpretable features such as the MFCCs, which are still usually preferred as the go-to single feature to characterize timbre in music.
+The multidimensional nature of timbre makes it an attribute that is tricky to quantify in terms of one simple characteristic feature \cite{grey1977}. While it is assumed to be independent from pitch and loudness, it is not really feasible to fully disentangle timbre from those qualities, as timbre is inherently dependent on the spectral content of the sound, which is also defined by its pitch and loudness \cite{moore2004}. Researchers in MIR proposed a number of descriptors to characterize one or more aspects of timbre \cite{peeters2011}, but they mostly resort to using the MFCCs when they need one simple timbre feature \cite{mueller2007}. While the MFCCs were shown to be helpful in some MIR tasks, they were initially designed for speech processing applications \cite{mermelstein1976} and are not necessarily adapted to musical data. In particular, they are derived through an old process which makes use of the mel scale, a perceptual scale experimentally designed 80 years ago to approximate the human auditory system's response \cite{stevens1937}. More recently, a number of data-driven approaches attempted to learn some timbral representations from musical data, but generally in terms of implicit embeddings which are tied to a specific trained model \cite{engel2017}, \cite{pons2017}, and not necessarily as explicit and interpretable features such as the MFCCs, which are still usually preferred as the go-to feature to characterize musical timbre by MIR practitioners.
 
 
 \section{Solution}
 
-%We proposed ...
-%
-%simple to compute
-%interpretable
-%functional
-%
-%We do not claim that it is perfect, but it's a better approximation
+We propose the CQT-SECs, a novel timbre feature that is well-adapted to musical data, pitch-independent, simple to derive, interpretable, and functional. We will show how to derive it from the CQT, a log-frequency transform which matches the Western music scale, by first decomposing it into a pitch-independent spectral envelope and an energy-normalized pitch component, and then extracting a number of timbral coefficients from the spectral envelope. 
 
-
-%- The envelope component can additionally be refined, along with the pitch component
-%- Incidentally, the pitch component can be used to identify the pitch/key
-
-
-We start with the assumption that a log-spectrum $X$, in particular, the CQT spectrum, can be represented as the convolution of an energy-normalized pitch component $P$ (which mostly contains the pitch information) and a pitch-independent spectral envelope component $E$ (which mostly contains the timbre information), as shown in Equation \ref{eq:assumption}.
+We start with the assumption that a log-spectrum $X$, in particular, the CQT spectrum, can be represented as the convolution between a pitch-independent spectral envelope component $E$ (which mostly contains the timbre information) and an energy-normalized pitch component $P$ (which mostly contains the pitch information), as shown in Equation \ref{eq:assumption}.
 \begin{equation}
 \label{eq:assumption}
 X = E * P
 \end{equation}
 
-\emph{Property 1: A pitch change in the audio translates to a linear shift in the log-spectrum \cite{brown1991, brown1992}.}
-
-Assuming that pitch and timbre are independent, this implies that the same musical object at different pitches would have a similar envelope component but a shifted pitch component (while two different musical objects at the same pitch would have different envelope components but a similar pitch component). Assuming $X'$, $E'$ and $P'$ as the log-spectrum, envelope, and pitch component of the 
-
-%We then point out to a first property that 
-
-%  Theorem, Lemma, Proposition, Corollary, Postulate, Statement, Fact, Observation, Expression, Fact, Property, Conjecture and Principle
-
-Equation \ref{eq:property1}.
+We make a first observation that a pitch change in the audio translates to a linear shift in the log-spectrum \cite{brown1991, brown1992}. Assuming that pitch and timbre are independent, this implies that the same musical object at different pitches would have a similar envelope but a shifted pitch component (while two different musical objects at the same pitch would have different envelopes but a similar pitch component). Assuming $X$, $E$, $P$ and $X'$, $E'$, $P'$ as the log-spectrum, envelope, and pitch component of a musical object and a pitch-shifted version of it, respectively, this is summarized in equation \ref{eq:observation1}.
 \begin{equation}
-\label{eq:property1}
+\label{eq:observation1}
 \begin{split}
 &X = E * P \\
 &X' = E' * P' \\
@@ -67,12 +48,9 @@ Equation \ref{eq:property1}.
 \end{split}
 \end{equation}
 
-
-We show in a second property that the FT of a convolution of two functions is equal to the point-wise product of their FTs, also known as the convolution theorem \cite{proakis1995}.
-
-Equation \ref{eq:property2}.
+We make a second observation that the FT of a convolution of two functions is equal to the point-wise product of their FTs, also known as the convolution theorem \cite{proakis1995}. This implies that the FT of the log-spectrum is equal to the point-wise product of the FT of the envelope and the FT of the pitch component. Given the previous observation that the envelope is not affected by a pitch change in the audio, we conclude that the FT of the envelope is also independent from the pitch. Assuming that $\mathcal{F}(.)$ is the FT function, this is summarized in equation \ref{eq:observation2}.
 \begin{equation}
-\label{eq:property2}
+\label{eq:observation2}
 \begin{split}
 &\mathcal{F}(X) = \mathcal{F}(E) \cdot \mathcal{F}(P) \\
 &\mathcal{F}(X') = \mathcal{F}(E') \cdot \mathcal{F}(P') \\
@@ -80,11 +58,11 @@ Equation \ref{eq:property2}.
 \end{split}
 \end{equation}
 
-in a third property that the magnitude FT is shift-invariant \cite{proakis1995}.
+We make a final and third observation that the magnitude FT is shift-invariant \cite{proakis1995}. ...
 
-Equation \ref{eq:property3}.
+Equation \ref{eq:observation3}.
 \begin{equation}
-\label{eq:property3}
+\label{eq:observation3}
 \begin{split}
 &\mathcal{F}(X) = |\mathcal{F}(X)| \cdot e^{j Arg(\mathcal{F}(X))} \\
 &\mathcal{F}(X) = |\mathcal{F}(X')| \cdot e^{j Arg(\mathcal{F}(X'))} \\
@@ -105,6 +83,10 @@ Equation \ref{eq:conclusion}.
 \end{equation}
 
 % Can think about the extraction of the envelop as a white normalization of the pitch by using a weighting function that normalizes the signal spectral density by the spectrum magnitude, just like in the GCC-PHAT
+
+%- The envelope component can additionally be refined, along with the pitch component
+%- Incidentally, the pitch component can be used to identify the pitch/key
+
 
 
 \section{Numerical Example} % or "V - Computational Example"
