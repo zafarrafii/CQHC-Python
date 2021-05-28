@@ -38,7 +38,7 @@ We start with the assumption that a log-spectrum $X$, in particular, the CQT spe
 X = E * P
 \end{equation}
 
-We make a first observation that a pitch change in the audio translates to a linear shift in the log-spectrum \cite{brown1991, brown1992}. Assuming that pitch and timbre are independent, this implies that the same musical object at different pitches would have a similar envelope but a shifted pitch component (while two different musical objects at the same pitch would have different envelopes but a similar pitch component). Assuming $X$, $E$, $P$ and $X'$, $E'$, $P'$ as the log-spectrum, envelope, and pitch component of a musical object and a pitch-shifted version of it, respectively, this is summarized in equation \ref{eq:observation1}.
+We make a first observation that a pitch change in the audio translates to a linear shift in the log-spectrum \cite{brown1991, brown1992}. Assuming that pitch and timbre are independent, this implies that the same musical object at different pitches would have a similar envelope but a shifted pitch component (while two different musical objects at the same pitch would have different envelopes but a similar pitch component). This is summarized in equation \ref{eq:observation1}.
 \begin{equation}
 \label{eq:observation1}
 \begin{split}
@@ -47,8 +47,9 @@ We make a first observation that a pitch change in the audio translates to a lin
 &\Rightarrow E \approx E'
 \end{split}
 \end{equation}
+where $X$, $E$, $P$ and $X'$, $E'$, $P'$ represent the log-spectrum, envelope, and pitch component of a musical object and a pitch-shifted version of it, respectively.
 
-We make a second observation that the FT of a convolution of two functions is equal to the point-wise product of their FTs, also known as the convolution theorem \cite{proakis1995}. This implies that the FT of the log-spectrum is equal to the point-wise product of the FT of the envelope and the FT of the pitch component. Given the previous observation that the envelope is not affected by a pitch change in the audio, we conclude that the FT of the envelope is also independent from the pitch. Assuming that $\mathcal{F}(.)$ is the FT function, this is summarized in equation \ref{eq:observation2}.
+We make a second observation that the FT of a convolution of two functions is equal to the point-wise product of their FTs, which is also known as the convolution theorem \cite{proakis1995}. This implies that the FT of the log-spectrum would be equal to the point-wise product of the FT of the envelope and the FT of the pitch component. Given the previous observation, we infer that the FT of the envelope for a musical object and a pitch-shifted version of it would be equal. This is summarized in equation \ref{eq:observation2}.
 \begin{equation}
 \label{eq:observation2}
 \begin{split}
@@ -57,18 +58,20 @@ We make a second observation that the FT of a convolution of two functions is eq
 &\Rightarrow \mathcal{F}(E) \approx \mathcal{F}(E')
 \end{split}
 \end{equation}
+where $\mathcal{F}(.)$ represents the FT function.
 
-We make a final and third observation that the magnitude FT is shift-invariant \cite{proakis1995}. ...
+We make a final and third observation that the magnitude FT is shift-invariant \cite{proakis1995}. This implies that 
 
 Equation \ref{eq:observation3}.
 \begin{equation}
 \label{eq:observation3}
 \begin{split}
 &\mathcal{F}(X) = |\mathcal{F}(X)| \cdot e^{j Arg(\mathcal{F}(X))} \\
-&\mathcal{F}(X) = |\mathcal{F}(X')| \cdot e^{j Arg(\mathcal{F}(X'))} \\
+&\mathcal{F}(X') = |\mathcal{F}(X')| \cdot e^{j Arg(\mathcal{F}(X'))} \\
 &\Rightarrow |\mathcal{F}(X)| \approx |\mathcal{F}(X')|
 \end{split}
 \end{equation}
+where $|.|$ and $Arg(.)$ represent the modulus and argument, respectively, for a complex array. 
 
 Given the ..., 
 
