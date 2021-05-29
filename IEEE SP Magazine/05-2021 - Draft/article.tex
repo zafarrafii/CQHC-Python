@@ -42,7 +42,7 @@ We start with the assumption that a log-spectrum $X$, in particular, the CQT spe
 X = E * P
 \end{equation}
 
-This convolution process can be thought of a source-filter model \cite{fant1970} which is here not applied in the time domain but the frequency domain, with the source and the filter being the pitch component and the envelope, respectively.
+This convolution process can be thought of a source-filter model \cite{fant1970} which is here not applied in the time domain but in the frequency domain, with the source and the filter being the pitch component and the envelope, respectively.
 
 \emph{Observation 1: A pitch change in the audio translates to a linear shift in the log-spectrum \cite{brown1991, brown1992}.}
 
@@ -60,7 +60,7 @@ X' = E' * P' \\
 
 \emph{Observation 2: the FT of a convolution of two functions is equal to the point-wise product of their FTs, which is also known as the convolution theorem \cite{proakis1995}.}
 
-This implies that the FT of the log-spectrum is equal to the point-wise product of the FT of the envelope and the FT of the pitch component. Given the previous observation, this also implies that the FT of the envelope for a musical object and for a pitch-shifted version of it would be equal. This is summarized in Equation \ref{eq:observation2}, where $\mathcal{F}(.)$ represents the FT function.
+This implies that the FT of the log-spectrum is equal to the point-wise product of the FT of the envelope and the FT of the pitch component. Given the previous observation, this further implies that the FT of the envelope for a musical object and for a pitch-shifted version of it would be equal. This is summarized in Equation \ref{eq:observation2}, where $\mathcal{F}(.)$ represents the FT function.
 \begin{equation}
 \label{eq:observation2}
 \begin{split}
@@ -86,7 +86,7 @@ This implies that the magnitude of the FT of the log-spectrum for a musical obje
 \end{split}
 \end{equation}
 
-Given the previous observations, we can therefore conclude that the FT of the envelope could be approximated by the magnitude of FT of the log-spectrum, while the FT of the pitch component by the phase component, which finally gives us estimates for the envelope and pitch component after taking their inverse FTs, as shown in Equation \ref{eq:conclusion}, where $\mathcal{F}^{-1}(.)$ represents the inverse FT function.
+Given the previous observations, we can therefore conclude that the FT of the envelope could be approximated by the magnitude of the FT of the log-spectrum, while the FT of the pitch component, by the phase component, which finally gives us estimates for the envelope and the pitch component after taking their inverse FTs, as shown in Equation \ref{eq:conclusion}, where $\mathcal{F}^{-1}(.)$ represents the inverse FT function.
 \begin{equation}
 \label{eq:conclusion}
 \begin{split}
@@ -98,7 +98,7 @@ Given the previous observations, we can therefore conclude that the FT of the en
 \end{split}
 \end{equation}
 
-This deconvolution process can also be thought of the normalization of the log-spectrum by the magnitude of its FT (which here corresponds to the FT of the envelope) leading to a sharper log-spectrum (which here corresponds to the pitch component), in the manner of the generalized cross-correlation phase transform (GCC-PHAT) method which aims at normalizing a cross-correlation function by its magnitude spectrum to sharpen the cross-correlation peaks \cite{knapp1976}.
+This deconvolution process can also be thought of the normalization of the log-spectrum by the magnitude of its FT (which here would correspond to the FT of the envelope) leading to a sharper log-spectrum (which here would correspond to the pitch component), in the manner of the generalized cross-correlation phase transform (GCC-PHAT) method which aims at normalizing a cross-correlation function by its magnitude spectrum to sharpen the cross-correlation peaks \cite{knapp1976}.
 
 
 \subsection{Extraction of the Coefficients}
