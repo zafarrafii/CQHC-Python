@@ -4,7 +4,8 @@ This Python module implements the constant-Q transform spectral envelope coeffic
 Functions:
     mfcc - Compute the mel-frequency cepstral coefficients (MFCCs) using librosa.
     cqt - Compute the magnitude constant-Q transform (CQT) spectrogram using librosa.
-    cqtdeconv - Compute the pitch-independent envelope and the energy-normalized pitch component.
+    cqtdeconv - Compute the pitch-independent spectral envelope and the energy-normalized pitch component from the CQT spectrogram.
+    cqtsec - Extract the CQT spectral envelope coefficients (CQT-SEC) from the CQT spectral envelope.
 
 Author:
     Zafar Rafii
@@ -12,28 +13,28 @@ Author:
     http://zafarrafii.com
     https://github.com/zafarrafii
     https://www.linkedin.com/in/zafarrafii/
-    06/02/21
+    06/09/21
 """
 
 import numpy as np
 import librosa
 
 
-def mfcc(audio_signal, sampling_frequency, number_coefficients=20):
+def mfcc(
+    audio_signal, sampling_frequency, window_length, step_length, number_coefficients=20
+):
     """
     Compute the mel-frequency cepstral coefficients (MFCCs) using librosa.
 
     Inputs:
         audio_signal: audio signal (number_samples,)
         sampling_frequency: sampling frequency in Hz
+        window_length: window length in samples
+        step_length: step length in samples
         number_coefficients: number of MFCCs (default: 20 coefficients)
     Output:
         audio_mfcc: audio MFCCs (number_coefficients, number_frames)
     """
-
-    # Set the window and step length in samples
-    window_length = pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency))))
-    step_length = int(window_length / 2)
 
     # Compute the MFCCs using librosa's mfcc
     audio_mfcc = librosa.feature.mfcc(
@@ -48,7 +49,11 @@ def mfcc(audio_signal, sampling_frequency, number_coefficients=20):
 
 
 def cqt(
-    audio_signal, sampling_frequency, minimum_frequency=32.70, octave_resolution=12
+    audio_signal,
+    sampling_frequency,
+    step_length,
+    minimum_frequency=32.70,
+    octave_resolution=12,
 ):
     """
     Compute the magnitude constant-Q transform (CQT) spectrogram using librosa.
@@ -56,14 +61,14 @@ def cqt(
     Inputs:
         audio_signal: audio signal (number_samples,)
         sampling_frequency: sampling frequency in Hz
+        step_length: step length in samples
         minimum_frequency: minimum frequency in Hz (default: 32.70 Hz = C1)
         octave_resolution: number of frequency channels per octave (default: 12 frequency channels per octave)
     Output:
         cqt_spectrogram: magnitude CQT spectrogram (number_frequencies, number_frames)
     """
 
-    # Set the step length in samples and derive the number of frequency channels
-    step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
+    # Derive the number of frequency channels
     maximum_frequency = sampling_frequency / 2
     number_frequencies = round(
         octave_resolution * np.log2(maximum_frequency / minimum_frequency)
@@ -86,12 +91,12 @@ def cqt(
 
 def cqtdeconv(cqt_spectrogram):
     """
-    Compute the pitch-independent envelope and the energy-normalized pitch component.
+    Compute the pitch-independent spectral envelope and the energy-normalized pitch component from the constant-Q transform (CQT) spectrogram.
 
     Inputs:
-        cqt_spectrogram: magnitude CQT spectrogram (number_frequencies, number_frames)
+        cqt_spectrogram: CQT spectrogram (number_frequencies, number_frames)
     Output:
-        cqt_envelope: pitch-independent envelope (number_frequencies, number_frames)
+        cqt_envelope: pitch-independent spectral envelope (number_frequencies, number_frames)
         cqt_pitch: energy-normalized pitch component (number_frequencies, number_frames)
     """
 
@@ -113,3 +118,23 @@ def cqtdeconv(cqt_spectrogram):
     )
 
     return cqt_envelope, cqt_pitch
+
+
+def cqtsec(cqt_envelope, octave_resolution=12, number_coefficients=20):
+    """
+    Extract the constant-Q transform (CQT) spectral envelope coefficients (CQT-SEC) from the CQT spectral envelope.
+
+    Inputs:
+        cqt_envelope: CQT spectral envelope (number_frequencies, number_frames)
+        octave_resolution: number of frequency channels per octave (default: 12 frequency channels per octave)
+        number_coefficients: number of CQT-SECs (default: 20 coefficients)
+    Output:
+        cqt_sec: CQT-SECs (number_coefficients, number_frames)
+    """
+    # Derive the indices of the CQT-SECs in the CQT spectral envelope and extract them
+    coefficient_indices = np.round(
+        octave_resolution * np.log2(np.arange(1, number_coefficients + 1))
+    ).astype(int)
+    cqt_sec = cqt_envelope[coefficient_indices, :]
+
+    return cqt_sec
