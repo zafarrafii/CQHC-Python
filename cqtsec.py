@@ -13,7 +13,7 @@ Author:
     http://zafarrafii.com
     https://github.com/zafarrafii
     https://www.linkedin.com/in/zafarrafii/
-    06/09/21
+    06/14/21
 """
 
 import numpy as np
@@ -112,7 +112,7 @@ def cqtdeconv(cqt_spectrogram):
         np.fft.ifft(absftcqt_spectrogram, axis=0)[0:number_frequencies, :]
     )
     cqt_pitch = np.real(
-        np.fft.ifft(ftcqt_spectrogram / absftcqt_spectrogram, axis=0)[
+        np.fft.ifft(ftcqt_spectrogram / (absftcqt_spectrogram + 1e-16), axis=0)[
             0:number_frequencies, :
         ]
     )
