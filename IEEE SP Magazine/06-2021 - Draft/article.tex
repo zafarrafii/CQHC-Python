@@ -10,19 +10,17 @@
 
 \section{Scope}
 
-\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. In this article, we will show how to design a simple but functional timbre feature which is well-adapted to musical data, by deriving it from the constant-Q transform (CQT) \cite{brown1991, brown1992}, a log-scale frequency transform which matches the Western music scale. We will show how to decompose the CQT spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope, the latter from which we will extract a number of timbral coefficients. We will then evaluate the discriminative power of these CQT spectral envelope coefficients (CQT-SEC) on the NSynth dataset \cite{engel2017}, a large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs) \cite{mermelstein1976}, features originally designed for speech recognition but commonly used to characterize timbre in music. 
+\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. In this article, we will show how to design a simple but functional timbre feature which is well-adapted to musical data, by deriving it from the constant-Q transform (CQT) \cite{brown1991, brown1992}, a log-frequency transform which matches the Western music scale. We will show how to decompose the CQT spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope, the latter from which we will extract a number of timbral coefficients. We will then evaluate the discriminative power of these CQT spectral envelope coefficients (CQT-SEC) on the NSynth dataset \cite{engel2017}, a large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs) \cite{mermelstein1976}, features originally designed for speech recognition but commonly used to characterize timbre in music. 
 
 
 \section{Relevance}
 
-A timbre feature which is well-adapted to musical data, pitch-independent, and with high discriminative power can find uses in a number of applications, such as similarity detection, sound recognition, and audio classification, in particular, of musical instruments. Additionally, the ability to decompose the spectrum of a sound (here, the CQT spectrum) into a pitch-independent spectral envelope and an energy-normalized pitch component can be useful for analysis, transformation, and resynthesis of music signals. The energy-normalized pitch component can also potentially be used for pitch identification and melody extraction. 
-
-The envelope can be used to make a pitch-independent chomagram...
+A timbre feature which is well-adapted to musical data, pitch-independent, and with high discriminative power can find uses in a number of applications, such as similarity detection, sound recognition, and audio classification, in particular, of musical instruments. Additionally, the ability to decompose the spectrum of a sound (here, the CQT spectrum) into a pitch-independent spectral envelope and an energy-normalized pitch component can be useful for analysis, transformation, and resynthesis of music signals. The energy-normalized pitch component can also potentially be used for tasks such as pitch identification, melody extraction, and chord recognition.
 
 
 \section{Prerequisites}
 
-Basic knowledge of audio signal processing and some knowledge of music information retrieval (MIR) \cite{mueller2007} are required to understand this article, in particular, concepts such as the Fourier transform (FT), convolution, spectral envelope, pitch, CQT, and MFCCs. More information about the CQT can also be found in\cite{brown1991, brown1992}.
+Basic knowledge of audio signal processing and some knowledge of music information retrieval (MIR) \cite{mueller2007} are required to understand this article, in particular, concepts such as the Fourier transform (FT), convolution, spectral envelope, pitch, CQT, and MFCCs. More information about the CQT can also be found in \cite{brown1991, brown1992}.
 
 
 \section{Problem Statement}
@@ -32,9 +30,7 @@ The multidimensional nature of timbre makes it an attribute that is tricky to qu
 
 \section{Solution}
 
-%We propose the CQT-SECs, a novel timbre feature that is well-adapted to musical data, pitch-independent, simple to derive, interpretable, and functional. We will show how to derive it from the CQT, a log-frequency transform which matches the Western music scale, by first decomposing it into a pitch-independent spectral envelope and an energy-normalized pitch component, and then extracting a number of timbral coefficients from the spectral envelope. 
-
-% We will make an assumption, list 3 observations, and give a conclusion...
+We propose here the CQT-SECs, a novel timbre feature which is well-adapted to musical data, pitch-independent, simple to compute, interpretable, and functional. We will show how to derive it from the CQT, a frequency transform with a logarithmic resolution which matches the notes of Western music scale \cite{brown1991, brown1992}, by first decomposing the CQT log-spectrum into a pitch-independent spectral envelope and an energy-normalized pitch component, and then extracting a number of timbral coefficients from the spectral envelope. 
 
 \subsection{Deconvolution of the CQT}
 
@@ -48,7 +44,7 @@ This convolution process can be thought of a source-filter model \cite{fant1970}
 
 \emph{Observation 1: A pitch change in the audio translates to a linear shift in the log-spectrum \cite{brown1991, brown1992}.}
 
-Assuming that pitch and timbre are independent, this implies that the same musical object at different pitches would have a similar envelope but a shifted pitch component (while two different musical objects at the same pitch would have different envelopes but a similar pitch component). This is summarized in Equation \ref{eq:observation1}, where $X$, $E$, $P$ and $X'$, $E'$, $P'$ represent the log-spectrum, envelope, and pitch component for a musical object and for a pitch-shifted version of it, respectively.
+Assuming that pitch and timbre are independent, this implies that the same musical object at different pitches would have a similar envelope but a shifted pitch component (while two different musical objects at the same pitch would have different envelopes but a similar pitch component). This is summarized in Equation \ref{eq:observation1}, where $X$, $E$, $P$ and $X'$, $E'$, $P'$ represent the log-spectrum, envelope, and pitch component for a musical object and for a pitch-shifted version of the same musical object, respectively.
 \begin{equation}
 \label{eq:observation1}
 \begin{split}
@@ -60,9 +56,9 @@ X' = E' * P' \\
 \end{split}
 \end{equation}
 
-\emph{Observation 2: the FT of a convolution of two functions is equal to the point-wise product of their FTs, which is also known as the convolution theorem \cite{proakis1995}.}
+\emph{Observation 2: the FT of a convolution of two functions is equal to the point-wise product of their FTs, a property also known as the convolution theorem \cite{proakis1995}.}
 
-This implies that the FT of the log-spectrum is equal to the point-wise product of the FT of the envelope and the FT of the pitch component. Given the previous observation, this further implies that the FT of the envelope for a musical object and for a pitch-shifted version of it would be equal. This is summarized in Equation \ref{eq:observation2}, where $\mathcal{F}(.)$ represents the FT function.
+This implies that the FT of the log-spectrum is equal to the point-wise product of the FT of the envelope and the FT of the pitch component. Given the first observation, this further implies that the FT of the envelope for a musical object and for a pitch-shifted version of it would be equal. This is summarized in Equation \ref{eq:observation2}, where $\mathcal{F}(.)$ represents the FT function.
 \begin{equation}
 \label{eq:observation2}
 \begin{split}
@@ -88,7 +84,7 @@ This implies that the magnitude of the FT of the log-spectrum for a musical obje
 \end{split}
 \end{equation}
 
-Given the previous observations, we can therefore conclude that the FT of the envelope could be approximated by the magnitude of the FT of the log-spectrum, while the FT of the pitch component, by the phase component, which finally gives us estimates for the envelope and the pitch component after taking their inverse FTs, as shown in Equation \ref{eq:conclusion}, where $\mathcal{F}^{-1}(.)$ represents the inverse FT function.
+Given the previous observations, we can therefore conclude that the FT of the envelope could be approximated by the magnitude of the FT of the log-spectrum, while the FT of the pitch component could be approximated by the phase component. This finally gives us the estimates for the envelope and the pitch component, after taking their inverse FTs, as shown in Equation \ref{eq:conclusion}, where $\mathcal{F}^{-1}(.)$ represents the inverse FT function.
 \begin{equation}
 \label{eq:conclusion}
 \begin{split}
@@ -103,9 +99,12 @@ Given the previous observations, we can therefore conclude that the FT of the en
 This deconvolution process can also be thought of the normalization of the log-spectrum by the magnitude of its FT (which here would correspond to the FT of the envelope) leading to a sharper log-spectrum (which here would correspond to the pitch component), in the manner of the generalized cross-correlation phase transform (GCC-PHAT) method which aims at normalizing a cross-correlation function by its magnitude spectrum to sharpen the cross-correlation peaks \cite{knapp1976}.
 
 
-\subsection{Extraction of the Coefficients}
+\subsection{Extraction of the spectral envelope coefficients}
 
-Once the CQT spectrum has been decomposed into its envelope and pitch component, ...
+Once the CQT spectrum has been decomposed into a spectral envelope and a pitch component, we can then assumed that most of the pitch information has been removed from the envelope which now mostly contains the timbre information. We can think of the spectral envelope as a pitch-normalized spectrum ...
+
+Briefly explain what how the MFCCs are computed \cite{mermelstein1976}
+mel scale: \cite{stevens1937}
 
 
 
