@@ -10,12 +10,12 @@
 
 \section{Scope}
 
-\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. In this article, we will show how to design a simple but functional timbre feature which is well-adapted to musical data, by deriving it from the constant-Q transform (CQT) \cite{brown1991, brown1992}, a log-frequency transform which matches the Western music scale. We will show how to decompose the CQT spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope, the latter from which we will extract a number of timbral coefficients. We will then evaluate the discriminative power of these CQT spectral envelope coefficients (CQT-SEC) on the NSynth dataset \cite{engel2017}, a large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs) \cite{mermelstein1976}, features originally designed for speech recognition but commonly used to characterize timbre in music. 
+\IEEEPARstart{T}{imbre} is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is generally associated with the spectral (but also temporal) envelope and is typically assumed to be independent from the pitch (but also the loudness) of the sound \cite{moore2004}. In this article, we will show how to design a simple but functional pitch-independent timbre feature which is well-adapted to musical data, by deriving it from the constant-Q transform (CQT) \cite{brown1991, brown1992}, a log-frequency transform which matches the Western music scale. We will show how to decompose the CQT-spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope, the latter from which we will extract a number of timbral coefficients. We will then evaluate the discriminative power of these CQT-spectral envelope coefficients (CQT-SEC) on the NSynth dataset \cite{engel2017}, a large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs) \cite{mermelstein1976}, features originally designed for speech recognition but commonly used to characterize timbre in music. 
 
 
 \section{Relevance}
 
-A timbre feature which is well-adapted to musical data, pitch-independent, and with high discriminative power can find uses in a number of applications, such as similarity detection, sound recognition, and audio classification, in particular, of musical instruments. Additionally, the ability to decompose the spectrum of a sound (here, the CQT spectrum) into a pitch-independent spectral envelope and an energy-normalized pitch component can be useful for analysis, transformation, and resynthesis of music signals. The energy-normalized pitch component can also potentially be used for tasks such as pitch identification, melody extraction, and chord recognition.
+A timbre feature which is well-adapted to musical data, pitch-independent, and with high discriminative power can find uses in a number of applications, such as similarity detection, sound recognition, and audio classification, in particular, of musical instruments. Additionally, the ability to decompose the spectrum of a sound (here, the CQT-spectrum) into a pitch-independent spectral envelope and an energy-normalized pitch component can be useful for analysis, transformation, and resynthesis of music signals. The energy-normalized pitch component can also potentially be used for tasks such as pitch identification, melody extraction, and chord recognition.
 
 
 \section{Prerequisites}
@@ -34,7 +34,7 @@ We propose here the CQT-SECs, a novel timbre feature which is well-adapted to mu
 
 \subsection{Deconvolution of the CQT}
 
-We start with the assumption that a log-spectrum $X$, in particular, the CQT spectrum, can be represented as the convolution between a pitch-independent spectral envelope $E$ (which mostly contains the timbre information) and an energy-normalized pitch component $P$ (which mostly contains the pitch information), as shown in Equation \ref{eq:assumption}. 
+We start with the assumption that a log-spectrum $X$, in particular, the CQT-spectrum, can be represented as the convolution between a pitch-independent spectral envelope $E$ (which mostly contains the timbre information) and an energy-normalized pitch component $P$ (which mostly contains the pitch information), as shown in Equation \ref{eq:assumption}. 
 \begin{equation}
 \label{eq:assumption}
 X = E * P
@@ -56,7 +56,7 @@ X' = E' * P' \\
 \end{split}
 \end{equation}
 
-\emph{Observation 2: the FT of a convolution of two functions is equal to the point-wise product of their FTs, a property also known as the convolution theorem \cite{proakis1995}.}
+\emph{Observation 2: the FT of the convolution of two functions is equal to the point-wise product of the FTs of the two functions, a property also known as the convolution theorem \cite{proakis1995}.}
 
 This implies that the FT of the log-spectrum is equal to the point-wise product of the FT of the envelope and the FT of the pitch component. Given the first observation, this further implies that the FT of the envelope for a musical object and for a pitch-shifted version of it would be equal. This is summarized in Equation \ref{eq:observation2}, where $\mathcal{F}(.)$ represents the FT function.
 \begin{equation}
@@ -96,12 +96,29 @@ Given the previous observations, we can therefore conclude that the FT of the en
 \end{split}
 \end{equation}
 
+Figure \ref{fig:deconvolution} shows and example of deconvolution of the (power) CQT-spectrogram into its envelope and pitch component. The CQT-spectogram was computed from a 48-second audio signal created by concatenating 12 4-second acoustic bass notes, playing successively from C1 (32.70 Hz) to B1 (61.74 Hz). The notes come from the NSynth dataset \cite{engel2017}, for instrument \texttt{bass\_acoustic\_000}, MIDI numbers \texttt{024} to \texttt{035}, and velocity number \texttt{075}. As we can see, the envelope gets pitch-normalized, shifting all the frequency components to the origin of the log-spectrum (essentially bringing all the notes to C1), while the pitch component gets energy-normalized, leaving mostly the fundamental frequency of the notes.
+
+\begin{figure*}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{deconvolution.png}
+    \caption{Deconvolution of the (power) CQT-spectrogram of 12 acoustic bass notes playing from C1 to B1, into a pitch-independent envelope and an energy-normalized pitch component.}
+    \label{fig:deconvolution}
+\end{figure*}
+
 This deconvolution process can also be thought of the normalization of the log-spectrum by the magnitude of its FT (which here would correspond to the FT of the envelope) leading to a sharper log-spectrum (which here would correspond to the pitch component), in the manner of the generalized cross-correlation phase transform (GCC-PHAT) method which aims at normalizing a cross-correlation function by its magnitude spectrum to sharpen the cross-correlation peaks \cite{knapp1976}.
 
 
 \subsection{Extraction of the spectral envelope coefficients}
 
-Once the CQT spectrum has been decomposed into a spectral envelope and a pitch component, we can then assumed that most of the pitch information has been removed from the envelope which now mostly contains the timbre information. We can think of the spectral envelope as a pitch-normalized spectrum ...
+%HERE!!!
+Once the CQT-spectrum has been decomposed into a spectral envelope and a pitch component, we can then assumed that most of the pitch information has been removed from the envelope which now mostly contains the timbre information. We can think of the spectral envelope as a pitch-normalized log-spectrum where the frequency components have been shifted down to the origin of the spectrum.
+
+Equation \ref{eq:extraction} $O_r$ the octave resolution, or the number of frequency channels per octave (typically, 12, 24, 36, etc.), $N_c$ the number of coefficients
+
+\begin{equation}
+\label{eq:extraction}
+i = O_r \log_2(k) \text{ for } 1 \le k \le N_c
+\end{equation}
 
 Briefly explain what how the MFCCs are computed \cite{mermelstein1976}
 mel scale: \cite{stevens1937}
