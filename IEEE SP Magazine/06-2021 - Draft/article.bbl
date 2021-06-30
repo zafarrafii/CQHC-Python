@@ -85,6 +85,11 @@ B.~McFee, C.~Raffel, D.~Liang, D.~P. Ellis, M.~McVicar, E.~Battenberg, and
   O.~Nieto, ``{librosa}: Audio and music signal analysis in python,'' in
   \emph{14th Python in Science Conference}, Austin, TX, USA, July 6-12 2015.
 
+\bibitem{schoerkhuber2010}
+C.~Schoerkhuber and A.~Klapuri, ``Constant-{Q} transform toolbox for music
+  processing,'' in \emph{7th Sound and Music Computing Conference}, Barcelona,
+  Spain, July 21-24 2010.
+
 \bibitem{knapp1976}
 C.~H. Knapp and G.~C. Carter, ``The generalized correlation method for
   estimation of time delay,'' \emph{IEEE Transactions on Acoustics, Speech, and

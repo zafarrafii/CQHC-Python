@@ -101,11 +101,7 @@ P \approx \mathcal{F}^{-1}(e^{j Arg(\mathcal{F}(X))}) \\
 \end{split}
 \end{equation}
 
-Figure \ref{fig:deconvolution} shows an example of deconvolution of a CQT spectrogram into its envelope and pitch component. The CQT spectogram was computed from an audio signal created by concatenating 12 4-second notes of an acoustic bass playing from C1 (32.70 Hz) to B1 (61.74 Hz) in ascending order. The CQT spectrogram was computed using librosa \cite{mcfee2015} 
-
-HERE!!!
-
-and the notes come from the NSynth dataset \cite{engel2017} and correspond to instrument id \texttt{bass\_acoustic\_000}, MIDI numbers \texttt{024} to \texttt{035}, and velocity number \texttt{075}. As we can see, the envelope looks as if the CQT spectrogram has been normalized in pitch, with all the notes being brought down to the lowest frequency (here, corresponding to C1); while the pitch component looks as if the CQT spectrogram has been stripped down from all its energy, leaving mostly the fundamental frequencies of the notes. Note that, in practice, we use a power CQT spectrogram (magnitude to the power of 2) and take the real part of the envelope and pitch component to ensure real values. We also note that this deconvolution can potentially be further refined, for example, by zeroing the few negative values in the pitch component to only have values in $[0, 1]$, and using it to re-derive the spectral envelope from the log spectrum.
+Figure \ref{fig:deconvolution} shows an example of deconvolution of a CQT spectrogram into its envelope and pitch component. The CQT spectogram was computed from an audio signal created by concatenating 12 4-second notes of an acoustic bass playing from C1 (32.70 Hz) to B1 (61.74 Hz) in ascending order. The notes come from the NSynth dataset \cite{engel2017} and correspond to instrument id \texttt{bass\_acoustic\_000}, MIDI numbers \texttt{024} to \texttt{035}, and velocity number \texttt{075}. The CQT spectrogram was computed using librosa \cite{mcfee2015,schoerkhuber2010}, with a sampling rate of 16 kHz, a hop length of 512 samples, a minimum frequency of 32.70 Hz (corresponding to C1), 95 frequency bins, and 12 bins per octave. As we can see, the envelope looks as if the CQT spectrogram has been normalized in pitch, with all the notes being brought down to the lowest frequency (corresponding to C1); while the pitch component looks as if the CQT spectrogram has been stripped down from all its energy, leaving mostly the fundamental frequencies of the notes. Note that, in practice, we use a power CQT spectrogram (magnitude to the power of 2) and take the real part of the envelope and pitch component to ensure real values. We also note that this deconvolution can potentially be further refined, for example, by zeroing the few negative values in the pitch component and using it to re-derive the spectral envelope from the log spectrum.
 
 \begin{figure*}[htp]
     \centering
@@ -119,7 +115,7 @@ This deconvolution process can also be thought of as the normalization of the lo
 
 \subsection{Extraction of the spectral envelope coefficients}
 
-The envelope resulting from the deconvolution of the CQT spectrum can be thought of as a pitch-normalized CQT spectrum, where the spectral components, in particular, the harmonics which contain most of the energy of a musical instrument, have been essentially brought down to the same lowest note level. Given the octave resolution that was used to compute the CQT spectrum, i.e., the number of bins per octave, we can then easily infer the locations of those harmonics in the envelope \cite{brown1991, brown1992}. We can subsequently extract these harmonics, or \textit{spectral envelope coefficients}, from the envelope, and therefore obtain a compact and interpretable feature for characterizing the timbre of the musical instrument. Equation \ref{eq:extraction} shows how to derive the indices of the spectral envelope coefficients given $O_r$, the octave resolution, and $N_c$, the number of desired coefficients, and consequently extract the CQT-SECs from the envelope $E$, with $\log_2(.)$ and $round(.)$ representing the binary logarithm and the round function, respectively.
+The spectral envelope resulting from the deconvolution of the CQT spectrum can be thought of as a pitch-normalized CQT spectrum where the spectral content, in particular, the harmonics which represent most of the energy of the musical instrument, has been essentially brought down to the same lowest note level. Given the octave resolution which was used when computing the CQT spectrum, i.e., the number of bins per octave, we can then easily infer the locations of those harmonics in the envelope \cite{brown1991, brown1992}. We can subsequently extract these harmonics or \textit{spectral envelope coefficients} from the envelope and therefore obtain a compact and interpretable feature for characterizing the timbre of the musical instrument. Equation \ref{eq:extraction} shows how to derive the indices of the spectral envelope coefficients given $O_r$, the octave resolution, and $N_c$, the number of desired coefficients, and consequently extract the CQT-SECs from the envelope $E$, with $\log_2(.)$ and $round(.)$ representing the binary logarithm and the round function, respectively.
 \begin{equation}
 \label{eq:extraction}
 \begin{split}
@@ -131,7 +127,9 @@ i = round(O_r \log_2(k)) \\
 \end{split}
 \end{equation}
 
-Figure \ref{fig:extraction} shows an example of CQT-SECs, on the left plot. 20 coefficients were extracted from the spectral envelope obtained following the deconvolution of the CQT spectrogram of the musical signal shown in Figure \ref{fig:deconvolution}. The coefficients are shown in dB to be comparable to the envelope which was also shown in dB. These coefficients essentially correspond to the harmonics of the musical instrument which contain most of its spectral energy and can therefore be a good representation of its timbre. For comparison, we also show the MFCCs computed from the same musical signal, on the right plot. 20 coefficients were computed using 
+Figure \ref{fig:extraction} shows an example of CQT-SECs, on the left plot. 20 coefficients were extracted from the envelope obtained following the deconvolution of the CQT spectrogram of the musical signal shown in Figure \ref{fig:deconvolution}. These coefficients essentially correspond to the harmonics of the musical instrument which contain most of its spectral energy and can therefore be a good representation of its timbre. For comparison, we also show the MFCCs computed from the same musical signal, on the right plot. 20 coefficients were computed using librosa \cite{mcfee2015}, with a sampling rate of 16 kHz, a window length of 1024 samples, and hop length of 512 samples. 
+
+We recall below how the MFCCs are commonly derived \cite{mermelstein1976}. First, a classic spectrogram is computed from the audio signal using the short-time Fourier transform (STFT) and the powers of the frequencies in each frame are then mapped onto the mel scale \cite{stevens1937} using triangular overlapping windows. This essentially produces a mel spectrogram. Then, the logs of all the mel frequencies are taken, followed by the discrete cosine transform (DCT) of each frame. Finally, the MFCCs are selected as the lowest coefficients in the resulting spectrum, excluding the very first one (DC component). This process is supposed to decouple the envelope from the pitch in the time domain, by extracting the slow-varying time components, which most likely correspond to the envelope and which will become the lowest coefficients, from the fast-varying time components, which most likely correspond to the pitch and which will become the higher coefficients. 
 
 \begin{figure*}[htp]
     \centering
@@ -139,11 +137,6 @@ Figure \ref{fig:extraction} shows an example of CQT-SECs, on the left plot. 20 c
     \caption{CQT-SECs extracted from the envelope obtained following the deconvolution shown in Figure \ref{fig:deconvolution} (left plot, shown in dB) and MFCCs computed from the same musical signal (right plot).}
     \label{fig:extraction}
 \end{figure*}
-
-We recall how the MFCCs are computed ...\cite{mermelstein1976}
-mel scale: \cite{stevens1937}
-
-using librosa \cite{mcfee2015}
 
 
 \section{Numerical Examples} % or "V - Computational Example"
