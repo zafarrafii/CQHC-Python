@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  29 JUN 2021 12:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  30 JUN 2021 12:26
 entering extended mode
 **./article.tex
 (article.tex
@@ -287,23 +287,19 @@ Package pdftex.def Info: deconvolution.png  used on input line 108.
 <extraction.png, id=13, 987.69pt x 480.79625pt>
 File: extraction.png Graphic file (type png)
 <use extraction.png>
-Package pdftex.def Info: extraction.png  used on input line 136.
+Package pdftex.def Info: extraction.png  used on input line 134.
 (pdftex.def)             Requested size: 516.0pt x 251.18196pt.
-
-Underfull \vbox (badness 3396) has occurred while \output is active []
-
- [2]
-(article.bbl [3 <./deconvolution.png> <./extraction.png>]) [4
+[2] (article.bbl [3 <./deconvolution.png> <./extraction.png>]) [4
 
 ] (article.aux) ) 
 Here is how much of TeX's memory you used:
- 2841 strings out of 479173
- 46384 string characters out of 2851305
- 361544 words of memory out of 3000000
- 20448 multiletter control sequences out of 15000+600000
+ 2842 strings out of 479173
+ 46395 string characters out of 2851305
+ 362548 words of memory out of 3000000
+ 20449 multiletter control sequences out of 15000+600000
  438213 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,23n,62p,1518b,275s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,23n,62p,1520b,274s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/enc/
 dvips/base/8r.enc}<C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/typ
 e1/public/amsfonts/cm/cmex10.pfb><C:/Users/zarafii2001/AppData/Local/Programs/M
@@ -323,7 +319,7 @@ mes/utmb8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/
 urw/times/utmbi8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts
 /type1/urw/times/utmr8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX
 /fonts/type1/urw/times/utmri8a.pfb>
-Output written on article.pdf (4 pages, 445279 bytes).
+Output written on article.pdf (4 pages, 446150 bytes).
 PDF statistics:
  81 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

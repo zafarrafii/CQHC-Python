@@ -80,6 +80,11 @@ J.~G. Proakis and D.~G. Manolakis, \emph{Digital Signal Processing: Principles,
   Algorithms and Applications}.\hskip 1em plus 0.5em minus 0.4em\relax Prentice
   Hall, 1995.
 
+\bibitem{mcfee2015}
+B.~McFee, C.~Raffel, D.~Liang, D.~P. Ellis, M.~McVicar, E.~Battenberg, and
+  O.~Nieto, ``{librosa}: Audio and music signal analysis in python,'' in
+  \emph{14th Python in Science Conference}, Austin, TX, USA, July 6-12 2015.
+
 \bibitem{knapp1976}
 C.~H. Knapp and G.~C. Carter, ``The generalized correlation method for
   estimation of time delay,'' \emph{IEEE Transactions on Acoustics, Speech, and
