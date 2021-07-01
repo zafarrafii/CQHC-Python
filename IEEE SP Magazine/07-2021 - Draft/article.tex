@@ -34,37 +34,37 @@ We propose the CQT-SECs, a novel timbre feature which is well adapted to musical
 
 \subsection{Deconvolution of the CQT}
 
-We start with the assumption that a log spectrum $X$, in particular, the CQT spectrum, can be represented as the convolution between a pitch-independent spectral envelope $E$ (which mostly contains the timbre information) and an energy-normalized pitch component $P$ (which mostly contains the pitch information), as shown in Equation \ref{eq:assumption}, where $*$ represents the convolution operation. 
+We start with the assumption that a log spectrum $S$, in particular, the CQT spectrum, can be represented as the convolution between a pitch-independent spectral envelope $E$ (which mostly contains the timbre information) and an energy-normalized pitch component $P$ (which mostly contains the pitch information), as shown in Equation \ref{eq:assumption}, where $*$ represents the convolution operation. 
 \begin{equation}
 \label{eq:assumption}
-X = E * P
+S = E * P
 \end{equation}
 
 This convolution process can be thought of as a source-filter model \cite{fant1970} which is here not applied in the time domain but in the frequency domain, with the source and the filter being the pitch component and the envelope, respectively.
 
 \emph{Observation 1: A pitch change in the audio translates to a linear shift in the log spectrum \cite{brown1991, brown1992}.}
 
-Assuming that pitch and timbre are independent, this implies that the same musical object at different pitches would have a similar envelope but a shifted pitch component (while two different musical objects at the same pitch would have different envelopes but a similar pitch component). This is summarized in Equation \ref{eq:observation1}, where $X$, $E$, $P$ and $X'$, $E'$, $P'$ represent the log spectrum, envelope, and pitch component for a musical object and for a pitch-shifted version of the same musical object, respectively.
+Assuming that pitch and timbre are independent, this implies that the same musical object at different pitches would have a similar envelope but a shifted pitch component (while two different musical objects at the same pitch would have different envelopes but a similar pitch component). This is summarized in Equation \ref{eq:observation1}, where $S$, $E$, $P$ and $S'$, $E'$, $P'$ represent the log spectrum, envelope, and pitch component for a musical object and for a pitch-shifted version of the same musical object, respectively.
 \begin{equation}
 \label{eq:observation1}
 \begin{split}
 & \begin{cases}
-X = E * P \\
-X' = E' * P' \\
+S = E * P \\
+S' = E' * P' \\
 \end{cases} \\
 & \Rightarrow E \approx E'
 \end{split}
 \end{equation}
 
-\emph{Observation 2: the FT of the convolution between two functions is equal to the pointwise product between the FTs of the two functions, a property also known as the convolution theorem \cite{proakis1995}.}
+\emph{Observation 2: the FT of the convolution between two functions is equal to the pointwise product between the FTs of the two functions, a property known as the convolution theorem \cite{proakis1995}.}
 
 This implies that the FT of the log spectrum is equal to the pointwise product between the FT of the envelope and the FT of the pitch component. Given the first observation, this further implies that the FT of the envelope for a musical object and for a pitch-shifted version of it would be equal. This is summarized in Equation \ref{eq:observation2}, where $\mathcal{F}(.)$ represents the FT function and $\cdot$ the pointwise product.
 \begin{equation}
 \label{eq:observation2}
 \begin{split}
 & \begin{cases}
-\mathcal{F}(X) = \mathcal{F}(E * P) = \mathcal{F}(E) \cdot \mathcal{F}(P) \\
-\mathcal{F}(X') = \mathcal{F}(E' * P') = \mathcal{F}(E') \cdot \mathcal{F}(P') \\
+\mathcal{F}(S) = \mathcal{F}(E * P) = \mathcal{F}(E) \cdot \mathcal{F}(P) \\
+\mathcal{F}(S') = \mathcal{F}(E' * P') = \mathcal{F}(E') \cdot \mathcal{F}(P') \\
 \end{cases} \\
 & \Rightarrow \mathcal{F}(E) \approx \mathcal{F}(E')
 \end{split}
@@ -77,31 +77,31 @@ This implies that the magnitude of the FT of the log spectrum for a musical obje
 \label{eq:observation3}
 \begin{split}
 & \begin{cases}
-\mathcal{F}(X) = |\mathcal{F}(X)| \cdot e^{j Arg(\mathcal{F}(X))} \\
-\mathcal{F}(X') = |\mathcal{F}(X')| \cdot e^{j Arg(\mathcal{F}(X'))} \\
+\mathcal{F}(S) = |\mathcal{F}(S)| \cdot e^{j Arg(\mathcal{F}(S))} \\
+\mathcal{F}(S') = |\mathcal{F}(S')| \cdot e^{j Arg(\mathcal{F}(S'))} \\
 \end{cases} \\
-& \Rightarrow |\mathcal{F}(X)| \approx |\mathcal{F}(X')|
+& \Rightarrow |\mathcal{F}(S)| \approx |\mathcal{F}(S')|
 \end{split}
 \end{equation}
 
-Given the previous observations, we can therefore conclude that the FT of the envelope could be approximated by the magnitude of the FT of the log spectrum, while the FT of the pitch component could be approximated by the phase component. This finally gives us the estimates for the envelope and the pitch component, after taking their inverse FTs, as shown in Equation \ref{eq:conclusion}, where $\mathcal{F}^{-1}(.)$ represents the inverse FT function.
+Given the previous observations, we can therefore conclude that the FT of the envelope could be approximated by the magnitude FT of the log spectrum, while the FT of the pitch component could be approximated by the phase component. This finally gives us the estimates for the envelope and the pitch component, after taking their inverse FTs, as shown in Equation \ref{eq:conclusion}, where $\mathcal{F}^{-1}(.)$ represents the inverse FT function.
 \begin{equation}
 \label{eq:conclusion}
 \begin{split}
 & \Rightarrow 
 \begin{cases}
-\mathcal{F}(E) \approx |\mathcal{F}(X)| \\
-\mathcal{F}(P) \approx e^{j Arg(\mathcal{F}(X))} \\
+\mathcal{F}(E) \approx |\mathcal{F}(S)| \\
+\mathcal{F}(P) \approx e^{j Arg(\mathcal{F}(S))} \\
 \end{cases} \\
 & \Rightarrow
 \begin{cases}
-E \approx \mathcal{F}^{-1}(|\mathcal{F}(X)|) \\
-P \approx \mathcal{F}^{-1}(e^{j Arg(\mathcal{F}(X))}) \\
+E \approx \mathcal{F}^{-1}(|\mathcal{F}(S)|) \\
+P \approx \mathcal{F}^{-1}(e^{j Arg(\mathcal{F}(S))}) \\
 \end{cases}
 \end{split}
 \end{equation}
 
-Figure \ref{fig:deconvolution} shows an example of deconvolution of a CQT spectrogram into its envelope and pitch component. The CQT spectogram was computed from an audio signal created by concatenating 12 4-second notes of an acoustic bass playing from C1 (32.70 Hz) to B1 (61.74 Hz) in ascending order. The notes come from the NSynth dataset \cite{engel2017} and correspond to instrument id \texttt{bass\_acoustic\_000}, MIDI numbers \texttt{024} to \texttt{035}, and velocity number \texttt{075}. The CQT spectrogram was computed using librosa \cite{mcfee2015,schoerkhuber2010}, with a sampling rate of 16 kHz, a hop length of 512 samples, a minimum frequency of 32.70 Hz (corresponding to C1), 95 frequency bins, and 12 bins per octave. As we can see, the envelope looks as if the CQT spectrogram has been normalized in pitch, with all the notes being brought down to the lowest frequency (corresponding to C1); while the pitch component looks as if the CQT spectrogram has been stripped down from all its energy, leaving mostly the fundamental frequencies of the notes. Note that, in practice, we use a power CQT spectrogram (magnitude to the power of 2) and take the real part of the envelope and pitch component to ensure real values. We also note that this deconvolution can potentially be further refined, for example, by zeroing the few negative values in the pitch component and using it to re-derive the spectral envelope from the log spectrum.
+Figure \ref{fig:deconvolution} shows an example of deconvolution of a CQT spectrogram into its envelope and pitch component. The CQT spectogram was computed from an audio signal created by concatenating 12 4-second notes of an acoustic bass playing from C1 (32.70 Hz) to B1 (61.74 Hz) in ascending order. The notes come from the NSynth dataset \cite{engel2017} and correspond to instrument id \texttt{bass\_acoustic\_000}, MIDI numbers \texttt{024} to \texttt{035}, and velocity number \texttt{075}. The CQT spectrogram was computed using librosa \cite{mcfee2015,schoerkhuber2010}, with a sampling rate of 16 kHz, a hop length of 512 samples, a minimum frequency of 32.70 Hz (corresponding to C1), 95 frequency bins, and 12 bins per octave. As we can see, the envelope looks as if the CQT spectrogram has been normalized in pitch, with all the notes being brought down to the lowest frequency (corresponding to C1); while the pitch component looks as if the CQT spectrogram has been stripped down from all its energy, leaving mostly the fundamental frequencies of the notes. Note that in practice, we use a power CQT spectrogram (i.e., magnitude to the power of 2) and take the real part of the envelope and pitch component to ensure real values. We can also potentially post-process this deconvolution, for example, by zeroing the few negative values in the pitch component and using it to derive a refined  envelope from the log spectrum.
 
 \begin{figure*}[htp]
     \centering
@@ -115,7 +115,7 @@ This deconvolution process can also be thought of as the normalization of the lo
 
 \subsection{Extraction of the spectral envelope coefficients}
 
-The spectral envelope resulting from the deconvolution of the CQT spectrum can be thought of as a pitch-normalized CQT spectrum where the spectral content, in particular, the harmonics which represent most of the energy of the musical instrument, has been essentially brought down to the same lowest note level. Given the octave resolution which was used when computing the CQT spectrum, i.e., the number of bins per octave, we can then easily infer the locations of those harmonics in the envelope \cite{brown1991, brown1992}. We can subsequently extract these harmonics or \textit{spectral envelope coefficients} from the envelope and therefore obtain a compact and interpretable feature for characterizing the timbre of the musical instrument. Equation \ref{eq:extraction} shows how to derive the indices of the spectral envelope coefficients given $O_r$, the octave resolution, and $N_c$, the number of desired coefficients, and consequently extract the CQT-SECs from the envelope $E$, with $\log_2(.)$ and $round(.)$ representing the binary logarithm and the round function, respectively.
+The envelope resulting from the deconvolution of the CQT spectrum can be thought of as a pitch-normalized CQT spectrum where the spectral content, in particular, the harmonics which represent most of the energy of the musical instrument, has been essentially brought down to the same lowest note level. Given the octave resolution which was used when computing the CQT spectrum, i.e., the number of bins per octave, we can then easily infer the locations of those harmonics in the envelope \cite{brown1991, brown1992}. We can subsequently extract these harmonics or \textit{spectral envelope coefficients} from the envelope and thus obtain a compact and interpretable feature for characterizing the timbre of the musical instrument. Equation \ref{eq:extraction} shows how to derive the indices of the spectral envelope coefficients given $O_r$, the octave resolution, and $N_c$, the number of desired coefficients, and finally extract the CQT-SECs from the envelope $E$, with $\log_2(.)$ and $round(.)$ representing the binary logarithm and the round function, respectively.
 \begin{equation}
 \label{eq:extraction}
 \begin{split}
@@ -127,7 +127,7 @@ i = round(O_r \log_2(k)) \\
 \end{split}
 \end{equation}
 
-Figure \ref{fig:extraction} shows an example of CQT-SECs, on the left plot. 20 coefficients were extracted from the envelope obtained following the deconvolution of the CQT spectrogram of the musical signal shown in Figure \ref{fig:deconvolution}. These coefficients essentially correspond to the harmonics of the musical instrument which contain most of its spectral energy and can therefore be a good representation of its timbre. For comparison, we also show the MFCCs computed from the same musical signal, on the right plot. 20 coefficients were computed using librosa \cite{mcfee2015}, with a sampling rate of 16 kHz, a window length of 1024 samples, and hop length of 512 samples. 
+Figure \ref{fig:extraction} shows an example of CQT-SECs, on the left plot. 20 coefficients were extracted from the envelope resulting from the deconvolution of the CQT spectrogram of the musical signal shown in Figure \ref{fig:deconvolution}. These coefficients essentially correspond to the harmonics of the musical instrument which contain most of its spectral energy and can therefore be a good representation of its timbre. For comparison, we also show the MFCCs computed from the same musical signal, on the right plot. 20 coefficients were computed using librosa \cite{mcfee2015}, with a sampling rate of 16 kHz, a window length of 1024 samples, and hop length of 512 samples. 
 
 We recall below how the MFCCs are commonly derived \cite{mermelstein1976}. First, a classic spectrogram is computed from the audio signal using the short-time Fourier transform (STFT) and the powers of the frequencies in each frame are then mapped onto the mel scale \cite{stevens1937} using triangular overlapping windows. This essentially produces a mel spectrogram. Then, the logs of all the mel frequencies are taken, followed by the discrete cosine transform (DCT) of each frame. Finally, the MFCCs are selected as the lowest coefficients in the resulting spectrum, excluding the very first one (DC component). This process is supposed to decouple the envelope from the pitch in the time domain, by extracting the slow-varying time components, which most likely correspond to the envelope and which will become the lowest coefficients, from the fast-varying time components, which most likely correspond to the pitch and which will become the higher coefficients. 
 
@@ -139,24 +139,16 @@ We recall below how the MFCCs are commonly derived \cite{mermelstein1976}. First
 \end{figure*}
 
 
-\section{Numerical Examples} % or "V - Computational Example"
+\section{A Computational Example}
 
-\subsection{Analysis on an Example}
+We propose to measure the discriminative power of the CQT-SECs by evaluating them on the NSynth dataset, a large-scale of annotated musical notes which is publicly available \cite{engel2017}. 
 
-%- The envelope component can additionally be refined, along with the pitch component
+Explain NSynth
+Compare to the MFCCs
+CQT-SECs computed with some parameters
+MFCCs with some parameters
 
 
-\subsection{Comparison on a Dataset}
-
-
-%Figure \ref{fig:dft_kernels} shows ...
-
-%\begin{figure}[htbp]
-%	\centering
-%	\includegraphics[width=\columnwidth]{dft_kernels.png}
-%	\caption{Kernels derived from the Hanning (top-left), Blackman (top-right), triangular (center-left), Parzen (center-right), Gaussian (with $\alpha = 2.5$) (bottom-left), and Kaiser (with $\beta = 0.5$) (bottom-right) windows. The kernels were derived for an $N$-point DFT where $N = 2048$ samples. Only the first 100 coefficients at the bottom-left corner of the $N$-by-$N$ kernels are shown. The values are displayed in log of amplitude.}
-%	\label{fig:dft_kernels}
-%\end{figure}
 
 
 \section{What We Have Learned}
