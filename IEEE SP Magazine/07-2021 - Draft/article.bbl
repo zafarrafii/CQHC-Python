@@ -71,6 +71,25 @@ J.~Pons, O.~Slizovskaia, R.~Gong, E.~Gómez, and X.~Serra, ``Timbre analysis of
   European Signal Processing Conference}, Kos, Greece, August 28- September 2
   2017.
 
+\bibitem{hung2019}
+Y.-N. Hung, I.-T. Chiang, Y.-A. Chen, and Y.-H. Yang, ``Musical composition
+  style transfer via disentangled timbre representations,'' in \emph{28th
+  International Joint Conference on Artificial Intelligence}, Macao, China,
+  August 10-16 2019.
+
+\bibitem{luo2019}
+Y.-J. Luo, K.~Agres, and D.~Herremans, ``Learning disentangled representations
+  of timbre and pitch for musical instrument sounds using gaussian mixture
+  variational autoencoders,'' in \emph{20th Conference of the International
+  Society for Music Information Retrieval}, Delft, The Netherlands, November
+  4-8 2019.
+
+\bibitem{lee2020}
+J.~Lee, H.-S. Choi, J.~Koo, and K.~Lee, ``Disentangling timbre and singing
+  style with multi-singer singing synthesis system,'' in \emph{45th IEEE
+  International Conference on Acoustics, Speech, and Signal Processing},
+  Barcelona, Spain, May 4-8 2020.
+
 \bibitem{fant1970}
 G.~Fant, \emph{Acoustic Theory of Speech Production}.\hskip 1em plus 0.5em
   minus 0.4em\relax Mouton De Gruyter, 1970.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  1 JUL 2021 11:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  6 JUL 2021 12:46
 entering extended mode
 **./article.tex
 (article.tex
@@ -290,36 +290,37 @@ File: extraction.png Graphic file (type png)
 <use extraction.png>
 Package pdftex.def Info: extraction.png  used on input line 136.
 (pdftex.def)             Requested size: 516.0pt x 251.18196pt.
- (article.bbl) [3 <./deconvolution.png>] [4 <./extraction.png>] (article.aux) )
- 
+ (article.bbl [3 <./deconvolution.png>]) [4
+
+ <./extraction.png>] (article.aux) ) 
 Here is how much of TeX's memory you used:
- 2843 strings out of 479173
- 46413 string characters out of 2851305
- 363825 words of memory out of 3000000
- 20450 multiletter control sequences out of 15000+600000
- 438213 words of font info for 90 fonts, out of 8000000 for 9000
+ 2848 strings out of 479173
+ 46460 string characters out of 2851305
+ 362564 words of memory out of 3000000
+ 20454 multiletter control sequences out of 15000+600000
+ 439798 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,23n,62p,1531b,241s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc
-}<C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmex10.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmmi10.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/zarafii2001/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/zarafii200
-1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Us
-ers/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-r7.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmr8.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb><C:/Users/zarafii2001/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/zarafii2001/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/zarafi
-i2001/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/User
-s/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C
-:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a
-.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
-utmr8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on article.pdf (4 pages, 446326 bytes).
+ 55i,23n,62p,1568b,275s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/zarafii2001/AppData/Local/Program
+s/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/zarafii2001/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/zarafii2001/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/za
+rafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pf
+b><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmmi8.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmr10.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/zarafii2001/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/zarafii2001/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/User
+s/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
+5.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmsy7.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/urw/courier/ucrr8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX
+/fonts/type1/urw/times/utmb8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/
+MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/zarafii2001/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/zarafii2001/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on article.pdf (4 pages, 449272 bytes).
 PDF statistics:
  81 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

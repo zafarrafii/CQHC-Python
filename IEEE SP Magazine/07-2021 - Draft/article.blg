@@ -15,53 +15,53 @@ Warning--string name "january" is undefined
 Warning--string name "november" is undefined
 --line 19 of file bibliography.bib
 Warning--string name "august" is undefined
---line 69 of file bibliography.bib
+--line 78 of file bibliography.bib
 Warning--string name "january" is undefined
---line 148 of file bibliography.bib
+--line 175 of file bibliography.bib
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 15 entries,
+You've used 18 entries,
             4087 wiz_defined-function locations,
-            909 strings with 9551 characters,
-and the built_in function-call counts, 9745 in all, are:
-= -- 767
-> -- 202
+            928 strings with 10325 characters,
+and the built_in function-call counts, 11334 in all, are:
+= -- 868
+> -- 249
 < -- 65
-+ -- 114
-- -- 37
-* -- 445
-:= -- 1482
-add.period$ -- 30
-call.type$ -- 15
-change.case$ -- 11
++ -- 136
+- -- 48
+* -- 524
+:= -- 1716
+add.period$ -- 36
+call.type$ -- 18
+change.case$ -- 14
 chr.to.int$ -- 138
-cite$ -- 15
-duplicate$ -- 741
-empty$ -- 871
-format.name$ -- 45
-if$ -- 2296
+cite$ -- 18
+duplicate$ -- 880
+empty$ -- 1055
+format.name$ -- 59
+if$ -- 2672
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 128
-newline$ -- 68
-num.names$ -- 15
-pop$ -- 300
+int.to.str$ -- 18
+missing$ -- 160
+newline$ -- 77
+num.names$ -- 18
+pop$ -- 393
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 773
+skip$ -- 885
 stack$ -- 0
-substring$ -- 355
-swap$ -- 567
+substring$ -- 358
+swap$ -- 646
 text.length$ -- 19
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 15
+type$ -- 18
 warning$ -- 0
-while$ -- 34
-width$ -- 17
-write$ -- 157
+while$ -- 37
+width$ -- 20
+write$ -- 181
 (There were 4 warnings)
