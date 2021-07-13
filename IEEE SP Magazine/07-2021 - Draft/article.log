@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  6 JUL 2021 12:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  13 JUL 2021 12:36
 entering extended mode
 **./article.tex
 (article.tex
@@ -215,7 +215,11 @@ nd-pdftex.def
 File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count272
 \l__pdf_internal_box=\box51
-) (article.aux)
+) (article.aux
+
+LaTeX Warning: Label `fig:instrument_similarities' multiply defined.
+
+)
 \openout1 = `article.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -284,45 +288,73 @@ File: deconvolution.png Graphic file (type png)
 <use deconvolution.png>
 Package pdftex.def Info: deconvolution.png  used on input line 108.
 (pdftex.def)             Requested size: 516.0pt x 144.4872pt.
-[2]
-<extraction.png, id=22, 987.69pt x 480.79625pt>
+<extraction.png, id=13, 987.69pt x 480.79625pt>
 File: extraction.png Graphic file (type png)
 <use extraction.png>
-Package pdftex.def Info: extraction.png  used on input line 136.
+Package pdftex.def Info: extraction.png  used on input line 134.
 (pdftex.def)             Requested size: 516.0pt x 251.18196pt.
- (article.bbl [3 <./deconvolution.png>]) [4
+[2]
+<instrument_similarities.png, id=23, 980.66376pt x 388.45125pt>
+File: instrument_similarities.png Graphic file (type png)
+<use instrument_similarities.png>
+Package pdftex.def Info: instrument_similarities.png  used on input line 152.
+(pdftex.def)             Requested size: 516.0pt x 204.39635pt.
+<instrument_similarities2.png, id=24, 1220.56pt x 425.59pt>
+File: instrument_similarities2.png Graphic file (type png)
+<use instrument_similarities2.png>
+Package pdftex.def Info: instrument_similarities2.png  used on input line 159.
+(pdftex.def)             Requested size: 516.0pt x 179.92847pt.
+<family_similarities.png, id=25, 1015.795pt x 424.58624pt>
+File: family_similarities.png Graphic file (type png)
+<use family_similarities.png>
+Package pdftex.def Info: family_similarities.png  used on input line 168.
+(pdftex.def)             Requested size: 516.0pt x 215.68741pt.
+<family_similarities2.png, id=26, 1220.56pt x 425.59pt>
+File: family_similarities2.png Graphic file (type png)
+<use family_similarities2.png>
+Package pdftex.def Info: family_similarities2.png  used on input line 175.
+(pdftex.def)             Requested size: 516.0pt x 179.92847pt.
+ [3 <./deconvolution.png>] (article.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- <./extraction.png>] (article.aux) ) 
+ [4 <./extraction.png> <./instrument_similarities.png>] [5 <./instrument_simila
+rities2.png> <./family_similarities.png> <./family_similarities2.png>]) [6
+
+] (article.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2848 strings out of 479173
- 46460 string characters out of 2851305
- 362564 words of memory out of 3000000
- 20454 multiletter control sequences out of 15000+600000
+ 2879 strings out of 479173
+ 47378 string characters out of 2851305
+ 362848 words of memory out of 3000000
+ 20481 multiletter control sequences out of 15000+600000
  439798 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,23n,62p,1568b,275s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Users/zarafii2001/AppData/Local/Program
-s/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/zarafii2001/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/zarafii2001/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/za
-rafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pf
-b><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmmi8.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmr10.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/zarafii2001/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/zarafii2001/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/User
-s/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
-5.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmsy7.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/urw/courier/ucrr8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX
-/fonts/type1/urw/times/utmb8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/
-MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/zarafii2001/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/zarafii2001/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on article.pdf (4 pages, 449272 bytes).
+ 55i,23n,62p,1568b,293s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.e
+nc}<C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmex10.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmmi10.pfb><C:/Users/zarafii2001/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/zarafii2001/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/zarafii2
+001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/
+Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmr7.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmr8.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/zarafii2001/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/zarafii2001/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/zara
+fii2001/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Us
+ers/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb>
+<C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi
+8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
+s/utmr8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/ur
+w/times/utmri8a.pfb>
+Output written on article.pdf (6 pages, 948717 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
+ 95 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

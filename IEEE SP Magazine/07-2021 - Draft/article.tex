@@ -30,7 +30,7 @@ The multidimensional nature of timbre makes it an attribute that is tricky to qu
 
 \section{Solution}
 
-We present the CQT-SECs, a novel timbre feature which is well adapted to musical data, pitch-independent, simple to compute, interpretable, and functional. We will show how to derive it from the CQT, a frequency transform with a logarithmic resolution which matches the notes of the equal temperament, a musical scale typically used in Western music \cite{brown1991, brown1992}. We will first show how to decompose the CQT spectrum into a pitch-independent spectral envelope and an energy-normalized pitch component, and then extract a number of timbral coefficients from the spectral envelope. 
+We present here the CQT-SECs, a novel timbre feature which is well adapted to musical data, pitch-independent, simple to compute, interpretable, and functional. We will show how to derive it from the CQT, a frequency transform with a logarithmic resolution which matches the notes of the equal temperament, a musical scale typically used in Western music \cite{brown1991, brown1992}. We will first show how to decompose the CQT spectrum into a pitch-independent spectral envelope and an energy-normalized pitch component, and then extract a number of timbral coefficients from the spectral envelope. 
 
 \subsection{Deconvolution of the CQT}
 
@@ -129,8 +129,6 @@ i = round(O_r \log_2(k)) \\
 
 Figure \ref{fig:extraction} shows an example of CQT-SECs, on the left plot. 20 coefficients were extracted from the envelope resulting from the deconvolution of the CQT spectrogram of the musical signal shown in Figure \ref{fig:deconvolution}. These coefficients essentially correspond to the harmonics of the musical instrument which contain most of its spectral energy and can therefore be a reasonable representation of its timbre. For comparison, we also show the MFCCs computed from the same musical signal, on the right plot. 20 coefficients were computed using librosa \cite{mcfee2015}, with a sampling rate of 16 kHz, a window length of 1024 samples, and hop length of 512 samples, matching the time resolution of the CQT-SECs so that both features have the same size in time and frequency. 
 
-We recall below how the MFCCs are commonly derived. First, a classic spectrogram is computed from the audio signal using the short-time Fourier transform (STFT) and the powers of the frequencies in each frame are then mapped onto the mel scale \cite{stevens1937} using triangular overlapping windows. This essentially produces a mel spectrogram. Then, the logs of all the mel frequencies are taken, followed by the discrete cosine transform (DCT) of each frame. Finally, the MFCCs are selected as the lowest coefficients in the resulting spectrum, excluding the very first one (DC component). This process is supposed to decouple the envelope from the pitch in the time domain, by extracting the slow-varying time components, which most likely correspond to the envelope and which will become the lowest coefficients, from the fast-varying time components, which most likely correspond to the pitch and which will become the highest coefficients \cite{mermelstein1976}. 
-
 \begin{figure*}[htp]
     \centering
     \includegraphics[width=\textwidth]{extraction.png}
@@ -138,13 +136,46 @@ We recall below how the MFCCs are commonly derived. First, a classic spectrogram
     \label{fig:extraction}
 \end{figure*}
 
+We recall below how the MFCCs are commonly derived. First, a classic spectrogram is computed from the audio signal using the short-time Fourier transform (STFT) and the powers of the frequencies in each frame are then mapped onto the mel scale \cite{stevens1937} using triangular overlapping windows. This essentially produces a mel spectrogram. Then, the log of every mel frequency is taken, followed by the discrete cosine transform (DCT) of each frame. Finally, the MFCCs are selected as the lowest coefficients in the resulting spectrum, excluding the very first one (DC component). This process is meant to decouple the envelope from the pitch in the time domain, by extracting the slow-varying time components, which most likely correspond to the envelope and which will become the lowest coefficients, from the fast-varying time components, which most likely correspond to the pitch and which will become the highest coefficients \cite{mermelstein1976}. 
+
 
 \section{A Computational Example}
 
 We propose to measure the discriminative power of the CQT-SECs by evaluating them on the NSynth dataset, a large-scale and high-quality dataset of annotated musical notes which is publicly available\footnote{https://magenta.tensorflow.org/datasets/nsynth} \cite{engel2017}. The NSynth dataset is composed of 305,979 musical notes which were generated from 1,006 instruments as 4-second, monophonic audio signals at a sampling rate of 16 kHz, with pitches ranging over all the note numbers of a standard MIDI piano (21-108) and with 5 different velocities (25, 50, 75, 100, and 127), whenever applicable. The instruments are organized into 11 families (bass, brass, flute, guitar, keyboard, mallet, organ, reed, string, synth\_lead, and vocal) and 3 sources (acoustic, electronic, and synthetic). We chose to evaluate the CQT-SECs on the notes with a velocity of 75 only, leading to 60,388 different notes for 945 different instruments.
 
-We derived the CQT-SECs for all the notes in this subset, by first computing the CQT spectrogram using librosa, with a sampling rate of 16 kHz, a hop length of 512 samples, a minimum frequency of 32.70 Hz (corresponding to C1), 95 frequency bins, and 12 bins per octave, and then extracting 20 coefficients from the envelope resulting from the deconvolution of the CQT spectrogram. We used a power CQT spectrogram (i.e., magnitude to the power of 2) and took the real part of the envelope to ensure real values. For comparison, we also computed the MFCCs, using librosa, with a sampling rate of 16 kHz, a window length of 1024 samples, a hop length of 512 samples, and 20 coefficients, matching the time resolution of the CQT-SECs so that both features have the same size in time and frequency. 
+We derived the CQT-SECs for all the notes in this subset, by first computing the CQT spectrogram using librosa, with a sampling rate of 16 kHz, a hop length of 512 samples, a minimum frequency of 32.70 Hz (corresponding to C1), 95 frequency bins, and 12 bins per octave, and then extracting 20 coefficients from the envelope resulting from the deconvolution of the CQT spectrogram, leading to CQT-SECs of size 20 coefficients and 126 time frames. We used a power CQT spectrogram (i.e., magnitude to the power of 2) and took the real part of the envelope to ensure real values. For comparison, we also computed the MFCCs, using librosa, with a sampling rate of 16 kHz, a window length of 1024 samples, a hop length of 512 samples, and 20 coefficients, leading to MFCCs of size 20 coefficients and 126 time frames, matching the size of the CQT-SECs.
 
+We computed the cosine similarity for every pair of CQT-SECs and every pair of MFCCs (without repetition), after flattening the features into one-dimensional vectors of length 2520 (20 times 126). We then averaged these note similarities over every instrument, leading to similarity matrices of size 945 by 945, for both the CQT-SECs and the MFCCs. Figure \ref{fig:instrument_similarities} shows the similarity matrices derived for all the pairs of instruments for the CQT-SECs and the MFCCs. As we can see, the similarities for the CQT-SECs have more variance, while the similarities for the MFCCs are mostly very high (close to 1) showing poor discriminative power. Figure \ref{fig:instrument_similarities2} shows the self-similarities (in green) (i.e., the diagonal of the similarity matrix) and the error bars for the cross-similarities (i.e., means in red and standard deviations in yellow) for every instrument, for the CQT-SECs and the MFCCs. As we can see, the self-similarities for the CQT-SECs are noticeably higher that the mean cross-similarities for most of the instruments, and generally higher that the errors too, showing good discriminative power, while the self-similarities and cross-similarities for the MFCCs are all very high (close to 1).
+
+\begin{figure*}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{instrument_similarities.png}
+    \caption{Similarity matrices computed for every pair of notes and averaged over every instrument of the NSynth subset, for the CQT-SECs (left plot) and the MFCCs (right plot).}
+    \label{fig:instrument_similarities}
+\end{figure*}
+
+\begin{figure*}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{instrument_similarities2.png}
+    \caption{Self-similarities and cross-similarities derived from the similarity matrices shown in Figure \ref{fig:instrument_similarities}, for the CQT-SECs (top plot) and the MFCCs (bottom plot).}
+    \label{fig:instrument_similarities2}
+\end{figure*}
+
+We also averaged the note similarities over every instrument family, leading to similarity matrices of size 11 by 11, for both the CQT-SECs and the MFCCs. 
+
+\begin{figure*}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{family_similarities.png}
+    \caption{Blah.}
+    \label{fig:instrument_similarities}
+\end{figure*}
+
+\begin{figure*}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{family_similarities2.png}
+    \caption{Blah.}
+    \label{fig:f_similarities2}
+\end{figure*}
 
 
 \section{What We Have Learned}
@@ -153,7 +184,6 @@ We have shown that we can derive a simple but function timbre feature which is m
 
 %Limitations:
 %- just like MFCCs, not very robust to noise, to mixture of musical instruments playing at different pitches
-
 
 
 \section{Author}
