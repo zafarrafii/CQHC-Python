@@ -143,9 +143,9 @@ We recall below how the MFCCs are commonly derived. First, a classic spectrogram
 
 We propose to measure the discriminative power of the CQT-SECs by evaluating them on the NSynth dataset, a large-scale and high-quality dataset of annotated musical notes which is publicly available\footnote{https://magenta.tensorflow.org/datasets/nsynth} \cite{engel2017}. The NSynth dataset is composed of 305,979 musical notes which were generated from 1,006 instruments as 4-second, monophonic audio signals at a sampling rate of 16 kHz, with pitches ranging over all the note numbers of a standard MIDI piano (21-108) and with 5 different velocities (25, 50, 75, 100, and 127), whenever applicable. The instruments are organized into 11 families (bass, brass, flute, guitar, keyboard, mallet, organ, reed, string, synth\_lead, and vocal) and 3 sources (acoustic, electronic, and synthetic). We chose to evaluate the CQT-SECs on the notes with a velocity of 75 only, leading to 60,388 different notes for 945 different instruments.
 
-We derived the CQT-SECs for all the notes in this subset, by first computing the CQT spectrogram using librosa, with a sampling rate of 16 kHz, a hop length of 512 samples, a minimum frequency of 32.70 Hz (corresponding to C1), 95 frequency bins, and 12 bins per octave, and then extracting 20 coefficients from the envelope resulting from the deconvolution of the CQT spectrogram, leading to CQT-SECs of size 20 coefficients and 126 time frames. We used a power CQT spectrogram (i.e., magnitude to the power of 2) and took the real part of the envelope to ensure real values. For comparison, we also computed the MFCCs, using librosa, with a sampling rate of 16 kHz, a window length of 1024 samples, a hop length of 512 samples, and 20 coefficients, leading to MFCCs of size 20 coefficients and 126 time frames, matching the size of the CQT-SECs.
+We derived the CQT-SECs for all the notes in this subset, by first computing the CQT spectrogram using librosa, with a sampling rate of 16 kHz, a hop length of 512 samples, a minimum frequency of 32.70 Hz (corresponding to C1), 95 frequency bins, and 12 bins per octave, and then extracting 20 coefficients from the envelope resulting from the deconvolution of the CQT spectrogram, leading to CQT-SECs of size 20 by 126 (time frames). We used a power CQT spectrogram (i.e., magnitude to the power of 2) and took the real part of the envelope to ensure real values. For comparison, we also computed the MFCCs, using librosa, with a sampling rate of 16 kHz, a window length of 1024 samples, a hop length of 512 samples, and 20 coefficients, leading to MFCCs of size 20 by 126, just like with the CQT-SECs.
 
-We computed the cosine similarity for every pair of CQT-SECs and every pair of MFCCs (without repetition), after flattening the features into one-dimensional vectors of length 2520 (20 times 126). We then averaged these note similarities over every instrument, leading to similarity matrices of size 945 by 945, for both the CQT-SECs and the MFCCs. Figure \ref{fig:instrument_similarities} shows the similarity matrices derived for all the pairs of instruments for the CQT-SECs and the MFCCs. As we can see, the similarities for the CQT-SECs have more variance, while the similarities for the MFCCs are mostly very high (close to 1) showing poor discriminative power. Figure \ref{fig:instrument_similarities2} shows the self-similarities (in green) (i.e., the diagonal of the similarity matrix) and the error bars for the cross-similarities (i.e., means in red and standard deviations in yellow) for every instrument, for the CQT-SECs and the MFCCs. As we can see, the self-similarities for the CQT-SECs are noticeably higher that the mean cross-similarities for most of the instruments, and generally higher that the errors too, showing good discriminative power, while the self-similarities and cross-similarities for the MFCCs are all very high (close to 1).
+We computed the cosine similarity for every pair of CQT-SECs and every pair of MFCCs (without repetition), after flattening the features into vectors of length 2520 (20 times 126). We then averaged these note similarities over every one of the 945 different instruments, leading to similarity matrices of size 945 by 945, for both the CQT-SECs and the MFCCs. Figure \ref{fig:instrument_similarities} shows these instrument similarity matrices for the CQT-SECs and the MFCCs. As we can see, the similarities for the CQT-SECs have more variance, while the similarities for the MFCCs are mostly very high (close to 1) showing poor discriminative power between different instruments. Figure \ref{fig:instrument_similarities2} additionally shows the self-similarities, i.e., the diagonal in the similarity matrix (in green) and the error bars for the cross-similarities, i.e., the off-diagonal values in the similarity matrix (means in red and standard deviations in yellow) for every instrument, for the CQT-SECs and the MFCCs. As we can see, the self-similarities for the CQT-SECs are noticeably higher that the mean of the cross-similarities for most of the instruments, and generally higher that the errors as well, showing good discriminative power, while the self-similarities and cross-similarities for the MFCCs are all very high (close to 1).
 
 \begin{figure*}[htp]
     \centering
@@ -157,24 +157,24 @@ We computed the cosine similarity for every pair of CQT-SECs and every pair of M
 \begin{figure*}[htp]
     \centering
     \includegraphics[width=\textwidth]{instrument_similarities2.png}
-    \caption{Self-similarities and cross-similarities derived from the similarity matrices shown in Figure \ref{fig:instrument_similarities}, for the CQT-SECs (top plot) and the MFCCs (bottom plot).}
+    \caption{Self-similarities and cross-similarities derived from the instrument similarity matrices shown in Figure \ref{fig:instrument_similarities}, for the CQT-SECs (top plot) and the MFCCs (bottom plot).}
     \label{fig:instrument_similarities2}
 \end{figure*}
 
-We also averaged the note similarities over every instrument family, leading to similarity matrices of size 11 by 11, for both the CQT-SECs and the MFCCs. 
+We also averaged the note similarities over every one of the 11 instrument families, leading to similarity matrices of size 11 by 11, for both the CQT-SECs and the MFCCs. Figure \ref{fig:family_similarities} shows these instrument family similarity matrices for the CQT-SECs and the MFCCs. As we can see here as well, the similarities for the CQT-SECs have more variance, ... while the similarities for the MFCCs are mostly very high. Figure \ref{fig:family_similarities2} additionally shows the self-similarities (in green) and the error bars for the cross-similarities (means and standard deviations in red) for every instrument family, for the CQT-SECs and the MFCCs. As we can see, the self-similarities for the CQT-SECs are noticeably higher that the mean of the cross-similarities for most of the instrument families, and generally higher that the errors as well, while the self-similarities and cross-similarities for the MFCCs are all very high.
 
 \begin{figure*}[htp]
     \centering
     \includegraphics[width=\textwidth]{family_similarities.png}
-    \caption{Blah.}
-    \label{fig:instrument_similarities}
+    \caption{Similarity matrices computed for every pair of notes and averaged over every instrument family of the NSynth subset, for the CQT-SECs (left plot) and the MFCCs (right plot).}
+    \label{fig:family_similarities}
 \end{figure*}
 
 \begin{figure*}[htp]
     \centering
     \includegraphics[width=\textwidth]{family_similarities2.png}
-    \caption{Blah.}
-    \label{fig:f_similarities2}
+    \caption{Self-similarities and cross-similarities derived from the instrument family similarity matrices shown in Figure \ref{fig:family_similarities}, for the CQT-SECs (top plot) and the MFCCs (bottom plot).}
+    \label{fig:family_similarities2}
 \end{figure*}
 
 
