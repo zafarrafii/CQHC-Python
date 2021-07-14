@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  13 JUL 2021 18:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  13 JUL 2021 22:02
 entering extended mode
 **./article.tex
 (article.tex
@@ -314,9 +314,13 @@ File: family_similarities2.png Graphic file (type png)
 <use family_similarities2.png>
 Package pdftex.def Info: family_similarities2.png  used on input line 175.
 (pdftex.def)             Requested size: 516.0pt x 179.92847pt.
- (article.bbl [4 <./extraction.png> <./instrument_similarities.png>] [5 <./inst
-rument_similarities2.png> <./family_similarities.png> <./family_similarities2.p
-ng>]) [6
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4 <./extraction.png> <./instrument_similarities.png>] [5 <./instrument_simila
+rities2.png> <./family_similarities.png> <./family_similarities2.png>] (article
+.bbl)
+[6
 
 ] (article.aux) ) 
 Here is how much of TeX's memory you used:
@@ -326,7 +330,7 @@ Here is how much of TeX's memory you used:
  20482 multiletter control sequences out of 15000+600000
  439798 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,23n,62p,1568b,292s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,23n,62p,1568b,241s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/enc/
 dvips/base/8r.enc}<C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/typ
 e1/public/amsfonts/cm/cmex10.pfb><C:/Users/zarafii2001/AppData/Local/Programs/M
@@ -346,7 +350,7 @@ mes/utmb8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts/type1/
 urw/times/utmbi8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX/fonts
 /type1/urw/times/utmr8a.pfb><C:/Users/zarafii2001/AppData/Local/Programs/MiKTeX
 /fonts/type1/urw/times/utmri8a.pfb>
-Output written on article.pdf (6 pages, 949267 bytes).
+Output written on article.pdf (6 pages, 949499 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
