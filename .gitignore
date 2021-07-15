@@ -3,5 +3,3 @@ __pycache__
 nsynth_features
 nsynth_similarities
 nsynth11
-class_similarity.pkl
-instrument_similarity.pkl
