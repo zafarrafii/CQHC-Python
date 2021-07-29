@@ -91,3 +91,26 @@ Output:
 ```
 
 ```
+
+
+## examples.ipynb
+
+This Jupyter notebook shows some examples.
+
+See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/examples.ipynb).
+
+
+## bass_acoustic_000-036-075.wav
+
+4 second musical note of an acoustic bass playing C2 (65.41 Hz), from the [NSynth dataset](https://magenta.tensorflow.org/datasets/nsynth).
+
+
+# Author
+
+- Zafar Rafii
+- zafarrafii@gmail.com
+- http://zafarrafii.com/
+- [CV](http://zafarrafii.com/Zafar%20Rafii%20-%20C.V..pdf)
+- [GitHub](https://github.com/zafarrafii)
+- [LinkedIn](https://www.linkedin.com/in/zafarrafii/)
+- [Google Scholar](https://scholar.google.com/citations?user=8wbS2EsAAAAJ&hl=en)
