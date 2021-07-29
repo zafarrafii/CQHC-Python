@@ -107,8 +107,10 @@ See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT
 
 # References
 
-- Jesse Engel, Cinjon Resnick, Adam Roberts, Sander Dieleman, Douglas Eck, Karen Simonyan, and Mohammad Norouzi. "Neural audio synthesis of musical notes with WaveNet
-autoencoders," *34th International Conference on Machine Learning*, Sydney, NSW, Australia, August 6-11, 2017 [[URL](https://arxiv.org/abs/1704.01279)]
+- Brian McFee, Collin Raffel, Dawen Liang, Daniel PW Ellis, Matt McVicar, Eric Battenberg, and Oriol Nieto, "librosa: Audio and music signal analysis in python," 14th Python in Science Conference, Austin, TX, USA, July 6-12 2015 [[URL](https://arxiv.org/abs/1704.01279)]
+
+- Jesse Engel, Cinjon Resnick, Adam Roberts, Sander Dieleman, Douglas Eck, Karen Simonyan, and Mohammad Norouzi, "Neural audio synthesis of musical notes with WaveNet
+autoencoders," *34th International Conference on Machine Learning*, Sydney, NSW, Australia, August 6-11 2017 [[URL](https://librosa.org/doc/latest/index.html#)]
 
 
 # Author
