@@ -36,3 +36,58 @@ Inputs:
 Output:
     audio_mfcc: audio MFCCs (number_coefficients, number_frames)
 ```
+
+### cqt
+
+Compute the magnitude constant-Q transform (CQT) spectrogram using librosa.
+
+```
+cqt_spectrogram = cqt(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution)
+    
+Inputs:
+    audio_signal: audio signal (number_samples,)
+    sampling_frequency: sampling frequency in Hz
+    step_length: step length in samples
+    minimum_frequency: minimum frequency in Hz (default: 32.70 Hz = C1)
+    octave_resolution: number of frequency channels per octave (default: 12 frequency channels per octave)
+Output:
+    cqt_spectrogram: magnitude CQT spectrogram (number_frequencies, number_frames)
+```
+
+### cqtdeconv
+
+Compute the pitch-independent spectral envelope and the energy-normalized pitch component from the constant-Q transform (CQT) spectrogram.
+
+```
+cqt_envelope, cqt_pitch = cqtdeconv(cqt_spectrogram)
+    
+Inputs:
+    cqt_spectrogram: CQT spectrogram (number_frequencies, number_frames)
+Output:
+    cqt_envelope: pitch-independent spectral envelope (number_frequencies, number_frames)
+    cqt_pitch: energy-normalized pitch component (number_frequencies, number_frames)
+```
+
+#### Example:
+```
+
+```
+
+### cqtsec
+
+Compute the constant-Q transform (CQT) spectral envelope coefficients (CQT-SEC).
+
+```
+cqt_sec = cqtdeconv(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, number_coefficients)
+    
+Inputs:
+    cqt_spectrogram: CQT spectrogram (number_frequencies, number_frames)
+Output:
+    cqt_envelope: pitch-independent spectral envelope (number_frequencies, number_frames)
+    cqt_pitch: energy-normalized pitch component (number_frequencies, number_frames)
+```
+
+#### Example:
+```
+
+```
