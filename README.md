@@ -18,3 +18,21 @@ Functions:
 - [`cqt`](#cqt) - Compute the magnitude constant-Q transform (CQT) spectrogram using librosa.
 - [`cqtdeconv`](#cqtdeconv) - Compute the pitch-independent spectral envelope and the energy-normalized pitch component from the CQT spectrogram.
 - [`cqtsec`](#cqtsec) - Compute the CQT-SECs.
+
+
+### mfcc
+
+Compute the mel-frequency cepstral coefficients (MFCCs) using librosa.
+
+```
+audio_mfcc = mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
+    
+Inputs:
+    audio_signal: audio signal (number_samples,)
+    sampling_frequency: sampling frequency in Hz
+    window_length: window length in samples
+    step_length: step length in samples
+    number_coefficients: number of MFCCs (default: 20 coefficients)
+Output:
+    audio_mfcc: audio MFCCs (number_coefficients, number_frames)
+```
