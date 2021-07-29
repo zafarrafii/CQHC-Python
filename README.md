@@ -105,6 +105,12 @@ See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT
 4 second musical note of an acoustic bass playing C2 (65.41 Hz), from the [NSynth dataset](https://magenta.tensorflow.org/datasets/nsynth).
 
 
+# References
+
+- Jesse Engel, Cinjon Resnick, Adam Roberts, Sander Dieleman, Douglas Eck, Karen Simonyan, and Mohammad Norouzi. "Neural audio synthesis of musical notes with WaveNet
+autoencoders," *34th International Conference on Machine Learning*, Sydney, NSW, Australia, August 6-11, 2017 [URL](https://arxiv.org/abs/1704.01279)
+
+
 # Author
 
 - Zafar Rafii
