@@ -6,4 +6,3 @@ nsynth_features
 nsynth_similarities
 class_similarity.pkl
 instrument_similarity.pkl
-tests.ipynb
