@@ -5,23 +5,24 @@ Constant-Q transform spectral envelope coefficients (CQT-SEC), a timbre feature 
 Files:
 - [`cqtsec.py`](#cqtsecpy): Python module with the CQT-SEC and other related functions.
 - [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests.
+- [`codes.ipynb`](#testsipynb): Jupyter notebook with some codes.
 - [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples.
-- [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the examples.
+- [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the tests and examples.
 
 ## cqtsec.py
 
 This Python module implements the CQT-SEC and other related functions.
 
-Simply copy the file `cqtsec.py` in your working directory and you are good to go. Make sure you have Python 3, NumPy, and SciPy installed.
+Simply copy the file `cqtsec.py` in your working directory and you are good to go. Make sure you have Python 3 and NumPy installed.
 
 Functions:
 - [`mfcc`](#mfcc) - Compute the mel-frequency cepstral coefficients (MFCCs) using librosa.
 - [`cqt`](#cqt) - Compute the magnitude constant-Q transform (CQT) spectrogram using librosa.
 - [`cqtdeconv`](#cqtdeconv) - Compute the pitch-independent spectral envelope and the energy-normalized pitch component from the CQT spectrogram.
-- [`cqtsec`](#cqtsec) - Compute the CQT-SECs.
+- [`cqtsec`](#cqtsec) - Compute the CQT spectral envelope coefficients (CQT-SEC).
 
 See also:
-- [Zaf-Pythin](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
+- [Zaf-Python](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
 
 ### mfcc
 
@@ -56,6 +57,13 @@ Inputs:
 Output:
     cqt_spectrogram: magnitude CQT spectrogram (number_frequencies, number_frames)
 ```
+
+
+#### Example:
+```
+
+```
+
 
 ### cqtdeconv
 
@@ -107,6 +115,13 @@ See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT
 This Jupyter notebook shows some examples.
 
 See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/examples.ipynb).
+
+
+## codes.ipynb
+
+This Jupyter notebook shows some codes.
+
+See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/codes.ipynb).
 
 
 ## bass_acoustic_000-036-075.wav
