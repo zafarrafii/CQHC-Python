@@ -12,7 +12,7 @@ Files:
 
 This Python module implements the CQT-SEC and other related functions.
 
-Simply copy the file `cqtsec.py` in your working directory and you are good to go. Make sure you have Python 3, NumPy, and SciPy installed.
+Simply copy the file `cqtsec.py` in your working directory and you are good to go. Make sure you have Python 3 and NumPy installed.
 
 Functions:
 - [`mfcc`](#mfcc) - Compute the mel-frequency cepstral coefficients (MFCCs) using librosa.
