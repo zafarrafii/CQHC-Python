@@ -18,7 +18,7 @@ Functions:
 - [`mfcc`](#mfcc) - Compute the mel-frequency cepstral coefficients (MFCCs) using librosa.
 - [`cqt`](#cqt) - Compute the magnitude constant-Q transform (CQT) spectrogram using librosa.
 - [`cqtdeconv`](#cqtdeconv) - Compute the pitch-independent spectral envelope and the energy-normalized pitch component from the CQT spectrogram.
-- [`cqtsec`](#cqtsec) - Compute the CQT-SECs.
+- [`cqtsec`](#cqtsec) - Compute the CQT spectral envelope coefficients (CQT-SEC).
 
 See also:
 - [Zaf-Python](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
