@@ -21,7 +21,7 @@ Functions:
 - [`cqtsec`](#cqtsec) - Compute the CQT-SECs.
 
 See also:
-- [Zaf-Pythin](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
+- [Zaf-Python](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
 
 ### mfcc
 
