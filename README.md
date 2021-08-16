@@ -35,7 +35,7 @@ See also:
 Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
 
 ```
-audio_mfcc = mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
+audio_mfcc = cqtsec.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
     
 Inputs:
     audio_signal: audio signal (number_samples,)
@@ -83,7 +83,7 @@ plt.show()
 Compute the (magnitude) constant-Q transform (CQT) spectrogram (using librosa).
 
 ```
-cqt_spectrogram = cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution)
+cqt_spectrogram = cqtsec.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution)
     
 Inputs:
     audio_signal: audio signal (number_samples,)
@@ -134,7 +134,7 @@ plt.show()
 Deconvolve the constant-Q transform (CQT) spectrogram into a pitch-independent spectral envelope and an energy-normalized pitch component.
 
 ```
-cqt_envelope, cqt_pitch = cqtdeconv(cqt_spectrogram)
+cqt_envelope, cqt_pitch = cqtsec.cqtdeconv(cqt_spectrogram)
     
 Inputs:
     cqt_spectrogram: CQT spectrogram (number_frequencies, number_frames)
@@ -193,7 +193,7 @@ plt.show()
 Compute the constant-Q transform (CQT) spectral envelope coefficients (CQT-SEC).
 
 ```
-cqt_sec = cqtdeconv(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, number_coefficients)
+cqt_sec = cqtsec.cqtsec(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, number_coefficients)
     
 Inputs:
     cqt_spectrogram: CQT spectrogram (number_frequencies, number_frames)
@@ -204,8 +204,37 @@ Output:
 
 #### Example:
 ```
+# Import the modules
+import numpy as np
+import cqtsec
+import librosa
+import librosa.display
+import matplotlib.pyplot as plt
 
+# Load the audio signal
+file_path = r'bass_acoustic_000-036-075.wav'
+audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
+
+# Define the parameters and compute the CQT spectrogram
+step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
+minimum_frequency = 32.70
+octave_resolution = 12
+number_coefficients = 20
+cqt_sec = cqtsec.cqtsec(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, \
+                        number_coefficients)
+
+# Display the CQT-SECs
+plt.figure(figsize=(14, 4))
+librosa.display.specshow(librosa.power_to_db(cqt_sec), x_axis='time', sr=sampling_frequency, hop_length=step_length, \
+                         cmap='jet')
+plt.title('CQT-SECs')
+plt.ylabel('Coefficient')
+plt.tight_layout()
+plt.show()
 ```
+
+<img src="images/cqtsec.png" width="1000">
+
 
 ## tests.ipynb
 
