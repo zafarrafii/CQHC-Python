@@ -11,6 +11,9 @@ Files:
 - [`codes.ipynb`](#testsipynb): Jupyter notebook with some codes.
 - [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the tests and examples.
 
+See also:
+- [Zaf-Matlab](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
+
 ## cqtsec.py
 
 This Python module implements the CQT-SEC and other related functions.
