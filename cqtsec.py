@@ -234,6 +234,35 @@ def cqtsec(
         number_coefficients: number of CQT-SECs (default: 20 coefficients)
     Output:
         cqt_sec: CQT-SECs (number_coefficients, number_frames)
+
+    Example: Compute the CQT-SECs from an audio file.
+        # Import the modules
+        import numpy as np
+        import cqtsec
+        import librosa
+        import librosa.display
+        import matplotlib.pyplot as plt
+
+        # Load the audio signal
+        file_path = r'bass_acoustic_000-036-075.wav'
+        audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
+
+        # Define the parameters and compute the CQT spectrogram
+        step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
+        minimum_frequency = 32.70
+        octave_resolution = 12
+        number_coefficients = 20
+        cqt_sec = cqtsec.cqtsec(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, \
+                                number_coefficients)
+
+        # Display the CQT-SECs
+        plt.figure(figsize=(14, 4))
+        librosa.display.specshow(librosa.power_to_db(cqt_sec), x_axis='time', sr=sampling_frequency, hop_length=step_length, \
+                                cmap='jet')
+        plt.title('CQT-SECs')
+        plt.ylabel('Coefficient')
+        plt.tight_layout()
+        plt.show()
     """
 
     # Compute the power CQT spectrogram
