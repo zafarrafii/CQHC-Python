@@ -5,8 +5,8 @@ Constant-Q transform spectral envelope coefficients (CQT-SEC), a timbre feature 
 Files:
 - [`cqtsec.py`](#cqtsecpy): Python module with the CQT-SEC and other related functions.
 - [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests.
-- [`codes.ipynb`](#testsipynb): Jupyter notebook with some codes.
 - [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples.
+- [`codes.ipynb`](#testsipynb): Jupyter notebook with some codes.
 - [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the tests and examples.
 
 ## cqtsec.py
