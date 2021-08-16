@@ -48,8 +48,34 @@ Output:
 
 #### Example:
 ```
+# Import the modules
+import os
+import numpy as np
+import librosa
+import librosa.display
+import cqtsec
+import matplotlib.pyplot as plt
 
+# Load the audio signal
+file_path = r'bass_acoustic_000-036-075.wav'
+audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
+
+# Define the parameters and compute the MFCCs
+window_length = pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency))))
+step_length = int(window_length / 2)
+number_coefficients = 20
+audio_mfcc = cqtsec.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
+
+# Display the MFCCs
+plt.figure(figsize=(14, 4))
+librosa.display.specshow(audio_mfcc, x_axis='time', sr=sampling_frequency, hop_length=step_length, cmap='jet')
+plt.title('MFCCs')
+plt.ylabel('Coefficients')
+plt.tight_layout()
+plt.show()
 ```
+
+<img src="images/mfcc.png" width="1000">
 
 
 ### cqtspectrogram
