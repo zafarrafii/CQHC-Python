@@ -14,6 +14,7 @@ Files:
 See also:
 - [Zaf-Python](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
 
+
 ## cqtsec.py
 
 This Python module implements the CQT-SEC and other related functions.
@@ -21,8 +22,8 @@ This Python module implements the CQT-SEC and other related functions.
 Simply copy the file `cqtsec.py` in your working directory and you are good to go. Make sure you have Python 3 and NumPy installed.
 
 Functions:
-- [`mfcc`](#mfcc) - Compute the mel-frequency cepstral coefficients (MFCCs) using librosa.
-- [`cqtspectrogram`](#cqtspectrogram) - Compute the magnitude constant-Q transform (CQT) spectrogram using librosa.
+- [`mfcc`](#mfcc) - Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
+- [`cqtspectrogram`](#cqtspectrogram) - Compute the (magnitude) constant-Q transform (CQT) spectrogram (using librosa).
 - [`cqtdeconv`](#cqtdeconv) - Compute the pitch-independent spectral envelope and the energy-normalized pitch component from the CQT spectrogram.
 - [`cqtsec`](#cqtsec) - Compute the CQT spectral envelope coefficients (CQT-SEC).
 
@@ -31,7 +32,7 @@ See also:
 
 ### mfcc
 
-Compute the mel-frequency cepstral coefficients (MFCCs) using librosa.
+Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
 
 ```
 audio_mfcc = mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
@@ -49,11 +50,10 @@ Output:
 #### Example:
 ```
 # Import the modules
-import os
 import numpy as np
+import cqtsec
 import librosa
 import librosa.display
-import cqtsec
 import matplotlib.pyplot as plt
 
 # Load the audio signal
@@ -70,7 +70,7 @@ audio_mfcc = cqtsec.mfcc(audio_signal, sampling_frequency, window_length, step_l
 plt.figure(figsize=(14, 4))
 librosa.display.specshow(audio_mfcc, x_axis='time', sr=sampling_frequency, hop_length=step_length, cmap='jet')
 plt.title('MFCCs')
-plt.ylabel('Coefficients')
+plt.ylabel('Coefficient')
 plt.tight_layout()
 plt.show()
 ```
@@ -80,7 +80,7 @@ plt.show()
 
 ### cqtspectrogram
 
-Compute the magnitude constant-Q transform (CQT) spectrogram using librosa.
+Compute the (magnitude) constant-Q transform (CQT) spectrogram (using librosa).
 
 ```
 cqt_spectrogram = cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution)
@@ -98,8 +98,35 @@ Output:
 
 #### Example:
 ```
+# Import the modules
+import numpy as np
+import cqtsec
+import librosa
+import librosa.display
+import matplotlib.pyplot as plt
 
+# Load the audio signal
+file_path = r'bass_acoustic_000-036-075.wav'
+audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
+
+# Define the parameters and compute the CQT spectrogram
+step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
+minimum_frequency = 32.70
+octave_resolution = 12
+cqt_spectrogram = cqtsec.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
+                                        octave_resolution)
+
+# Display the CQT spectrogram
+plt.figure(figsize=(14, 4))
+librosa.display.specshow(librosa.amplitude_to_db(cqt_spectrogram), x_axis='time', y_axis='cqt_note', \
+                         sr=sampling_frequency, hop_length=step_length, fmin=minimum_frequency, \
+                         bins_per_octave=octave_resolution, cmap='jet')
+plt.title('CQT spectrogram')
+plt.tight_layout()
+plt.show()
 ```
+
+<img src="images/cqtspectrogram.png" width="1000">
 
 
 ### cqtdeconv
