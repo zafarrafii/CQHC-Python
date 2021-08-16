@@ -2,7 +2,7 @@
 
 The constant-Q transform spectral envelope coefficients (CQT-SEC): a timbre feature designed for music.
 
-Timbre is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is typically associated with the spectral (but also the temporal) envelope and assumed to be independent from the pitch (but also the loudness) of the sound. We present a simple but functional pitch-independent timbre feature which is well adapted to musical data, by deriving it from the constant-Q transform (CQT), a log-frequency transform which matches the equal-tempered musical scale. We first decompose the CQT spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope and then extract a number of timbral coefficients from the spectral envelope.
+Timbre is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is typically associated with the spectral (but also the temporal) envelope and assumed to be independent from the pitch (but also the loudness) of the sound. We present a simple but functional pitch-independent timbre feature which is well adapted to musical data, by deriving it from the constant-Q transform (CQT), a log-frequency transform which matches the equal-tempered musical scale. We first decompose the CQT spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope, and then extract a number of timbral coefficients from the spectral envelope.
 
 Files:
 - [`cqtsec.py`](#cqtsecpy): Python module with the CQT-SEC and other related functions.
