@@ -1,13 +1,18 @@
 # CQT-SEC-Python
 
-Constant-Q transform spectral envelope coefficients (CQT-SEC), a timbre feature designed for music signals.
+The constant-Q transform spectral envelope coefficients (CQT-SEC): a timbre feature designed for music.
+
+Timbre is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is typically associated with the spectral (but also the temporal) envelope and assumed to be independent from the pitch (but also the loudness) of the sound. We present a simple but functional pitch-independent timbre feature which is well adapted to musical data, by deriving it from the constant-Q transform (CQT), a log-frequency transform which matches the equal-tempered musical scale. We first decompose the CQT spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope, and then extract a number of timbral coefficients from the spectral envelope.
 
 Files:
 - [`cqtsec.py`](#cqtsecpy): Python module with the CQT-SEC and other related functions.
 - [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests.
-- [`codes.ipynb`](#testsipynb): Jupyter notebook with some codes.
 - [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples.
+- [`codes.ipynb`](#testsipynb): Jupyter notebook with some codes.
 - [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the tests and examples.
+
+See also:
+- [Zaf-Python](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
 
 ## cqtsec.py
 
@@ -43,8 +48,34 @@ Output:
 
 #### Example:
 ```
+# Import the modules
+import os
+import numpy as np
+import librosa
+import librosa.display
+import cqtsec
+import matplotlib.pyplot as plt
 
+# Load the audio signal
+file_path = r'bass_acoustic_000-036-075.wav'
+audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
+
+# Define the parameters and compute the MFCCs
+window_length = pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency))))
+step_length = int(window_length / 2)
+number_coefficients = 20
+audio_mfcc = cqtsec.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
+
+# Display the MFCCs
+plt.figure(figsize=(14, 4))
+librosa.display.specshow(audio_mfcc, x_axis='time', sr=sampling_frequency, hop_length=step_length, cmap='jet')
+plt.title('MFCCs')
+plt.ylabel('Coefficients')
+plt.tight_layout()
+plt.show()
 ```
+
+<img src="images/mfcc.png" width="1000">
 
 
 ### cqtspectrogram
