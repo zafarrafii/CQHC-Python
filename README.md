@@ -6,7 +6,7 @@ Timbre is the attribute of sound which makes, for example, two musical instrumen
 
 Files:
 - [`cqtsec.py`](#cqtsecpy): Python module with the CQT-SEC and other related functions.
-- [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples.
+- [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples for the different functions of the Python module `cqtsec`.
 - [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests.
 - [`codes.ipynb`](#testsipynb): Jupyter notebook with some codes.
 - [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the tests and examples.
@@ -238,7 +238,7 @@ plt.show()
 
 ## examples.ipynb
 
-This Jupyter notebook shows some examples.
+This Jupyter notebook shows some examples for the different functions of the Python module `cqtsec`.
 
 See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/examples.ipynb).
 
