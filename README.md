@@ -7,7 +7,7 @@ Timbre is the attribute of sound which makes, for example, two musical instrumen
 Files:
 - [`cqtsec.py`](#cqtsecpy): Python module with the CQT-SEC and other related functions.
 - [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples for the different functions of the Python module `cqtsec`.
-- [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and evaluating the CQT-SECs.
+- [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and evaluating the CQT-SECs (mostly personal).
 - [`codes.ipynb`](#testsipynb): Jupyter notebook with some codes.
 - [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the tests and examples.
 
@@ -245,7 +245,7 @@ See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT
 
 ## tests.ipynb
 
-This Jupyter notebook shows some tests for extracting and evaluating the constant-Q transform spectral envelope coefficients (CQT-SEC).
+This Jupyter notebook shows some tests for extracting and evaluating the constant-Q transform spectral envelope coefficients (CQT-SEC) (mostly personal).
 
 See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/tests.ipynb).
 
