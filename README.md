@@ -8,7 +8,7 @@ Files:
 - [`cqtsec.py`](#cqtsecpy): Python module with the CQT-SEC and other related functions.
 - [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples for the different functions of the Python module `cqtsec`.
 - [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and evaluating the CQT-SECs (mostly personal).
-- [`analysis.ipynb`](#analysisipynb): Jupyter notebook with some analysis to justify and evaluate the CQT-SEC.
+- [`notes.ipynb`](#notesipynb): Jupyter notebook with some notes to justify and evaluate the CQT-SEC.
 - [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the tests and examples.
 
 See also:
@@ -250,11 +250,11 @@ This Jupyter notebook shows some tests for extracting and evaluating the constan
 See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/tests.ipynb).
 
 
-## analysis.ipynb
+## notes.ipynb
 
-This Jupyter notebook shows some analysis to justify and evaluate the constant-Q transform spectral envelope coefficients (CQT-SEC).
+This Jupyter notebook shows some notes to justify and evaluate the constant-Q transform spectral envelope coefficients (CQT-SEC).
 
-See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/codes.ipynb).
+See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/notes.ipynb).
 
 
 ## bass_acoustic_000-036-075.wav
