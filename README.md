@@ -28,9 +28,6 @@ Functions:
 - [`cqtdeconv`](#cqtdeconv) - Deconvolve the CQT spectrogram into a pitch-independent spectral envelope and an energy-normalized pitch component.
 - [`cqtsec`](#cqtsec) - Compute the CQT-SEC.
 
-See also:
-- [Zaf-Python](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
-
 ### mfcc
 
 Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
