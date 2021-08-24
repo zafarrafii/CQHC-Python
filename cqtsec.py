@@ -4,7 +4,7 @@ This Python module implements the constant-Q transform spectral envelope coeffic
 Functions:
     mfcc - Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
     cqtspectrogram - Compute the (magnitude) constant-Q transform (CQT) spectrogram (using librosa).
-    cqtdeconv - Deconvolve the constant-Q transform (CQT) spectrogram into a pitch-independent spectral envelope and an energy-normalized pitch component.
+    cqtdeconv - Deconvolve the CQT spectrogram into a pitch-independent spectral envelope and an energy-normalized pitch component.
     cqtsec - Compute the CQT spectral envelope coefficients (CQT-SEC).
 
 Author:
@@ -13,7 +13,7 @@ Author:
     http://zafarrafii.com
     https://github.com/zafarrafii
     https://www.linkedin.com/in/zafarrafii/
-    08/16/21
+    08/24/21
 """
 
 import numpy as np
@@ -223,7 +223,7 @@ def cqtsec(
     number_coefficients=20,
 ):
     """
-    Compute the constant-Q transform (CQT) spectral envelope coefficients (CQT-SEC).
+    Compute the constant-Q transform spectral envelope coefficients (CQT-SEC).
 
     Inputs:
         audio_signal: audio signal (number_samples,)
