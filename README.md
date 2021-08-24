@@ -7,8 +7,8 @@ Timbre is the attribute of sound which makes, for example, two musical instrumen
 Files:
 - [`cqtsec.py`](#cqtsecpy): Python module with the CQT-SEC and other related functions.
 - [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples for the different functions of the Python module `cqtsec`.
-- [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and evaluating the CQT-SECs (mostly personal).
-- [`notes.ipynb`](#notesipynb): Jupyter notebook with some notes regarding the justification and evaluation of the CQT-SEC.
+- [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and experimenting with the CQT-SECs (more personal).
+- [`notes.ipynb`](#notesipynb): Jupyter notebook with some notes regarding the justification and evaluation of the CQT-SEC (more official).
 
 - [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the tests and examples.
 
@@ -27,9 +27,6 @@ Functions:
 - [`cqtspectrogram`](#cqtspectrogram) - Compute the (magnitude) constant-Q transform (CQT) spectrogram (using librosa).
 - [`cqtdeconv`](#cqtdeconv) - Deconvolve the CQT spectrogram into a pitch-independent spectral envelope and an energy-normalized pitch component.
 - [`cqtsec`](#cqtsec) - Compute the CQT-SEC.
-
-See also:
-- [Zaf-Python](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
 
 ### mfcc
 
@@ -191,7 +188,7 @@ plt.show()
 
 ### cqtsec
 
-Compute the constant-Q transform (CQT) spectral envelope coefficients (CQT-SEC).
+Compute the constant-Q transform spectral envelope coefficients (CQT-SEC).
 
 ```
 cqt_sec = cqtsec.cqtsec(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, number_coefficients)
@@ -246,21 +243,21 @@ See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT
 
 ## tests.ipynb
 
-This Jupyter notebook shows some tests for extracting and evaluating the constant-Q transform spectral envelope coefficients (CQT-SEC) (mostly personal).
+This Jupyter notebook shows some tests for extracting and experimenting with the constant-Q transform spectral envelope coefficients (CQT-SEC) (more personal).
 
 See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/tests.ipynb).
 
 
 ## notes.ipynb
 
-This Jupyter notebook shows some notes regarding the justification and evaluation of the constant-Q transform spectral envelope coefficients (CQT-SEC).
+This Jupyter notebook shows some notes regarding the justification and evaluation of the constant-Q transform spectral envelope coefficients (CQT-SEC) (more official).
 
 See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/notes.ipynb).
 
 
 ## bass_acoustic_000-036-075.wav
 
-4 second musical note of an acoustic bass playing C2 (65.41 Hz), from the [NSynth dataset](https://magenta.tensorflow.org/datasets/nsynth).
+WAV file with 4 second musical note of an acoustic bass playing C2 (65.41 Hz), from the [NSynth dataset](https://magenta.tensorflow.org/datasets/nsynth).
 
 
 # References
