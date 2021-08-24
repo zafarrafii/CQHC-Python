@@ -243,21 +243,21 @@ See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT
 
 ## tests.ipynb
 
-This Jupyter notebook shows some tests for extracting and evaluating the constant-Q transform spectral envelope coefficients (CQT-SEC) (mostly personal).
+This Jupyter notebook shows some tests for extracting and experimenting with the constant-Q transform (CQT) spectral envelope coefficients (CQT-SEC) (more personal).
 
 See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/tests.ipynb).
 
 
 ## notes.ipynb
 
-This Jupyter notebook shows some notes regarding the justification and evaluation of the constant-Q transform spectral envelope coefficients (CQT-SEC).
+This Jupyter notebook shows some notes regarding the justification and evaluation of the constant-Q transform (CQT) spectral envelope coefficients (CQT-SEC) (more official).
 
 See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/notes.ipynb).
 
 
 ## bass_acoustic_000-036-075.wav
 
-4 second musical note of an acoustic bass playing C2 (65.41 Hz), from the [NSynth dataset](https://magenta.tensorflow.org/datasets/nsynth).
+WAV file with 4 second musical note of an acoustic bass playing C2 (65.41 Hz), from the [NSynth dataset](https://magenta.tensorflow.org/datasets/nsynth).
 
 
 # References
