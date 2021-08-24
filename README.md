@@ -188,7 +188,7 @@ plt.show()
 
 ### cqtsec
 
-Compute the constant-Q transform (CQT) spectral envelope coefficients (CQT-SEC).
+Compute the constant-Q transform spectral envelope coefficients (CQT-SEC).
 
 ```
 cqt_sec = cqtsec.cqtsec(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, number_coefficients)
@@ -243,14 +243,14 @@ See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT
 
 ## tests.ipynb
 
-This Jupyter notebook shows some tests for extracting and experimenting with the constant-Q transform (CQT) spectral envelope coefficients (CQT-SEC) (more personal).
+This Jupyter notebook shows some tests for extracting and experimenting with the constant-Q transform spectral envelope coefficients (CQT-SEC) (more personal).
 
 See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/tests.ipynb).
 
 
 ## notes.ipynb
 
-This Jupyter notebook shows some notes regarding the justification and evaluation of the constant-Q transform (CQT) spectral envelope coefficients (CQT-SEC) (more official).
+This Jupyter notebook shows some notes regarding the justification and evaluation of the constant-Q transform spectral envelope coefficients (CQT-SEC) (more official).
 
 See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/notes.ipynb).
 
