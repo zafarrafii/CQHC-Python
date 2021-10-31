@@ -1,14 +1,15 @@
-# CQT-SEC-Python
+# CQTSC-Python
 
-The constant-Q transform spectral envelope coefficients (CQT-SEC): a timbre feature designed for music.
+The constant-Q transform spectral coefficients (CQTSCs): a timbre feature designed for music signals.
 
-Timbre is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is typically associated with the spectral (but also the temporal) envelope and assumed to be independent from the pitch (but also the loudness) of the sound. We present a simple but functional pitch-independent timbre feature which is well adapted to musical data, by deriving it from the constant-Q transform (CQT), a log-frequency transform which matches the equal-tempered musical scale. We first decompose the CQT spectrum into an energy-normalized pitch component and a pitch-independent spectral envelope, and then extract a number of timbral coefficients from the spectral envelope.
+Timbre is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is typically associated with the spectral (but also the temporal) envelope and assumed to be independent from the pitch (but also the loudness) of the sound. This will show how to design a simple but effective pitch-independent timbre feature which is well adapted to musical data, by deriving it from the constant-Q transform (CQT), a log frequency transform which matches the typical Western
+musical scale. We will show how to decompose the CQT spectrum into an energy-normalized pitch component and a pitch-normalized spectral component, the latter from which we will extract a number of spectral coefficients.
 
 Files:
-- [`cqtsec.py`](#cqtsecpy): Python module with the CQT-SEC and other related functions.
-- [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples for the different functions of the Python module `cqtsec`.
-- [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and experimenting with the CQT-SECs (more personal).
-- [`notes.ipynb`](#notesipynb): Jupyter notebook with some notes regarding the justification and evaluation of the CQT-SEC (more official).
+- [`cqtsc.py`](#cqtscpy): Python module with the CQTSC and other related functions.
+- [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples for the different functions of the Python module `cqtsc`.
+- [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and experimenting with the CQTSCs (more personal).
+- [`notes.ipynb`](#notesipynb): Jupyter notebook with some notes regarding the justification and evaluation of the CQTSC (more official).
 
 - [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the tests and examples.
 
@@ -16,7 +17,7 @@ See also:
 - [Zaf-Python](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
 
 
-## cqtsec.py
+## cqtsc.py
 
 This Python module implements the constant-Q transform spectral envelope coefficients (CQT-SEC) and other related functions. 
 
@@ -25,8 +26,8 @@ Simply copy the file `cqtsec.py` in your working directory and you are good to g
 Functions:
 - [`mfcc`](#mfcc) - Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
 - [`cqtspectrogram`](#cqtspectrogram) - Compute the (magnitude) constant-Q transform (CQT) spectrogram (using librosa).
-- [`cqtdeconv`](#cqtdeconv) - Deconvolve the CQT spectrogram into a pitch-independent spectral envelope and an energy-normalized pitch component.
-- [`cqtsec`](#cqtsec) - Compute the CQT-SEC.
+- [`cqtdeconv`](#cqtdeconv) - Deconvolve the CQT spectrogram into a pitch-normalized spectral component and an energy-normalized pitch component.
+- [`cqtsc`](#cqtsc) - Compute the CQTSC.
 
 ### mfcc
 
