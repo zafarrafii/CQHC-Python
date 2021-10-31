@@ -6,10 +6,10 @@ Timbre is the attribute of sound which makes, for example, two musical instrumen
 musical scale. We will show how to decompose the CQT spectrum into an energy-normalized pitch component and a pitch-normalized spectral component, the latter from which we will extract a number of spectral coefficients.
 
 Files:
-- [`cqtsc.py`](#cqtscpy): Python module with the CQTSC and other related functions.
+- [`cqtsc.py`](#cqtscpy): Python module with the CQTSCs and other related functions.
 - [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples for the different functions of the Python module `cqtsc`.
 - [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and experimenting with the CQTSCs (more personal).
-- [`notes.ipynb`](#notesipynb): Jupyter notebook with some notes regarding the justification and evaluation of the CQTSC (more official).
+- [`notes.ipynb`](#notesipynb): Jupyter notebook with some notes regarding the justification and evaluation of the CQTSCs (more official).
 
 - [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the tests and examples.
 
@@ -19,15 +19,15 @@ See also:
 
 ## cqtsc.py
 
-This Python module implements the constant-Q transform spectral envelope coefficients (CQT-SEC) and other related functions. 
+This Python module implements the constant-Q transform spectral coefficients (CQTSCs) and other related functions. 
 
-Simply copy the file `cqtsec.py` in your working directory and you are good to go. Make sure you have Python 3 and NumPy installed.
+Simply copy the file `cqtsc.py` in your working directory and you are good to go. Make sure you have Python 3 and NumPy installed.
 
 Functions:
 - [`mfcc`](#mfcc) - Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
 - [`cqtspectrogram`](#cqtspectrogram) - Compute the (magnitude) constant-Q transform (CQT) spectrogram (using librosa).
 - [`cqtdeconv`](#cqtdeconv) - Deconvolve the CQT spectrogram into a pitch-normalized spectral component and an energy-normalized pitch component.
-- [`cqtsc`](#cqtsc) - Compute the CQTSC.
+- [`cqtsc`](#cqtsc) - Compute the CQTSCs.
 
 ### mfcc
 
@@ -50,7 +50,7 @@ Output:
 ```
 # Import the modules
 import numpy as np
-import cqtsec
+import cqtsc
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt
@@ -63,7 +63,7 @@ audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
 window_length = pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency))))
 step_length = int(window_length / 2)
 number_coefficients = 20
-audio_mfcc = cqtsec.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
+audio_mfcc = cqtsc.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
 
 # Display the MFCCs
 plt.figure(figsize=(14, 4))
@@ -99,7 +99,7 @@ Output:
 ```
 # Import the modules
 import numpy as np
-import cqtsec
+import cqtsc
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt
@@ -112,8 +112,8 @@ audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
 step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
 minimum_frequency = 32.70
 octave_resolution = 12
-cqt_spectrogram = cqtsec.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
-                                        octave_resolution)
+cqt_spectrogram = cqtsc.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
+                                       octave_resolution)
 
 # Display the CQT spectrogram
 plt.figure(figsize=(14, 4))
@@ -130,23 +130,23 @@ plt.show()
 
 ### cqtdeconv
 
-Deconvolve the constant-Q transform (CQT) spectrogram into a pitch-independent spectral envelope and an energy-normalized pitch component.
+Deconvolve the constant-Q transform (CQT) spectrogram into a pitch-normalized spectral component and an energy-normalized pitch component.
 
 ```
-cqt_envelope, cqt_pitch = cqtsec.cqtdeconv(cqt_spectrogram)
-    
+spectral_component, pitch_component = cqtsc.cqtdeconv(cqt_spectrogram)
+
 Inputs:
     cqt_spectrogram: CQT spectrogram (number_frequencies, number_frames)
 Output:
-    cqt_envelope: pitch-independent spectral envelope (number_frequencies, number_frames)
-    cqt_pitch: energy-normalized pitch component (number_frequencies, number_frames)
+    spectral_component: pitch-normalized spectral component (number_frequencies, number_frames)
+    pitch_component: energy-normalized pitch component (number_frequencies, number_frames)
 ```
 
-#### Example: Deconvolve a CQT spectrogram into its spectral envelope and pitch component.
+#### Example: Deconvolve a CQT spectrogram into its spectral component and pitch component.
 ```
 # Import the modules
 import numpy as np
-import cqtsec
+import cqtsc
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt
@@ -159,13 +159,13 @@ audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
 step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
 minimum_frequency = 32.70
 octave_resolution = 12
-cqt_spectrogram = cqtsec.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
-                                        octave_resolution)
+cqt_spectrogram = cqtsc.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
+                                       octave_resolution)
 
-# Deconvolve the CQT spectrogram into a CQT envelope and pitch
-cqt_envelope, cqt_pitch = cqtsec.cqtdeconv(cqt_spectrogram)
+# Deconvolve the CQT spectrogram into a spectral component and pitch component
+spectral_component, pitch_component = cqtsc.cqtdeconv(cqt_spectrogram)
 
-# Display the CQT spectrogram, envelope, and pitch
+# Display the CQT spectrogram, spectral component, and pitch component
 plt.figure(figsize=(14, 4))
 plt.subplot(1, 3, 1)
 librosa.display.specshow(librosa.amplitude_to_db(cqt_spectrogram), x_axis='time', y_axis='cqt_note', \
@@ -173,13 +173,14 @@ librosa.display.specshow(librosa.amplitude_to_db(cqt_spectrogram), x_axis='time'
                          bins_per_octave=octave_resolution, cmap='jet')
 plt.title('CQT spectrogram')
 plt.subplot(1, 3, 2)
-librosa.display.specshow(librosa.amplitude_to_db(cqt_envelope), x_axis='time', y_axis='cqt_note', sr=sampling_frequency, 
-                         hop_length=step_length, fmin=minimum_frequency, bins_per_octave=octave_resolution, cmap='jet')
-plt.title('CQT envelope')
+librosa.display.specshow(librosa.amplitude_to_db(spectral_component), x_axis='time', y_axis='cqt_note', \
+                         sr=sampling_frequency, hop_length=step_length, fmin=minimum_frequency, \
+                         bins_per_octave=octave_resolution, cmap='jet')
+plt.title('Spectral component')
 plt.subplot(1, 3, 3)
-librosa.display.specshow(cqt_pitch, x_axis='time', y_axis='cqt_note', sr=sampling_frequency, hop_length=step_length, \
-                         fmin=minimum_frequency, bins_per_octave=octave_resolution, cmap='jet')
-plt.title('CQT pitch')
+librosa.display.specshow(pitch_component, x_axis='time', y_axis='cqt_note', sr=sampling_frequency, \
+                         hop_length=step_length, fmin=minimum_frequency, bins_per_octave=octave_resolution, cmap='jet')
+plt.title('Pitch component')
 plt.tight_layout()
 plt.show()
 ```
@@ -187,25 +188,29 @@ plt.show()
 <img src="images/cqtdeconv.png" width="1000">
 
 
-### cqtsec
+### cqtsc
 
-Compute the constant-Q transform spectral envelope coefficients (CQT-SEC).
+Compute the constant-Q transform spectral coefficients (CQTSCs).
 
 ```
-cqt_sec = cqtsec.cqtsec(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, number_coefficients)
-    
+audio_cqtsc = cqtsc.cqtsc(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, number_coefficients)
+
 Inputs:
-    cqt_spectrogram: CQT spectrogram (number_frequencies, number_frames)
+    audio_signal: audio signal (number_samples,)
+    sampling_frequency: sampling frequency in Hz
+    step_length: step length in samples
+    minimum_frequency: minimum frequency in Hz (default: 32.70 Hz = C1)
+    octave_resolution: number of frequency channels per octave (default: 12 frequency channels per octave)
+    number_coefficients: number of CQTSCs (default: 20 coefficients)
 Output:
-    cqt_envelope: pitch-independent spectral envelope (number_frequencies, number_frames)
-    cqt_pitch: energy-normalized pitch component (number_frequencies, number_frames)
+    audio_cqtsc: CQTSCs (number_coefficients, number_frames)
 ```
 
 #### Example:
 ```
 # Import the modules
 import numpy as np
-import cqtsec
+import cqtsc
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt
@@ -219,41 +224,41 @@ step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
 minimum_frequency = 32.70
 octave_resolution = 12
 number_coefficients = 20
-cqt_sec = cqtsec.cqtsec(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, \
-                        number_coefficients)
+audio_cqtsc = cqtsc.cqtsc(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, \
+                      number_coefficients)
 
-# Display the CQT-SECs
+# Display the CQTSCs
 plt.figure(figsize=(14, 4))
-librosa.display.specshow(librosa.power_to_db(cqt_sec), x_axis='time', sr=sampling_frequency, hop_length=step_length, \
+librosa.display.specshow(librosa.power_to_db(audio_cqtsc), x_axis='time', sr=sampling_frequency, hop_length=step_length, \
                          cmap='jet')
-plt.title('CQT-SECs')
+plt.title('CQTSCs')
 plt.ylabel('Coefficient')
 plt.tight_layout()
 plt.show()
 ```
 
-<img src="images/cqtsec.png" width="1000">
+<img src="images/cqtsc.png" width="1000">
 
 
 ## examples.ipynb
 
-This Jupyter notebook shows some examples for the different functions of the Python module `cqtsec`.
+This Jupyter notebook shows some examples for the different functions of the Python module `cqtsc`.
 
-See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/examples.ipynb).
+See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQTSC-Python/blob/master/examples.ipynb).
 
 
 ## tests.ipynb
 
-This Jupyter notebook shows some tests for extracting and experimenting with the constant-Q transform spectral envelope coefficients (CQT-SEC) (more personal).
+This Jupyter notebook shows some tests for extracting and experimenting with the constant-Q transform spectral coefficients (CQTSCs) (more personal).
 
-See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/tests.ipynb).
+See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQTSC-Python/blob/master/tests.ipynb).
 
 
 ## notes.ipynb
 
-This Jupyter notebook shows some notes regarding the justification and evaluation of the constant-Q transform spectral envelope coefficients (CQT-SEC) (more official).
+This Jupyter notebook shows some notes regarding the justification and evaluation of the constant-Q transform spectral coefficients (CQTSCs) (more official).
 
-See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQT-SEC-Python/blob/master/notes.ipynb).
+See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQTSC-Python/blob/master/notes.ipynb).
 
 
 ## bass_acoustic_000-036-075.wav
