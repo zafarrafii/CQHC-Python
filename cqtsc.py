@@ -1,11 +1,11 @@
 """
-This Python module implements the constant-Q transform spectral envelope coefficients (CQT-SEC) and other related functions.
+This Python module implements the constant-Q transform spectral coefficients (CQTSCs) and other related functions.
 
 Functions:
     mfcc - Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
     cqtspectrogram - Compute the (magnitude) constant-Q transform (CQT) spectrogram (using librosa).
-    cqtdeconv - Deconvolve the CQT spectrogram into a pitch-independent spectral envelope and an energy-normalized pitch component.
-    cqtsec - Compute the CQT spectral envelope coefficients (CQT-SEC).
+    cqtdeconv - Deconvolve the CQT spectrogram into a pitch-normalized spectral component and an energy-normalized pitch component.
+    cqtsc - Compute the CQT spectral coefficients (CQTSCs).
 
 Author:
     Zafar Rafii
@@ -13,7 +13,7 @@ Author:
     http://zafarrafii.com
     https://github.com/zafarrafii
     https://www.linkedin.com/in/zafarrafii/
-    08/24/21
+    10/31/21
 """
 
 import numpy as np
@@ -38,7 +38,7 @@ def mfcc(
     Example: Compute the MFCCs from an audio file.
         # Import the modules
         import numpy as np
-        import cqtsec
+        import cqtsc
         import librosa
         import librosa.display
         import matplotlib.pyplot as plt
@@ -51,7 +51,7 @@ def mfcc(
         window_length = pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency))))
         step_length = int(window_length / 2)
         number_coefficients = 20
-        audio_mfcc = cqtsec.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
+        audio_mfcc = cqtsc.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
 
         # Display the MFCCs
         plt.figure(figsize=(14, 4))
@@ -96,7 +96,7 @@ def cqtspectrogram(
     Example: Compute the CQT spectrogram from an audio file.
         # Import the modules
         import numpy as np
-        import cqtsec
+        import cqtsc
         import librosa
         import librosa.display
         import matplotlib.pyplot as plt
@@ -109,8 +109,8 @@ def cqtspectrogram(
         step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
         minimum_frequency = 32.70
         octave_resolution = 12
-        cqt_spectrogram = cqtsec.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
-                                                octave_resolution)
+        cqt_spectrogram = cqtsc.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
+                                            octave_resolution)
 
         # Display the CQT spectrogram
         plt.figure(figsize=(14, 4))
@@ -145,18 +145,18 @@ def cqtspectrogram(
 
 def cqtdeconv(cqt_spectrogram):
     """
-    Deconvolve the constant-Q transform (CQT) spectrogram into a pitch-independent spectral envelope and an energy-normalized pitch component.
+    Deconvolve the constant-Q transform (CQT) spectrogram into a pitch-normalized spectral component and an energy-normalized pitch component.
 
     Inputs:
         cqt_spectrogram: CQT spectrogram (number_frequencies, number_frames)
     Output:
-        cqt_envelope: pitch-independent spectral envelope (number_frequencies, number_frames)
-        cqt_pitch: energy-normalized pitch component (number_frequencies, number_frames)
+        spectral_component: pitch-normalized spectral component (number_frequencies, number_frames)
+        pitch_component: energy-normalized pitch component (number_frequencies, number_frames)
 
-    Example: Deconvolve a CQT spectrogram into its spectral envelope and pitch component.
+    Example: Deconvolve a CQT spectrogram into its spectral component and pitch component.
         # Import the modules
         import numpy as np
-        import cqtsec
+        import cqtsc
         import librosa
         import librosa.display
         import matplotlib.pyplot as plt
@@ -169,13 +169,13 @@ def cqtdeconv(cqt_spectrogram):
         step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
         minimum_frequency = 32.70
         octave_resolution = 12
-        cqt_spectrogram = cqtsec.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
-                                                octave_resolution)
+        cqt_spectrogram = cqtsc.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
+                                            octave_resolution)
 
-        # Deconvolve the CQT spectrogram into a CQT envelope and pitch
-        cqt_envelope, cqt_pitch = cqtsec.cqtdeconv(cqt_spectrogram)
+        # Deconvolve the CQT spectrogram into a spectral component and pitch component
+        spectral_component, pitch_component = cqtsc.cqtdeconv(cqt_spectrogram)
 
-        # Display the CQT spectrogram, envelope, and pitch
+        # Display the CQT spectrogram, spectral component, and pitch component
         plt.figure(figsize=(14, 4))
         plt.subplot(1, 3, 1)
         librosa.display.specshow(librosa.amplitude_to_db(cqt_spectrogram), x_axis='time', y_axis='cqt_note', \
@@ -183,13 +183,14 @@ def cqtdeconv(cqt_spectrogram):
                                 bins_per_octave=octave_resolution, cmap='jet')
         plt.title('CQT spectrogram')
         plt.subplot(1, 3, 2)
-        librosa.display.specshow(librosa.amplitude_to_db(cqt_envelope), x_axis='time', y_axis='cqt_note', sr=sampling_frequency, 
-                                hop_length=step_length, fmin=minimum_frequency, bins_per_octave=octave_resolution, cmap='jet')
-        plt.title('CQT envelope')
+        librosa.display.specshow(librosa.amplitude_to_db(spectral_component), x_axis='time', y_axis='cqt_note', \
+                                sr=sampling_frequency, hop_length=step_length, fmin=minimum_frequency, \
+                                bins_per_octave=octave_resolution, cmap='jet')
+        plt.title('Spectral component')
         plt.subplot(1, 3, 3)
-        librosa.display.specshow(cqt_pitch, x_axis='time', y_axis='cqt_note', sr=sampling_frequency, hop_length=step_length, \
-                                fmin=minimum_frequency, bins_per_octave=octave_resolution, cmap='jet')
-        plt.title('CQT pitch')
+        librosa.display.specshow(pitch_component, x_axis='time', y_axis='cqt_note', sr=sampling_frequency, \
+                                hop_length=step_length, fmin=minimum_frequency, bins_per_octave=octave_resolution, cmap='jet')
+        plt.title('Pitch component')
         plt.tight_layout()
         plt.show()
     """
@@ -201,20 +202,20 @@ def cqtdeconv(cqt_spectrogram):
     ftcqt_spectrogram = np.fft.fft(cqt_spectrogram, 2 * number_frequencies - 1, axis=0)
     absftcqt_spectrogram = abs(ftcqt_spectrogram)
 
-    # Derive the CQT envelope and pitch
-    cqt_envelope = np.real(
+    # Derive the spectral component and the pitch component
+    spectral_component = np.real(
         np.fft.ifft(absftcqt_spectrogram, axis=0)[0:number_frequencies, :]
     )
-    cqt_pitch = np.real(
+    pitch_component = np.real(
         np.fft.ifft(ftcqt_spectrogram / (absftcqt_spectrogram + 1e-16), axis=0)[
             0:number_frequencies, :
         ]
     )
 
-    return cqt_envelope, cqt_pitch
+    return spectral_component, pitch_component
 
 
-def cqtsec(
+def cqtsc(
     audio_signal,
     sampling_frequency,
     step_length,
@@ -223,7 +224,7 @@ def cqtsec(
     number_coefficients=20,
 ):
     """
-    Compute the constant-Q transform spectral envelope coefficients (CQT-SEC).
+    Compute the constant-Q transform spectral coefficients (CQTSCs).
 
     Inputs:
         audio_signal: audio signal (number_samples,)
@@ -231,14 +232,14 @@ def cqtsec(
         step_length: step length in samples
         minimum_frequency: minimum frequency in Hz (default: 32.70 Hz = C1)
         octave_resolution: number of frequency channels per octave (default: 12 frequency channels per octave)
-        number_coefficients: number of CQT-SECs (default: 20 coefficients)
+        number_coefficients: number of CQTSCs (default: 20 coefficients)
     Output:
-        cqt_sec: CQT-SECs (number_coefficients, number_frames)
+        audio_cqtsc: CQTSCs (number_coefficients, number_frames)
 
-    Example: Compute the CQT-SECs from an audio file.
+    Example: Compute the CQTSCs from an audio file.
         # Import the modules
         import numpy as np
-        import cqtsec
+        import cqtsc
         import librosa
         import librosa.display
         import matplotlib.pyplot as plt
@@ -252,14 +253,14 @@ def cqtsec(
         minimum_frequency = 32.70
         octave_resolution = 12
         number_coefficients = 20
-        cqt_sec = cqtsec.cqtsec(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, \
-                                number_coefficients)
+        audio_cqtsc = cqtsc.cqtsc(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, \
+                            number_coefficients)
 
-        # Display the CQT-SECs
+        # Display the CQTSCs
         plt.figure(figsize=(14, 4))
-        librosa.display.specshow(librosa.power_to_db(cqt_sec), x_axis='time', sr=sampling_frequency, hop_length=step_length, \
+        librosa.display.specshow(librosa.power_to_db(audio_cqtsc), x_axis='time', sr=sampling_frequency, hop_length=step_length, \
                                 cmap='jet')
-        plt.title('CQT-SECs')
+        plt.title('CQTSCs')
         plt.ylabel('Coefficient')
         plt.tight_layout()
         plt.show()
@@ -277,18 +278,18 @@ def cqtsec(
         2,
     )
 
-    # Derive the CQT envelope
+    # Derive the spectral component
     number_frequencies = np.shape(cqt_spectrogram)[0]
-    cqt_envelope = np.real(
+    spectral_component = np.real(
         np.fft.ifft(
             abs(np.fft.fft(cqt_spectrogram, 2 * number_frequencies - 1, axis=0)), axis=0
         )[0:number_frequencies, :]
     )
 
-    # Extract the CQT-SECs
+    # Extract the CQTSCs
     coefficient_indices = np.round(
         octave_resolution * np.log2(np.arange(1, number_coefficients + 1))
     ).astype(int)
-    cqt_sec = cqt_envelope[coefficient_indices, :]
+    audio_cqtsc = spectral_component[coefficient_indices, :]
 
-    return cqt_sec
+    return audio_cqtsc
