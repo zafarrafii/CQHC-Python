@@ -9,7 +9,7 @@ we will extract a number of harmonic coefficients. We will then evaluate the dis
 large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs), features originally designed for speech recognition but commonly used to characterize timbre in music.
 
 Files:
-- [`cqthc.py`](#cqhcpy): Python module with the CQHCs and other related functions.
+- [`cqhc.py`](#cqhcpy): Python module with the CQHCs and other related functions.
 - [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples for the different functions of the Python module `cqhc`.
 - [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and experimenting with the CQHCs (more personal).
 - [`notes.ipynb`](#notesipynb): Jupyter notebook with some notes regarding the justification and evaluation of the CQHCs (more official).
