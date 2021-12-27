@@ -208,7 +208,7 @@ Output:
     audio_cqhc: CQHCs (number_coefficients, number_frames)
 ```
 
-#### Example:
+#### Example: Compute the CQHCs from an audio file.
 ```
 # Import the modules
 import numpy as np
