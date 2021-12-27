@@ -9,10 +9,10 @@ we will extract a number of harmonic coefficients. We will then evaluate the dis
 large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs), features originally designed for speech recognition but commonly used to characterize timbre in music.
 
 Files:
-- [`cqtsc.py`](#cqtscpy): Python module with the CQTSCs and other related functions.
-- [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples for the different functions of the Python module `cqtsc`.
-- [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and experimenting with the CQTSCs (more personal).
-- [`notes.ipynb`](#notesipynb): Jupyter notebook with some notes regarding the justification and evaluation of the CQTSCs (more official).
+- [`cqthc.py`](#cqhcpy): Python module with the CQHCs and other related functions.
+- [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples for the different functions of the Python module `cqhc`.
+- [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and experimenting with the CQHCs (more personal).
+- [`notes.ipynb`](#notesipynb): Jupyter notebook with some notes regarding the justification and evaluation of the CQHCs (more official).
 
 - [`bass_acoustic_000-036-075.wav`](#bass_acoustic_000-036-075wav): audio file used for the tests and examples.
 
@@ -20,17 +20,18 @@ See also:
 - [Zaf-Python](https://github.com/zafarrafii/Zaf-Python): Zafar's Audio Functions in Python for audio signal analysis.
 
 
-## cqtsc.py
+## cqhc.py
 
-This Python module implements the constant-Q transform spectral coefficients (CQTSCs) and other related functions. 
+This Python module implements the constant-Q harmonic coefficients (CQHCs) and other related functions. 
 
-Simply copy the file `cqtsc.py` in your working directory and you are good to go. Make sure you have Python 3 and NumPy installed.
+Simply copy the file `cqhc.py` in your working directory and you are good to go. Make sure you have Python 3 and NumPy installed.
 
 Functions:
 - [`mfcc`](#mfcc) - Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
 - [`cqtspectrogram`](#cqtspectrogram) - Compute the (magnitude) constant-Q transform (CQT) spectrogram (using librosa).
 - [`cqtdeconv`](#cqtdeconv) - Deconvolve the CQT spectrogram into a pitch-normalized spectral component and an energy-normalized pitch component.
-- [`cqtsc`](#cqtsc) - Compute the CQTSCs.
+- [`cqhc`](#cqtsc) - Compute the CQHCs.
+
 
 ### mfcc
 
@@ -96,7 +97,6 @@ Inputs:
 Output:
     cqt_spectrogram: magnitude CQT spectrogram (number_frequencies, number_frames)
 ```
-
 
 #### Example: Compute the CQT spectrogram from an audio file.
 ```
@@ -191,12 +191,12 @@ plt.show()
 <img src="images/cqtdeconv.png" width="1000">
 
 
-### cqtsc
+### cqhc
 
-Compute the constant-Q transform spectral coefficients (CQTSCs).
+Compute the constant-Q harmonic coefficients (CQHCs).
 
 ```
-audio_cqtsc = cqtsc.cqtsc(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, number_coefficients)
+audio_cqhc = cqhc.cqhc(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, number_coefficients)
 
 Inputs:
     audio_signal: audio signal (number_samples,)
@@ -206,7 +206,7 @@ Inputs:
     octave_resolution: number of frequency channels per octave (default: 12 frequency channels per octave)
     number_coefficients: number of CQTSCs (default: 20 coefficients)
 Output:
-    audio_cqtsc: CQTSCs (number_coefficients, number_frames)
+    audio_cqhc: CQHCs (number_coefficients, number_frames)
 ```
 
 #### Example:
@@ -227,7 +227,7 @@ step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
 minimum_frequency = 32.70
 octave_resolution = 12
 number_coefficients = 20
-audio_cqtsc = cqtsc.cqtsc(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, \
+audio_cqhc = cqhc.cqhc(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, \
                       number_coefficients)
 
 # Display the CQTSCs
@@ -271,11 +271,12 @@ WAV file with 4 second musical note of an acoustic bass playing C2 (65.41 Hz), f
 
 # References
 
-- Brian McFee, Collin Raffel, Dawen Liang, Daniel PW Ellis, Matt McVicar, Eric Battenberg, and Oriol Nieto, "librosa: Audio and music signal analysis in python," 14th Python in Science Conference, Austin, TX, USA, July 6-12 2015 [[URL](https://arxiv.org/abs/1704.01279)]
+- Brian McFee, Collin Raffel, Dawen Liang, Daniel PW Ellis, Matt McVicar, Eric Battenberg, and Oriol Nieto, "librosa: Audio and Music Signal Analysis in Python," 14th Python in Science Conference, Austin, TX, USA, July 6-12 2015 [[URL](https://arxiv.org/abs/1704.01279)]
 
-- Jesse Engel, Cinjon Resnick, Adam Roberts, Sander Dieleman, Douglas Eck, Karen Simonyan, and Mohammad Norouzi, "Neural audio synthesis of musical notes with WaveNet
-autoencoders," *34th International Conference on Machine Learning*, Sydney, NSW, Australia, August 6-11 2017 [[URL](https://librosa.org/doc/latest/index.html#)]
+- Jesse Engel, Cinjon Resnick, Adam Roberts, Sander Dieleman, Douglas Eck, Karen Simonyan, and Mohammad Norouzi, "Neural Audio Synthesis of Musical Notes with WaveNet
+Autoencoders," *34th International Conference on Machine Learning*, Sydney, NSW, Australia, August 6-11 2017 [[URL](https://librosa.org/doc/latest/index.html#)]
 
+- Zafar Rafii, "The Constant-Q Harmonic Coefficients: A Timbre Feature Designed for Music Signals," *IEEE Signal Processing Magazine*, to appear.
 
 # Author
 
