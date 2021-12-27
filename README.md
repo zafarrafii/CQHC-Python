@@ -9,7 +9,7 @@ we will extract a number of harmonic coefficients. We will then evaluate the dis
 large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs), features originally designed for speech recognition but commonly used to characterize timbre in music.
 
 Files:
-- [`cqthc.py`](#cqhcpy): Python module with the CQHCs and other related functions.
+- [`cqhc.py`](#cqhcpy): Python module with the CQHCs and other related functions.
 - [`examples.ipynb`](#examplesipynb): Jupyter notebook with some examples for the different functions of the Python module `cqhc`.
 - [`tests.ipynb`](#testsipynb): Jupyter notebook with some tests for extracting and experimenting with the CQHCs (more personal).
 - [`notes.ipynb`](#notesipynb): Jupyter notebook with some notes regarding the justification and evaluation of the CQHCs (more official).
@@ -38,7 +38,7 @@ Functions:
 Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
 
 ```
-audio_mfcc = cqtsec.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
+audio_mfcc = cqhc.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
     
 Inputs:
     audio_signal: audio signal (number_samples,)
@@ -54,7 +54,7 @@ Output:
 ```
 # Import the modules
 import numpy as np
-import cqtsc
+import cqhc
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt
@@ -67,7 +67,7 @@ audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
 window_length = pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency))))
 step_length = int(window_length / 2)
 number_coefficients = 20
-audio_mfcc = cqtsc.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
+audio_mfcc = cqhc.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
 
 # Display the MFCCs
 plt.figure(figsize=(14, 4))
@@ -86,7 +86,7 @@ plt.show()
 Compute the (magnitude) constant-Q transform (CQT) spectrogram (using librosa).
 
 ```
-cqt_spectrogram = cqtsec.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution)
+cqt_spectrogram = cqhc.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution)
     
 Inputs:
     audio_signal: audio signal (number_samples,)
@@ -102,7 +102,7 @@ Output:
 ```
 # Import the modules
 import numpy as np
-import cqtsc
+import cqhc
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt
@@ -115,8 +115,8 @@ audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
 step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
 minimum_frequency = 32.70
 octave_resolution = 12
-cqt_spectrogram = cqtsc.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
-                                       octave_resolution)
+cqt_spectrogram = cqhc.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
+                                      octave_resolution)
 
 # Display the CQT spectrogram
 plt.figure(figsize=(14, 4))
@@ -136,7 +136,7 @@ plt.show()
 Deconvolve the constant-Q transform (CQT) spectrogram into a pitch-normalized spectral component and an energy-normalized pitch component.
 
 ```
-spectral_component, pitch_component = cqtsc.cqtdeconv(cqt_spectrogram)
+spectral_component, pitch_component = cqhc.cqtdeconv(cqt_spectrogram)
 
 Inputs:
     cqt_spectrogram: CQT spectrogram (number_frequencies, number_frames)
@@ -149,7 +149,7 @@ Output:
 ```
 # Import the modules
 import numpy as np
-import cqtsc
+import cqhc
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt
@@ -162,11 +162,10 @@ audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
 step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
 minimum_frequency = 32.70
 octave_resolution = 12
-cqt_spectrogram = cqtsc.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, \
-                                       octave_resolution)
+cqt_spectrogram = cqhc.cqtspectrogram(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution)
 
 # Deconvolve the CQT spectrogram into a spectral component and pitch component
-spectral_component, pitch_component = cqtsc.cqtdeconv(cqt_spectrogram)
+spectral_component, pitch_component = cqhc.cqtdeconv(cqt_spectrogram)
 
 # Display the CQT spectrogram, spectral component, and pitch component
 plt.figure(figsize=(14, 4))
@@ -204,16 +203,16 @@ Inputs:
     step_length: step length in samples
     minimum_frequency: minimum frequency in Hz (default: 32.70 Hz = C1)
     octave_resolution: number of frequency channels per octave (default: 12 frequency channels per octave)
-    number_coefficients: number of CQTSCs (default: 20 coefficients)
+    number_coefficients: number of CQHCs (default: 20 coefficients)
 Output:
     audio_cqhc: CQHCs (number_coefficients, number_frames)
 ```
 
-#### Example:
+#### Example: Compute the CQHCs from an audio file.
 ```
 # Import the modules
 import numpy as np
-import cqtsc
+import cqhc
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt
@@ -222,46 +221,46 @@ import matplotlib.pyplot as plt
 file_path = r'bass_acoustic_000-036-075.wav'
 audio_signal, sampling_frequency = librosa.load(file_path, sr=None, mono=True)
 
-# Define the parameters and compute the CQT spectrogram
+# Define the parameters and compute the CQHCs
 step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sampling_frequency)))) / 2)
 minimum_frequency = 32.70
 octave_resolution = 12
 number_coefficients = 20
 audio_cqhc = cqhc.cqhc(audio_signal, sampling_frequency, step_length, minimum_frequency, octave_resolution, \
-                      number_coefficients)
+                       number_coefficients)
 
-# Display the CQTSCs
+# Display the CQHCs
 plt.figure(figsize=(14, 4))
-librosa.display.specshow(librosa.power_to_db(audio_cqtsc), x_axis='time', sr=sampling_frequency, hop_length=step_length, \
+librosa.display.specshow(librosa.power_to_db(audio_cqhc), x_axis='time', sr=sampling_frequency, hop_length=step_length, \
                          cmap='jet')
-plt.title('CQTSCs')
+plt.title('CQHCs')
 plt.ylabel('Coefficient')
 plt.tight_layout()
 plt.show()
 ```
 
-<img src="images/cqtsc.png" width="1000">
+<img src="images/cqhc.png" width="1000">
 
 
 ## examples.ipynb
 
 This Jupyter notebook shows some examples for the different functions of the Python module `cqtsc`.
 
-See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQTSC-Python/blob/master/examples.ipynb).
+See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQHC-Python/blob/master/examples.ipynb).
 
 
 ## tests.ipynb
 
-This Jupyter notebook shows some tests for extracting and experimenting with the constant-Q transform spectral coefficients (CQTSCs) (more personal).
+This Jupyter notebook shows some tests for extracting and experimenting with the constant-Q harmonic coefficients (CQHCs) (more personal).
 
-See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQTSC-Python/blob/master/tests.ipynb).
+See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQHC-Python/blob/master/tests.ipynb).
 
 
 ## notes.ipynb
 
-This Jupyter notebook shows some notes regarding the justification and evaluation of the constant-Q transform spectral coefficients (CQTSCs) (more official).
+This Jupyter notebook shows some notes regarding the justification and evaluation of the constant-Q harmonic coefficients (CQHCs) (more official).
 
-See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQTSC-Python/blob/master/notes.ipynb).
+See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQHC-Python/blob/master/notes.ipynb).
 
 
 ## bass_acoustic_000-036-075.wav
