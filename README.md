@@ -244,7 +244,7 @@ plt.show()
 
 ## examples.ipynb
 
-This Jupyter notebook shows some examples for the different functions of the Python module `cqtsc`.
+This Jupyter notebook shows some examples for the different functions of the Python module `cqhc`.
 
 See [Jupyter notebook viewer](https://nbviewer.jupyter.org/github/zafarrafii/CQHC-Python/blob/master/examples.ipynb).
 
