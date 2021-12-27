@@ -38,7 +38,7 @@ Functions:
 Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
 
 ```
-audio_mfcc = cqthc.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
+audio_mfcc = cqhc.mfcc(audio_signal, sampling_frequency, window_length, step_length, number_coefficients)
     
 Inputs:
     audio_signal: audio signal (number_samples,)
