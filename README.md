@@ -3,10 +3,7 @@
 The constant-Q harmonic coefficients (CQTHCs): a timbre feature designed for music signals.
 
 Timbre is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is typically associated with the spectral (but
-also the temporal) envelope and assumed to be independent from the pitch (but also the loudness) of the sound. This will show how to design a simple but effective  pitch-independent timbre feature which is well adapted to musical data, by deriving it from the constant-Q transform (CQT), a log frequency transform which matches the typical Western
-musical scale. We will show how to decompose the CQT spectrum into an energy-normalized pitch component and a pitch-normalized spectral component, the latter from which
-we will extract a number of harmonic coefficients. We will then evaluate the discriminative power of these Constant Q harmonic coefficients (CQHCs) on the NSynth dataset, a
-large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs), features originally designed for speech recognition but commonly used to characterize timbre in music.
+also the temporal) envelope and assumed to be independent from the pitch (but also the loudness) of the sound. This will show how to design a simple but effective  pitch-independent timbre feature which is well adapted to musical data, by deriving it from the constant-Q transform (CQT), a log frequency transform which matches the typical Western musical scale. We will show how to decompose the CQT spectrum into an energy-normalized pitch component and a pitch-normalized spectral component, the latter from which we will extract a number of harmonic coefficients. We will then evaluate the discriminative power of these Constant Q harmonic coefficients (CQHCs) on the NSynth dataset, a large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs), features originally designed for speech recognition but commonly used to characterize timbre in music.
 
 Files:
 - [`cqhc.py`](#cqhcpy): Python module with the CQHCs and other related functions.
@@ -275,7 +272,7 @@ WAV file with 4 second musical note of an acoustic bass playing C2 (65.41 Hz), f
 - Jesse Engel, Cinjon Resnick, Adam Roberts, Sander Dieleman, Douglas Eck, Karen Simonyan, and Mohammad Norouzi, "Neural Audio Synthesis of Musical Notes with WaveNet
 Autoencoders," *34th International Conference on Machine Learning*, Sydney, NSW, Australia, August 6-11 2017 [[URL](https://librosa.org/doc/latest/index.html#)]
 
-- Zafar Rafii, "The Constant-Q Harmonic Coefficients: A Timbre Feature Designed for Music Signals," *IEEE Signal Processing Magazine*, to appear.
+- Zafar Rafii, "The Constant-Q Harmonic Coefficients: A Timbre Feature Designed for Music Signals," *IEEE Signal Processing Magazine*, vol. 35, no. 3, May 2022.
 
 # Author
 
