@@ -272,7 +272,7 @@ WAV file with 4 second musical note of an acoustic bass playing C2 (65.41 Hz), f
 - Jesse Engel, Cinjon Resnick, Adam Roberts, Sander Dieleman, Douglas Eck, Karen Simonyan, and Mohammad Norouzi, "Neural Audio Synthesis of Musical Notes with WaveNet
 Autoencoders," *34th International Conference on Machine Learning*, Sydney, NSW, Australia, August 6-11 2017 [[URL](https://librosa.org/doc/latest/index.html#)]
 
-- Zafar Rafii, "The Constant-Q Harmonic Coefficients: A Timbre Feature Designed for Music Signals," *IEEE Signal Processing Magazine*, vol. 35, no. 3, May 2022.
+- Zafar Rafii, "The Constant-Q Harmonic Coefficients: A Timbre Feature Designed for Music Signals," *IEEE Signal Processing Magazine*, vol. 35, no. 3, May 2022 [[article](http://www.zafarrafii.com/Documents/Journals/Rafii%20-%20The%20Constant-Q%20Harmonic%20Coefficients%20A%20Timbre%20Feature%20designed%20for%20Music%20Signals%20-%202022.pdf)]
 
 # Author
 
