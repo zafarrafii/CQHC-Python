@@ -1,6 +1,6 @@
 # CQHC-Python
 
-The constant-Q harmonic coefficients (CQTHCs): a timbre feature designed for music signals.
+The constant-Q harmonic coefficients (CQHCs): a timbre feature designed for music signals.
 
 Timbre is the attribute of sound which makes, for example, two musical instruments playing the same note sound different. It is typically associated with the spectral (but
 also the temporal) envelope and assumed to be independent from the pitch (but also the loudness) of the sound. This will show how to design a simple but effective  pitch-independent timbre feature which is well adapted to musical data, by deriving it from the constant-Q transform (CQT), a log frequency transform which matches the typical Western musical scale. We will show how to decompose the CQT spectrum into an energy-normalized pitch component and a pitch-normalized spectral component, the latter from which we will extract a number of harmonic coefficients. We will then evaluate the discriminative power of these Constant Q harmonic coefficients (CQHCs) on the NSynth dataset, a large-scale dataset of musical notes which is publicly available, comparing them with the mel-frequency cepstral coefficients (MFCCs), features originally designed for speech recognition but commonly used to characterize timbre in music.
