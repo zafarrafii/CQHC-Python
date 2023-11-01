@@ -27,7 +27,7 @@ Functions:
 - [`mfcc`](#mfcc) - Compute the mel-frequency cepstral coefficients (MFCCs) (using librosa).
 - [`cqtspectrogram`](#cqtspectrogram) - Compute the (magnitude) constant-Q transform (CQT) spectrogram (using librosa).
 - [`cqtdeconv`](#cqtdeconv) - Deconvolve the CQT spectrogram into a pitch-normalized spectral component and an energy-normalized pitch component.
-- [`cqhc`](#cqtsc) - Compute the CQHCs.
+- [`cqhc`](#cqhc) - Compute the CQHCs.
 
 
 ### mfcc
